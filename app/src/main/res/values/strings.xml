@@ -1,0 +1,167 @@
+<resources>
+    <string name="app_name">Shipper</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_request">Request</string>
+    <string name="nav_response">Response</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_share">Share</string>
+    <string name="nav_info">About</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_message">Message</string>
+    <string name="nav_notification">Thông báo</string>
+    <string name="nav_logout">Đăng xuất</string>
+
+    <!--Home activity-->
+    <string name="sign_up_as_shipper">Đăng ký đối với shipper</string>
+    <string name="sign_up_as_store">Đăng ký đối với cửa hàng</string>
+    <string name="or">Hoặc</string>
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+
+
+    <!--Service asynctask-->
+
+    <string name="please_wait">Vui lòng chờ ....</string>
+
+
+    <!--Home fragment-->
+
+    <string name="all">Tất cả</string>
+    <string name="pending">Đang chờ</string>
+    <string name="on_going">Đang thực hiện</string>
+    <string name="completed">Đã hoàn thành</string>
+
+    <!--Login activity-->
+    <string name="login_as">Đăng nhập với tư cách</string>
+    <string name="register_as_store">Đăng ký cửa hàng</string>
+    <string name="register_as_shipper">Đăng ký shipper</string>
+
+    <!--Register activity-->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="store_name">Tên cửa hàng</string>
+    <string name="store_type">Loại cửa hàng</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="number_and_street">Số nhà và tên đường phố</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+
+    <!-- -->
+    <string name="ok">Đồng ý</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="turn_on_gps">Chức năng này cần bật GPS, bạn có muốn bật GPS ?</string>
+    <string name="internet_no_available">Thiết bị của bạn đang ngoại tuyến, hãy bật wifi hoặc dữ liệu di động để tải dữ liệu.</string>
+    <string name="gps">GPS</string>
+
+    <string-array name="roles">
+        <item>Shipper</item>
+        <item>Cửa hàng</item>
+    </string-array>
+
+    <string-array name="cities_in_viet_nam">
+        <item>Hà Nội</item>
+        <item>TP Hồ Chí Minh</item>
+    </string-array>
+    <string-array name="countries">
+        <item>Việt Nam</item>
+    </string-array>
+    <string-array name="districts_in_ho_chi_minh">
+        <item>Quận 1</item>
+        <item>Quận 2</item>
+        <item>Quận 3</item>
+        <item>Quận 4</item>
+        <item>Quận 5</item>
+        <item>Quận 6</item>
+        <item>Quận 7</item>
+        <item>Quận 8</item>
+        <item>Quận 9</item>
+        <item>Quận 10</item>
+        <item>Quận 11</item>
+        <item>Quận 12</item>
+        <item>Thủ Đức</item>
+        <item>Gò Vấp</item>
+        <item>Bình Thạnh</item>
+        <item>Tân Bình</item>
+        <item>Tân Phú</item>
+        <item>Phú Nhuận</item>
+        <item>Bình Tân</item>
+        <item>Củ Chi</item>
+        <item>Hóc Môn</item>
+        <item>Bình Chánh</item>
+        <item>Nhà Bè</item>
+        <item>Cần Giờ</item>
+    </string-array>
+
+
+    <string-array name="districts_in_ha_noi">
+        <item>Ba Đình</item>
+        <item>Hoàn Kiếm</item>
+        <item>Tây Hồ</item>
+        <item>Long Biên</item>
+        <item>Cầu Giấy</item>
+        <item>Đống Đa</item>
+        <item>Hai Bà Trưng</item>
+        <item>Hoàng Mai</item>
+        <item>Thanh Xuân</item>
+        <item>Sóc Sơn</item>
+        <item>Đông Anh</item>
+        <item>Gia Lâm</item>
+        <item>Nam Từ Liêm</item>
+        <item>Thanh Trì</item>
+        <item>Bắc Từ Liêm</item>
+        <item>Mê Linh</item>
+        <item>Hà Đông</item>
+        <item>Thị xã Sơn Tây</item>
+        <item>Ba Vì</item>
+        <item>Phúc Thọ</item>
+        <item>Đan Phượng</item>
+        <item>Hoài Đức</item>
+        <item>Quốc Oai</item>
+        <item>Thạch Thất</item>
+        <item>Chương Mỹ</item>
+        <item>Thanh Oai</item>
+        <item>Thường Tín</item>
+        <item>Phú Xuyên</item>
+        <item>Ứng Hòa</item>
+        <item>Mỹ Đức</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="your_store_location">Vị trí cửa hàng của bạn</string>
+    <string name="product_information">Thông tin sản phẩm</string>
+    <string name="product_name">Tên sản phẩm: </string>
+    <string name="deposit">Tiền đặt cọc:</string>
+    <string name="price">Tiền ship:</string>
+    <string name="detail_info">Thông tin chi tiết</string>
+    <string name="place_and_time">Thời gian và địa điểm:</string>
+    <string name="start_time">Thời gian nhận hàng:</string>
+    <string name="end_time">Thời gian giao hàng:</string>
+    <string name="customer_place">Vị trí giao hàng:</string>
+    <string name="customer_info">Thông tin khách hàng</string>
+    <string name="customer_name">Tên khách hàng:</string>
+    <string name="customer_phone">Số điện thoại:</string>
+    <string name="incorrect_information">Tài khoản hoặc mật khẩu không đúng</string>
+    <string name="active_code_description">Sau khi đăng ký, bạn phải kiểm tra email để nhận mã xác thực để xác thực tài khoản của bạn.</string>
+    <string name="active_account">Xác nhận tài khoản</string>
+    <string name="put_your_code_hear">Điền mã xác nhận của bạn vào đây</string>
+    <string name="submit">Gửi yêu cầu</string>
+    <string name="incorrect_active_code">Mã xác nhận của bạn không đúng.</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="change_password_description">Nhập email của bạn để thay đổi mật khẩu</string>
+    <string name="put_your_email_hear">Nhập email của bạn ở đây</string>
+    <string name="reset_password_notification">Chúng tôi đã gửi mã xác nhận thay đổi mật khẩu về email của bạn, chọn tiếp tục để điền mã xác nhận để thực hiện việc thay đổi mật khẩu</string>
+    <string name="continues">Tiếp tục</string>
+    <string name="reset">Thay đổi mật khẩu</string>
+    <string name="reset_code">Mã xác nhận</string>
+    <string name="incorrect_reset_code">Mã xác nhận của bạn không đúng, vui lòng kiểm tra lại mã trong email của bạn</string>
+    <string name="title_activity_sthome">STHomeActivity</string>
+
+</resources>

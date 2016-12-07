@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/response"
+            android:title="@string/nav_notification" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/nav_logout" />
+        <!--<item-->
+            <!--android:id="@+id/nav_message"-->
+            <!--android:icon="@drawable/message"-->
+            <!--android:title="@string/nav_message" />-->
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/share"-->
+                <!--android:title="@string/nav_share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_info"-->
+                <!--android:icon="@drawable/info"-->
+                <!--android:title="@string/nav_info" />-->
+
+            <!--<item-->
+                <!--android:id="@+id/nav_help"-->
+                <!--android:icon="@drawable/help1"-->
+                <!--android:title="@string/nav_help" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>
