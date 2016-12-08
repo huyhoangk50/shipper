@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
-import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
@@ -47,7 +46,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
     private boolean isDestinationEmpty;
     private boolean isCustomerNameEmpty;
     private boolean isPhoneNumberValid;
-    private boolean isEndTimeEarlierThanStartTime;
+    private boolean isEndTimeLaterThanStartTime;
 
     private EditText etProductName;
     private EditText etDeposit;
@@ -186,12 +185,11 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
                 } else {
                     //fake data
 
-                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 21.0212, 105.2344, "Việt nam");
-                    store.setStatus(Constant.ACTIVE_STATUS);
+//                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 21.0212, 105.2344, "Việt nam");
+//                    store.setStatus(Constant.ACTIVE_STATUS);
+//                    ProjectManagement.store = store;
+
                     distance = getDistanceFromStoreToDestination();
-                    ProjectManagement.store = store;
-
-
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty(Constant.KEY_DISTANCE, distance);
                     jsonObject.addProperty(Constant.KEY_DEPOSIT, deposit);
@@ -268,12 +266,12 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         isDepositBetterThanZero = (Integer.valueOf(deposit) > 0);
         isPriceBetterThanZero = Integer.valueOf(price) > 0;
         isDestinationEmpty = destination.equals("");
-        isEndTimeEarlierThanStartTime = checkEndTimeEarlierThanStartTime();
+        isEndTimeLaterThanStartTime = checkEndTimeEarlierThanStartTime();
         isPhoneNumberValid = checkPhoneNumber();
     }
 
     private boolean checkEndTimeEarlierThanStartTime(){
-        return true;
+        return false;
     }
     private boolean checkPhoneNumber(){
         return true;
@@ -285,7 +283,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         if(!isDepositBetterThanZero) return false;
         if(!isPriceBetterThanZero) return false;
         if(isDestinationEmpty) return false;
-        if(isEndTimeEarlierThanStartTime) return false;
+        if(isEndTimeLaterThanStartTime) return false;
         if(!isPhoneNumberValid) return false;
         return true;
     }
