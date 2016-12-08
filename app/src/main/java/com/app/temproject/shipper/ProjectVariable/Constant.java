@@ -69,7 +69,7 @@ public class Constant {
     public static final String URL_ACTIVE_ACCOUNT = BASE_URL + "api/accounts/active";
     public static final String URL_CONFIRM_EMAIL = BASE_URL + "api/accounts/requireResetPassword";
     public static final String URL_RESET_PASSWORD = BASE_URL + "api/accounts/checkResetCodeAndUpdatePassword";
-    public static final String URL_ST_CREATE_REQUEST = BASE_URL + "";
+    public static final String URL_ST_CREATE_REQUEST = BASE_URL + "api/requests";
 
     public static final String FROM = "Từ ";
     public static final String TO = " đến ";
