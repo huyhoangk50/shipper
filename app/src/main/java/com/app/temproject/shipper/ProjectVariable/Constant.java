@@ -61,7 +61,7 @@ public class Constant {
     public static final String KEY_RESET_CODE = "reset_code";
 
     //constant for url
-    public static final String BASE_URL = "http://192.168.0.102:3000/";
+    public static final String BASE_URL = "http://192.168.0.104:3000/";
     public static final String URL_SP_LOAD_REQUEST = BASE_URL + "api/accounts/login";
     public static final String URL_SP_LOAD_REGISTERS = BASE_URL + "api/accounts/register";
     public static final String URL_SP_LOAD_DETAIL_REQUEST = BASE_URL + "";
