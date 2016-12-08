@@ -68,7 +68,8 @@
         <activity
             android:name=".Activity.Store.STHomeActivity"
             android:label="@string/title_activity_sthome"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.Store.STCreateRequestActivity"></activity>
     </application>
 
 </manifest>

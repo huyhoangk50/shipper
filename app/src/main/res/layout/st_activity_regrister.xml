@@ -39,7 +39,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="20dp"
                 android:text="@string/register_as_store"
-                android:textColor="@color/GreenYellow"
+                android:textColor="@color/Green"
                 android:textSize="30dp" />
 
             <LinearLayout
@@ -47,25 +47,38 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:orientation="vertical">
-
-                <TextView
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/email"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/email"
-                    android:text="huyhoangk50@gmail.com"
-                    android:textStyle="italic" />
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="huyhoangk50@gmail.com"
+                        android:hint="@string/email" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="5dp"-->
+                    <!--android:text="@string/email"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etEmail"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/email"-->
+                    <!--android:text="huyhoangk50@gmail.com"-->
+                    <!--android:textStyle="italic" />-->
 
                 <TextView
                     android:id="@+id/tvCheckEmail"
@@ -77,25 +90,39 @@
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/password"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/password"
-                    android:text="123456"
-                    android:inputType="textPassword"
-                    android:textStyle="italic" />
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:text="123456"
+                        android:hint="@string/hint_password" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/password"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etPassword"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/password"-->
+                    <!--android:text="123456"-->
+                    <!--android:inputType="textPassword"-->
+                    <!--android:textStyle="italic" />-->
 
                 <TextView
                     android:id="@+id/tvCheckPassword"
@@ -106,26 +133,39 @@
                     android:textColor="#000000"
                     android:textSize="10sp"
                     android:textStyle="bold" />
-
-                <TextView
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/confirm_password"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/password"
-                    android:text="123456"
-                    android:inputType="textPassword"
-                    android:textStyle="italic" />
+                    <EditText
+
+                        android:id="@+id/etConfirmPassword"
+                        android:text="123456"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:hint="@string/confirm_password" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/confirm_password"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etConfirmPassword"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/password"-->
+                    <!--android:text="123456"-->
+                    <!--android:inputType="textPassword"-->
+                    <!--android:textStyle="italic" />-->
 
                 <TextView
                     android:id="@+id/tvCheckConfirmPassword"
@@ -136,25 +176,38 @@
                     android:textColor="#000000"
                     android:textSize="10sp"
                     android:textStyle="bold" />
-
-                <TextView
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/store_name"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etStoreName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/store_name"
-                    android:text="huy hoang"
-                    android:textStyle="italic" />
+                    <EditText
+                        android:id="@+id/etStoreName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:text="huy hoàng"
+                        android:hint="@string/store_name" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/store_name"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etStoreName"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/store_name"-->
+                    <!--android:text="huy hoang"-->
+                    <!--android:textStyle="italic" />-->
 
                 <TextView
                     android:id="@+id/tvCheckStoreName"
@@ -167,24 +220,37 @@
                     android:textStyle="bold" />
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/store_type"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/store_type"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <EditText
-                    android:id="@+id/etStoreType"
+                <!--<EditText-->
+                    <!--android:id="@+id/etStoreType"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/store_type"-->
+                    <!--android:text="tạp hóa"-->
+                    <!--android:textStyle="italic" />-->
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/store_type"
-                    android:text="tạp hóa"
-                    android:textStyle="italic" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/etStoreType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:text="Tạp hóa"
+                        android:hint="@string/store_type" />
+                </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tvCheckStoreType"
@@ -196,24 +262,37 @@
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/phone_number"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etPhoneNumbber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/phone_number"
-                    android:text="01234567890"
-                    android:textStyle="italic" />
+                    <EditText
+                        android:id="@+id/etPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:text="0987654321"
+                        android:hint="@string/phone_number" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/phone_number"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etPhoneNumbber"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/phone_number"-->
+                    <!--android:text="01234567890"-->
+                    <!--android:textStyle="italic" />-->
 
                 <TextView
                     android:id="@+id/tvCheckPhoneNumber"
@@ -244,30 +323,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="10dp"></Spinner>
-
-                <TextView
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/number_and_street"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etStreet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/border"
-                    android:hint="@string/number_and_street"
-                    android:text="số 64 hồ đền lừ"
-                    android:textStyle="italic" />
+                    <EditText
+                        android:id="@+id/etStreet"
+                        android:text="số 64 phố tân mai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="@string/number_and_street" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="2dp"-->
+                    <!--android:text="@string/number_and_street"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/etStreet"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:background="@drawable/border"-->
+                    <!--android:hint="@string/number_and_street"-->
+                    <!--android:text="số 64 hồ đền lừ"-->
+                    <!--android:textStyle="italic" />-->
 
                 <fragment
                     android:id="@+id/mapStRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="300dp"
                     android:name="com.app.temproject.shipper.Fragment.Maps.MapsFragment" />
 
                 <TextView

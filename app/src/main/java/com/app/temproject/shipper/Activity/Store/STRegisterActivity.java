@@ -129,7 +129,7 @@ public class STRegisterActivity extends AppCompatActivity {
         tvCheckStoreName = (TextView) findViewById(R.id.tvCheckStoreName);
         etStoreType = (EditText) findViewById(R.id.etStoreType);
         tvCheckStoreType = (TextView) findViewById(R.id.tvCheckStoreType);
-        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumbber);
+        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
         tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
         etStreet = (EditText) findViewById(R.id.etStreet);
         spDistrict = (Spinner) findViewById(R.id.spDistrict);
