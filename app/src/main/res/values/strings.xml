@@ -144,7 +144,7 @@
     <string name="place_and_time">Thời gian và địa điểm:</string>
     <string name="start_time">Thời gian nhận hàng:</string>
     <string name="end_time">Thời gian giao hàng:</string>
-    <string name="customer_place">Vị trí giao hàng:</string>
+    <string name="destination">Vị trí giao hàng:</string>
     <string name="customer_info">Thông tin khách hàng</string>
     <string name="customer_name">Tên khách hàng:</string>
     <string name="customer_phone">Số điện thoại:</string>
@@ -163,5 +163,16 @@
     <string name="reset_code">Mã xác nhận</string>
     <string name="incorrect_reset_code">Mã xác nhận của bạn không đúng, vui lòng kiểm tra lại mã trong email của bạn</string>
     <string name="title_activity_sthome">STHomeActivity</string>
+
+
+
+    <string name="hint_name">Full Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công</string>
 
 </resources>
