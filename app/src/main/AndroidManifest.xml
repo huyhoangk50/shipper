@@ -40,8 +40,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Shipper.SPRegisterActivity" />
+<<<<<<< HEAD
         <activity android:name=".Activity.Store.STRegisterActivity" />
 
+=======
+        <!--<activity android:name=".Activity.Store.STRegisterActivity" />-->
+>>>>>>> be57fb20d706dd86f2d7d9bc647b741aa9dc7621
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -70,7 +74,8 @@
         <activity
             android:name=".Activity.Store.STHomeActivity"
             android:label="@string/title_activity_sthome"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.Store.STCreateRequestActivity"></activity>
     </application>
 
 </manifest>

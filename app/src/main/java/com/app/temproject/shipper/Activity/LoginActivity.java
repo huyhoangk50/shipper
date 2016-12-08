@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -259,23 +260,21 @@ public class LoginActivity extends Activity {
     }
 
     private boolean isValid(String email, String password) {
-        String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Matcher matcherEmail = Pattern.compile(regexEmail).matcher(email);
-        boolean isValidEmail;
 
-        if(!(isValidEmail = matcherEmail.find())){
+        boolean isValidEmail = CheckingInformation.isValidEmail(email);
+        boolean isValidPassword = CheckingInformation.isValidPassword(password);
+        if(!(isValidEmail)){
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
             tvCheckEmail.setText("");
         }
-        if(password.length() < 6){
+        if(!isValidPassword){
             tvCheckPassword.setText(Constant.INVALID_PASSWORD);
         }else{
             tvCheckPassword.setText("");
         }
 
-        if(!isValidEmail || password.length() < 6){
+        if(!isValidEmail || !isValidPassword){
             return false;
         }
         return true;
