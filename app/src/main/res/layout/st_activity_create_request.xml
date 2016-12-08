@@ -53,7 +53,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/llProductInfo"
                 android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/tvStartDate"
-                                android:text="22/12/2016"
+                                android:text="2016/2/12"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical"
@@ -221,7 +221,7 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/tvEndDate"
-                                android:text="22/12/2016"
+                                android:text="2016/12/20"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical"
@@ -262,6 +262,7 @@
                             android:id="@+id/etDestination"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="Số 90, Nguyễn Chí Thanh Hà Nội"
                             android:hint="@string/destination" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -313,6 +314,7 @@
                             android:id="@+id/etCustomerName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="Nguyễn Anh Tú"
                             android:hint="@string/customer_name" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -325,6 +327,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
+                            android:text="0987651234"
                             android:hint="@string/phone_number" />
                     </android.support.design.widget.TextInputLayout>
 
