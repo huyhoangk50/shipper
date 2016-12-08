@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ddfa80ca49f1334afea1f9aa93148be73f73cd0f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-10.0.0_4fd81e2aeb65cdd1db4f353ab7a54adc23b7c090/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.1_a22853ba017a784cde11f2f8887ac269d316e093/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="543835521cf4f867223d9f2a4b19ce32f95b0573">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-10.0.0_6431712dcb063f236bae4b925ce3000facf523e2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6b7e0a45e8139272f3fe2a19d4e7b1122c769550">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-10.0.0_fdffcf0861eeeb5ba4e0592aaf349c56f4629456/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="41e39c7ee84e63ae18df6c6ccb96d196996add4c">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-10.0.0_c3dee40c877c60b0336e0ca5b9003737ea5cb237/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.0.0_49100679656010974f64d66d02b17961c875904a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ce6e6e59212db0893fc36e5b579cf319a84aade8">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-10.0.0_11d22c158ac8557914f8f4353bce00b4dd3106af/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ca730ac2d72056445bf68998cec6b6b2cf4d179e">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-10.0.0_124c00c235001964a7a6d7a62159a36c9e204829/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a18773c279bde7e49e09f621aea613685c108c7f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-10.0.0_dd6e6fd2fc3c54b4f3cc3d513a2fab7e47aa3e4b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/src/libs/gson-2.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="53bfcd3c8e310d1493b2691484525ed90b04e236">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/2/gson-2.2.2_0d3572a1e4ebe429aaf9adb329aeffe003028322/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.1_87357ad6b238483d8ec538cfd58c3cb670b0da16/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_9d12b252d47480f501a1ece61d9f2a1ab8e11f46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8bb364f67ec2eba2356872b2b4ddfe8aada2d5ac">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.0_e9ceb9e77ece44e1ddf9ae294448fab46322e0c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.1_3e546e9a5e263034349bcf7cc5497400099c21d6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3861e0294c61bf4bf968a1da1607497345dca283">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-10.0.0_22eb1713d32506dca1cebc9699d7c515feb2eaef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a61005619e43f203768ff3f224137def6f029e50">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-10.0.0_4d49c2b3b7ed44d361347cf512044f79f60704f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3a05b3852a6aec21ea0a6ea4d284ee69c04c55c4">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-10.0.0_aa598155a22a8cd6bec089d6ff277acdf7e423a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f36cf060b7f0d881ea6449c254ab8a570a3dcdbe">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-10.0.0_4daea4ab285d9422da4dafb946e4184e0149dad9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="4701f9f79c8a00564912b21b0cb0cec3f51a7d23">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-10.0.0_1b14168cf6d23dcfcef15d02e4b087563b40a842/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0d70f7c486d9d65ceabd0039667ae4d53bf0ae7c">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-10.0.0_675643aa479b03aa59cf7c838329c48f3ad512a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a383a583c346ce8ea5767d77f4fe58e1d8e5f221">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-10.0.0_69069ad0c0fdcfc457a4de773a2ef1292ec14526/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2e61c07206f0568b34939e2dc0e2bc75251648dc">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-10.0.0_6266b838d569c8827d5ddb0f8af7f6c26c0ece79/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="fb0229499e600b485a276d4e31161a3ae31c144c">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-10.0.0_ec17c6f331be73ab55b6e6782d801099e63894b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c2376d0ec8dbe85d3446cad64905c0395fbe220e">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-10.0.0_8446c75cc6c3191ead45722c5cd75ea1e60811fe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.1_cd7e026efc6eaa7be53cffd21bad32e2f3050ede/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b1c926efda90fbf653889fea922eacc527de8486">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-10.0.0_b6e27c05437095dcb70053464125462a3a1ec218/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.1_ba483ea758bfe6c7e0d7356b276ac079b29b43f1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5ac49e5d5aea8772c8018ce2888145f04c5fe7ca">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-10.0.0_90f63f67f2e5ee82f28aad0d8aebc358cf3a838d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="73a2c740a76aa4ba46168ed8bcdee1966e48a589">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-10.0.0_b18a543efc01c0cb1bbd6fb86f340ec600f8be68/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0e2bf5e85132c8bfed05a87b71352918815e0205">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-10.0.0_90890f124b1448a7c8a64c6790900fb6153312ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ae809d521d9f7da5337a82edd64eea23a76e788d">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-10.0.0_ec266a454a8a92585f0f33f302ce404595bcda85/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b7518f2d3fce2ebec6a0bb8d2cd97eebc9f119df">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-10.0.0_75e777415e413f569f6cedbfd938faf3ce09cc1c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-v4-impl/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3660967212b89195e628670db181ed86e3307569">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-v4-impl-10.0.0_32b73856120b973cae450c58859800f6e2428707/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.1_514a19b8bac1776832359a51df009e54dd8bf90a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_63cae8cfc3320b9c796408dfcc068dce8953387e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5fd86107cb2d2fa2d099250066cc664cdcfd476f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-10.0.0_1b04a81d502ffb5fd4186bf97a6d90fbee9582b1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_f154cccdbab666e5fe9e1371eb83f64782ce859c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_156fcc69f422df74f08560608342a637621db579/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="932350448ea536c5dfbc45697951f31d34e50f1f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-10.0.0_c1f8be9fc99fee00df568f25bca243f41c0cc8ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8e2fd2b87dc79fc6c8d70fda1247ac6f4a878a28">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.0_232834d9c92af94e9eb5c3abb6cd526816352f64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ec640815027c6e14445d6baba596115caa5f656d">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f365ae4b380f9adc00731cb98bcdb714444c78b9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="777627dcaf0eaacd4212220e8f2d0c63def91774">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-10.0.0_5ec25a4e71fef5cb316377aea6f79d89553fa774/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6cc495f5634b8aaae30a37317ba687830da545cf">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-10.0.0_c87d5e60fcd16afed7d8188afe37b8929fd0d109/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.1_1398874e285c6999c06a81187da0a10cc6802f69/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="985be85104f6d0c5c5e51e7b7e60d8883a98ac64">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-10.0.0_70f93cf3210f4e9e8fdae1e1cb5eb6994dacf7a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.1_c3c61533c53819b1814ba01859edb55fd61003f0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.1_a203fac3b9eb1fd2a58bcb1652dcd338e9b1bc5c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_bd51a4a184c7794e2b387d8a93b43a55ef782df5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="75dbc3537bc912d077b3db2f5ac72d5b43644b2c">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-10.0.0_dc431dde347ab8f41b2afaf2b804e527e315daf6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.1_b78bce3b5297c92cf717a6f88bc8d1fd9d02662a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.1_b1d2924ac823baeeefac9ebf966f6272eea004b1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="73fe8ab7f76e41d0cabbc4fa3399557de52efb2d">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-10.0.0_949919415650caca266ca4086f527fa2d733f438/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.1_279a169dccaabc1bb3086ae3033171e1c6beaa4c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.1_c63263ccb554cb77ac90af7051537d82f84856c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="cf60a8cd2f896314e40b2f1a9788e91e228c3671">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-10.0.0_57a96d9e7e0f3619eac85b36b9421765df01154a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="147c3e6b95aa3d1e83705b056777ef865d272969">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-10.0.0_12b069a7cb8629a0965136ee99f7fecd75be8c8b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-appindexing/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="22031b047b12904b888549ba36c0c30d83b1aea1">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-appindexing-10.0.0_8d0e39e773ea666f850525285072a0cf23952abb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="849da156edbc1201f5cd6e237524187442a62af3">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-10.0.0_7d7624d6bd56a4316d3fac410f293215ccf8b2ac/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8ca4ffc4d90754f1f2438dfc3e94006cfcc6be98">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.0_c7258c6ca05872eda70e1ff4629250ee6a2cc498/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="76863814ca24fea5a0510373d15d3ccddebc09f1">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-10.0.0_25cfa4d689497a6f8ef6be860671e8e52b81d53b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_29395abbfe08ad40d9f9766b9d5d5f4244f3d129/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_fd8d5aac9ef66cbb3a73392da40b566106bf0538/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="813f70b551ce5206ad15dfe6e2f5b2d86e08a723">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-10.0.0_9f1b9d65e9dcb69f645eb5c4b2547db19a639716/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3347c3e7056fabc88bdbd8fdae65ddf2b674d977">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-10.0.0_194d10403a1c810812930224c639a404cd1d8a0f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2b410ae1fda134f470276365f4b7f846269e0d23">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.0_880cf042ae55d4b790b29d00fd9e33a3ca109230/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="741f550aea73f64507fc60a799fefd5a2ea2bef5">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-10.0.0_2d6059d0c9bb254bbdae827870ec77a0fa44e7f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.1_770a6c03d3d135cc72c4bb2b7c3c006f21d02d66/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="80338dde5f9d8e20efe2f2a44bc424aefe4eb8f4">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-10.0.0_435a5f126da65c833fb8dde9e309fe25459fd21f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="444a220fadbdf260b3aa47c6e858c5d1e645170f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-10.0.0_3accabffefbaa50686ec6cb61491adc4d777d437/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c7ed3fd9d5a9687980dac6c504abd91ad3dfa238">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-10.0.0_366ad5c8c6dbe7aa6970da4433e67fa1d3ebde4e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1fabe27d7a7b7ef3fe077c6499cd0a4f08e1c427">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-10.0.0_ec39c98c3581fe465a305fb2bc6b1e22446e2d3c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="708cc0fa5133e243dcf5faa4360d6376a59300e6">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_64689b8c40b408cb932940d73fe73f8773c090d4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/hieppso194/Downloads/shipper/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/10.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="58cd8dc3bbf63b37f0e107033257467511130e0f">
+        <dex dex="/home/hieppso194/Downloads/shipper/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-10.0.0_62bf79d871f2c8e0c095457deabb746845b3d642/classes.dex" />
+    </item>
+
+</items>
