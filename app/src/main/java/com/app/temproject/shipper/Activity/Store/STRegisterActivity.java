@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.LoginActivity;
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Store;
@@ -247,45 +248,42 @@ public class STRegisterActivity extends AppCompatActivity {
     private boolean isValid(String email, String password, String confirmPassword, String storeName,
                             String storeType, String phoneNumber, String street,
                             String city, String district, double longitude, double latitude, String country) {
-        boolean isValidPhoneNumber;
-        boolean isValidEmail;
-        String regexPhoneNumber = "^[0-9]*$";
-        String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-        Matcher matcherPhoneNumber = Pattern.compile(regexPhoneNumber).matcher(phoneNumber.trim());
-        Matcher matcherEmail = Pattern.compile(regexEmail).matcher(email);
+        boolean isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
+        boolean isValidEmail = CheckingInformation.isValidEmail(email);
+        boolean isValidPassword = CheckingInformation.isValidPassword(password);
+        boolean isValidConfirmPassword = confirmPassword.equals(password);
+        boolean isValidStoreName = !storeName.trim().equals("");
 
 
-        if(!(isValidPhoneNumber = matcherPhoneNumber.find())){
+        if(!isValidPhoneNumber){
             tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
         }else{
             tvCheckPhoneNumber.setText("");
         }
-        if(!(isValidEmail = matcherEmail.find())){
+        if(!isValidEmail){
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
             tvCheckEmail.setText("");
         }
-        if(password.length() < Constant.MIN_PASS_LENGTH){
+        if(!isValidPassword){
             tvCheckPassWord.setText(Constant.INVALID_PASSWORD);
         }else{
             tvCheckPassWord.setText("");
         }
-        if(!confirmPassword.equals(password)){
+        if(!isValidConfirmPassword){
             tvCheckConfirmPassword.setText(Constant.INCORRECT_PASSWORD);
         }else{
             tvCheckConfirmPassword.setText("");
         }
-        if(storeName.equals("")){
+        if(!isValidStoreName){
             tvCheckStoreName.setText(Constant.INVALID_STORE);
         }else{
             tvCheckStoreName.setText("");
         }
 
-        if(!isValidEmail || !isValidPhoneNumber || (password.length() < Constant.MIN_PASS_LENGTH) ||
-                (phoneNumber.trim().length() < Constant.MIN_PHONE_NUM_LENGTH) || (phoneNumber.trim().length() > Constant.MAX_PHONE_NUM_LENGTH)
-                || !(confirmPassword.equals(password)) || storeName.equals("")){
+        if(!isValidEmail || !isValidPhoneNumber || !isValidPassword
+                || !isValidConfirmPassword || !isValidStoreName){
             return false;
         }else{
             return true;
