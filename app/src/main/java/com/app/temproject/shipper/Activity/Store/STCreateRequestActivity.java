@@ -1,19 +1,25 @@
 package com.app.temproject.shipper.Activity.Store;
 
 import android.app.Activity;
+import android.location.Location;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
+import com.app.temproject.shipper.Object.Store;
+import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.ServiceAsyncTask;
+import com.google.gson.JsonObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -178,10 +184,44 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
                 if(!isAllInformationCorrect()){
                     notifyToUser();
                 } else {
+                    //fake data
+
+                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 21.0212, 105.2344, "Việt nam");
+                    store.setStatus(Constant.ACTIVE_STATUS);
+                    distance = getDistanceFromStoreToDestination();
+                    ProjectManagement.store = store;
+
+
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty(Constant.KEY_DISTANCE, distance);
+                    jsonObject.addProperty(Constant.KEY_DEPOSIT, deposit);
+                    jsonObject.addProperty(Constant.KEY_START_TIME, startDate + " " + startTime);
+                    jsonObject.addProperty(Constant.KEY_END_TIME, endDate + " " + endTime);
+                    jsonObject.addProperty(Constant.KEY_STORE_ID, ProjectManagement.store.getId());
+                    jsonObject.addProperty(Constant.KEY_DESTINATION, destination);
+                    jsonObject.addProperty(Constant.KEY_PRICE, price);
+                    jsonObject.addProperty(Constant.KEY_PRODUCT_NAME, productName);
+                    jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
+                    jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
+                    jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
+                    jsonObject.addProperty(Constant.KEY_CUSTOMER_NAME, customerName);
+
+                    new CreateRequestAsyncTask(STCreateRequestActivity.this).execute(Constant.URL_ST_CREATE_REQUEST, Constant.POST_METHOD, jsonObject.toString());
 
                 }
             }
         });
+    }
+
+    private double getDistanceFromStoreToDestination(){
+        Location startLocation = new Location("");
+        startLocation.setLongitude(ProjectManagement.store.getLongitude());
+        startLocation.setLatitude(ProjectManagement.store.getLatitude());
+        startLocation.setLatitude(latitude);
+        Location destination = new Location("");
+        destination.setLongitude(longitude);
+        destination.setLatitude(latitude);
+        return startLocation.distanceTo(destination);
     }
 
     @Override
@@ -263,6 +303,8 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
             if(error){
                 //notify to user
             } else{
+                Toast.makeText(STCreateRequestActivity.this, getString(R.string.create_request_successfully), Toast.LENGTH_LONG).show();
+                finish();
                 //notify to user and go to main activity
             }
         }
