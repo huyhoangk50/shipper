@@ -23,12 +23,10 @@ import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.Gson;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class STRegisterActivity extends AppCompatActivity {
 
@@ -168,7 +166,7 @@ public class STRegisterActivity extends AppCompatActivity {
                                 street, district, city, longitude, latitude, country);
 
                         String requestContent = new Gson().toJson(store);
-                        new STRegisterAsyncTask(STRegisterActivity.this).execute(Constant.URL_SP_LOAD_REGISTERS, Constant.POST_METHOD, requestContent);
+                        new STRegisterAsyncTask(STRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, requestContent);
                     } else {
                         notifyToUser();
                     }

@@ -122,7 +122,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.shipper.getPassword());
         jsonObject.addProperty(Constant.KEY_STATUS, requestId);
 
-//        new LoadDetailRequestAsyncTask(this).execute(Constant.URL_SP_LOAD_DETAIL_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+//        new LoadDetailRequestAsyncTask(this).execute(Constant.urlSpLoadDetailRequest, Constant.POST_METHOD, jsonObject.toString());
 
         fakeData();
         updateUI();

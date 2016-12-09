@@ -41,7 +41,7 @@ public class SPRequestAdapter extends RecyclerView.Adapter<SPRequestAdapter.View
         String storePosition = request.getStorePosition();
         String destination  = request.getDestination();
         String productName = request.getProductName();
-        double price = request.getPrice();
+        int price = request.getPrice();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,10 +53,10 @@ public class SPRequestAdapter extends RecyclerView.Adapter<SPRequestAdapter.View
             }
         });
 
-        holder.tvStoreName.setText(storeName);
+        holder.tvStoreName.setText(Constant.STORE + storeName);
         holder.tvDestination.setText(Constant.FROM + storePosition + Constant.TO + destination);
         holder.tvProductName.setText(productName);
-        holder.tvPrice.setText(price + "");
+        holder.tvPrice.setText(Constant.PRICE + price + " " + Constant.THOUSAND_DONG);
 
     }
 

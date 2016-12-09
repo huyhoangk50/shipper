@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.app.temproject.shipper.Fragment.Shipper.SPRequestsFragment;
 import com.app.temproject.shipper.Fragment.Store.STRequestsFragment;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.R;
@@ -35,7 +34,7 @@ public class STRequestPagerAdapter extends FragmentStatePagerAdapter {
                 bundle.putInt(Constant.KEY_STATUS, Constant.PENDING_STATUS);
                 break;
             case 2:
-                bundle.putInt(Constant.KEY_STATUS, Constant.ON_GOING_STATUS);
+                bundle.putInt(Constant.KEY_STATUS, Constant.PROCESSING_STATUS);
                 break;
             case 3:
                 bundle.putInt(Constant.KEY_STATUS, Constant.COMPLETED_STATUS);

@@ -54,7 +54,7 @@ public class STRequestsFragment extends Fragment{
         jsonObject.addProperty(Constant.KEY_USER_ID, ProjectManagement.store.getId());
         jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.store.getPassword());
         jsonObject.addProperty(Constant.KEY_STATUS, status);
-//        new LoadRequestAsyncTask(getActivity()).execute(Constant.URL_ST_LOAD_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+//        new LoadRequestAsyncTask(getActivity()).execute(Constant.urlStLoadRequest, Constant.POST_METHOD, jsonObject.toString());
         fakeData();
         setAdapter();
 

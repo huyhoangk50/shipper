@@ -45,8 +45,8 @@ public class Constant {
     public static final String KEY_STATUS = "status";
     public static final String KEY_CREATED_TIME = "created_time";
     public static final String KEY_UPDATED_TIME = "updated_time";
-    public static final String KEY_STORE_NAME = "store_name";
-    public static final String KEY_STORE_POSITION = "store_position";
+    public static final String KEY_STORE_NAME = "name";
+    public static final String KEY_STORE_POSITION = "street";
     public static final String KEY_REQUEST_ID = "requestId";
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_CUSTOMER_NAME = "customer_name";
@@ -61,25 +61,17 @@ public class Constant {
     public static final String KEY_ACTIVE_CODE = "active_code";
     public static final String KEY_RESET_CODE = "reset_code";
 
-    //constant for url
-    public static String BASE_URL = "";
-    public static String URL_SP_LOAD_REQUEST = "";
-    public static String URL_SP_LOAD_REGISTERS ="";
-    public static String URL_SP_LOAD_DETAIL_REQUEST = "";
-    public static String URL_LOGIN = "";
-    public static String URL_ACTIVE_ACCOUNT = "";
-    public static String URL_CONFIRM_EMAIL = "";
-    public static String URL_RESET_PASSWORD = "";
-    public static String URL_ST_CREATE_REQUEST = "";
-    public static String URL_ST_LOAD_REQUEST = "";
 
     public static final String FROM = "Từ ";
     public static final String TO = " đến ";
     public static final String CUSTOMER = "Khách hàng: ";
+    public static final String STORE = "Cửa hàng: ";
+    public static final String PRICE = "Giá ship: ";
+    public static final String THOUSAND_DONG = "Nghìn đồng";
 
     public static final int ALL = 0;
     public static final int PENDING_STATUS = 1;
-    public static final int ON_GOING_STATUS = 2;
+    public static final int PROCESSING_STATUS = 2;
     public static final int COMPLETED_STATUS = 3;
 
     public static final String POST_METHOD = "POST";

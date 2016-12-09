@@ -12,7 +12,7 @@ public class Request {
     @SerializedName(Constant.KEY_ID)
     private int id;
     @SerializedName(Constant.KEY_DEPOSIT)
-    private double deposit;
+    private int deposit;
     @SerializedName(Constant.KEY_DISTANCE)
     private double distance;
     @SerializedName(Constant.KEY_START_TIME)
@@ -24,7 +24,7 @@ public class Request {
     @SerializedName(Constant.KEY_DESTINATION)
     private String destination;
     @SerializedName(Constant.KEY_PRICE)
-    private double price;
+    private int price;
     @SerializedName(Constant.KEY_PRODUCT_ID)
     private int productId;
     @SerializedName(Constant.KEY_PRODUCT_NAME)
@@ -39,11 +39,11 @@ public class Request {
     private int status;
     @SerializedName(Constant.KEY_CREATED_TIME)
     private String createTime;
-    @SerializedName(Constant.KEY_UPDATED_TIME)
-    private String storeName;
     @SerializedName(Constant.KEY_STORE_NAME)
-    private String storePosition;
+    private String storeName;
     @SerializedName(Constant.KEY_STORE_POSITION)
+    private String storePosition;
+    @SerializedName(Constant.KEY_UPDATED_TIME)
     private String updateTime;
 
     public String getCustomerName() {
@@ -73,9 +73,9 @@ public class Request {
         this.storePosition = storePosition;
     }
 
-    public Request(int id, double deposit, double distance,
+    public Request(int id, int deposit, double distance,
                    String startTime, String endTime, int storeId,
-                   String destination, double price, int productId,
+                   String destination, int price, int productId,
                    String productName, String phoneNumber, double longitude,
                    double latitude, int status, String createTime, String updateTime) {
         this.id = id;
@@ -104,11 +104,11 @@ public class Request {
         this.id = id;
     }
 
-    public double getDeposit() {
+    public int getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(int deposit) {
         this.deposit = deposit;
     }
 
@@ -152,11 +152,11 @@ public class Request {
         this.destination = destination;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

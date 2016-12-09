@@ -12,15 +12,33 @@ public class ProjectManagement {
     public static Shipper shipper;
     public static Store store;
 
+    //constant for url
+    public static String baseUrl = "";
+    public static String urlSpLoadNewRequest = "";
+    public static String urlSpRegister ="";
+    public static String urlSpLoadDetailRequest = "";
+    public static String urlLogin = "";
+    public static String urlActiveAccount = "";
+    public static String urlConfirmEmail = "";
+    public static String urlResetPassword = "";
+    public static String urlStCreateRequest = "";
+    public static String urlStLoadRequest = "";
+    public static String urlSpLoadWaitingRequest = "";
+    public static String urlSpLoadProcessingRequest = "";
+    public static String urlSpLoadCompletedRequest = "";
     public static void changeURL(String baseURL){
-        Constant.URL_SP_LOAD_REQUEST = baseURL + "api/accounts/login";
-        Constant.URL_SP_LOAD_REGISTERS = baseURL + "api/accounts/register";
-        Constant.URL_SP_LOAD_DETAIL_REQUEST = baseURL + "";
-        Constant.URL_LOGIN = baseURL + "api/accounts/login";
-        Constant.URL_ACTIVE_ACCOUNT = baseURL + "api/accounts/active";
-        Constant.URL_CONFIRM_EMAIL = baseURL + "api/accounts/requireResetPassword";
-        Constant.URL_RESET_PASSWORD = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
-        Constant.URL_ST_CREATE_REQUEST = baseURL + "api/requests";
-        Constant.URL_ST_LOAD_REQUEST = baseURL + "";
+        urlSpLoadNewRequest = baseURL + "api/requests/new/";
+        urlSpLoadProcessingRequest = baseURL + "api/requests/processing/";
+        urlSpLoadWaitingRequest = baseURL + "api/requests/waiting/";
+        urlSpLoadCompletedRequest = baseURL + "api/requests/completed/";
+        urlSpRegister = baseURL + "api/accounts/register";
+        urlSpLoadDetailRequest = baseURL + "";
+        urlLogin = baseURL + "api/accounts/login";
+        urlActiveAccount = baseURL + "api/accounts/active";
+        urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
+        urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
+        urlStCreateRequest = baseURL + "api/requests";
+        urlStLoadRequest = baseURL + "";
+
     }
 }

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
-import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
 import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
@@ -33,8 +32,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by huyhoang on 12/08/2016.
@@ -230,7 +227,7 @@ public class LoginActivity extends Activity {
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
-                    new LoginAsyncTask(LoginActivity.this).execute(Constant.URL_LOGIN, Constant.POST_METHOD, jsonObject.toString());
+                    new LoginAsyncTask(LoginActivity.this).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
                 }else {
                     notifyToUser();
                 }

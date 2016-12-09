@@ -33,7 +33,7 @@ public class SPRequestPagerAdapter extends FragmentStatePagerAdapter {
                 bundle.putInt(Constant.KEY_STATUS, Constant.PENDING_STATUS);
                 break;
             case 2:
-                bundle.putInt(Constant.KEY_STATUS, Constant.ON_GOING_STATUS);
+                bundle.putInt(Constant.KEY_STATUS, Constant.PROCESSING_STATUS);
                 break;
             case 3:
                 bundle.putInt(Constant.KEY_STATUS, Constant.COMPLETED_STATUS);

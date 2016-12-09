@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.JsonObject;
@@ -56,7 +57,7 @@ public class ConfirmEmailActivity extends AppCompatActivity {
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
 
-                    new ConfirmEmailAsyncTask(ConfirmEmailActivity.this).execute(Constant.URL_CONFIRM_EMAIL, Constant.POST_METHOD, jsonObject.toString());
+                    new ConfirmEmailAsyncTask(ConfirmEmailActivity.this).execute(ProjectManagement.urlConfirmEmail, Constant.POST_METHOD, jsonObject.toString());
                 }else {
                     notifyToUser();
                 }

@@ -2,7 +2,6 @@ package com.app.temproject.shipper.Activity.Store;
 
 import android.app.Activity;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
@@ -218,7 +217,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
                     jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
                     jsonObject.addProperty(Constant.KEY_CUSTOMER_NAME, customerName);
 
-                    new CreateRequestAsyncTask(STCreateRequestActivity.this).execute(Constant.URL_ST_CREATE_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+                    new CreateRequestAsyncTask(STCreateRequestActivity.this).execute(ProjectManagement.urlStCreateRequest, Constant.POST_METHOD, jsonObject.toString());
 
                 }
             }

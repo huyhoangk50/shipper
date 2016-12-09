@@ -12,7 +12,6 @@ import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.MyLocationListener;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
-import com.google.gson.Gson;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         String res = ReadFileActivity.readTextFromFile("text.txt",this);
-        Constant.BASE_URL = res;
+        ProjectManagement.baseUrl = res;
         ProjectManagement.changeURL(res);
         //test
 //        String stringStr = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":25,\"email\":\"1@gmail.com\",\"name\":\"jaybo\",\"phone_number\":\"0123456789\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":100.5,\"latitude\":10.6,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-26T09:29:33.085Z\",\"updated_time\":null,\"active_code\":\"c917d592\",\"status\":0,\"reset_code\":\"5a42e3c4\"}}";

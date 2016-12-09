@@ -52,7 +52,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
                     jsonObject.addProperty(Constant.KEY_ID_ACCOUNT, idAccount);
                     jsonObject.addProperty(Constant.KEY_ACTIVE_CODE, activeCode);
 
-                    new ActiveCodeAsyncTask(ActiveAccountActivity.this).execute(Constant.URL_ACTIVE_ACCOUNT, Constant.POST_METHOD, jsonObject.toString());
+                    new ActiveCodeAsyncTask(ActiveAccountActivity.this).execute(ProjectManagement.urlActiveAccount, Constant.POST_METHOD, jsonObject.toString());
                 }
             }
         });

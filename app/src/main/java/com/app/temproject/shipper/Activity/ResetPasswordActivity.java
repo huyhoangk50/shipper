@@ -78,7 +78,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
                     jsonObject.addProperty(Constant.KEY_RESET_CODE, resetCode);
 
-                    new ResetPasswordAsyncTask(ResetPasswordActivity.this).execute(Constant.URL_RESET_PASSWORD, Constant.POST_METHOD, jsonObject.toString());
+                    new ResetPasswordAsyncTask(ResetPasswordActivity.this).execute(ProjectManagement.urlResetPassword, Constant.POST_METHOD, jsonObject.toString());
                 }else {
                     notifyToUser();
                 }
