@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Request;
@@ -196,7 +197,11 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
+            if(!error){
 
+            } else {
+//                Toast.makeText(SPDetailRequestActivity)
+            }
         }
 
     }

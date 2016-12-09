@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,20 +42,32 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
-    private String bitmap_base64;
-    private String ext;
+
     final private int MAX_WIDTH = 1000;
     final private int MAX_HEIGHT = 1000;
+    final private String AVATAR_DEFAULT = "userdefault.jpg";
+    final private String EXTENSION_DEFAULT = "jpg";
 
 
     private EditText DateEtxt;
     private EditText etSP_Email;
     private EditText etSP_Password;
+    private EditText etSP_ConfirmPassword;
     private EditText etSP_Name;
     private EditText etSP_PhoneNumber;
     private EditText etSp_Address;
     private EditText etSP_Birthofdate;
     private String role = "1";
+
+    private String email;
+    private String password;
+    private String confirmPassword;
+    private String shippername;
+    private String phoneNumber;
+    private String address;
+    private String birthday;
+    private String imagestringbase64;
+    private String imageextension;
 
     private Button btnSPUploadAvatar ;
     private Button btnSP_register;
@@ -74,6 +87,7 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
         setDateTimeField();
 
+        setInformationFromShipper();
         btnSPUploadAvatar.setOnClickListener(this);
         btnSP_register.setOnClickListener(this);
     }
@@ -115,8 +129,8 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
                 bitmap64.compress(Bitmap.CompressFormat.PNG,100,bos);
                 byte[] bb = bos.toByteArray();
 
-                bitmap_base64 = Base64.encodeToString(bb,0);
-                ext = picturePath;
+                imagestringbase64 = Base64.encodeToString(bb,0);
+                imageextension = picturePath;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -144,33 +158,32 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
     }
 
     private void saveToJson(){
-        //String ext = (String) ivSPUploadAvatar.getTag(1);
 
         Map<String, String> valuesMap = new HashMap<String, String>();
-        valuesMap.put("email", etSP_Email.getText().toString());
-        valuesMap.put("password", etSP_Password.getText().toString());
-        valuesMap.put("name", etSP_Name.getText().toString());
-        valuesMap.put("phoneNumber", etSP_PhoneNumber.getText().toString());
-        valuesMap.put("address", etSp_Address.getText().toString());
-        if(bitmap_base64==null){
-            valuesMap.put("avatar","userdefault.jpg" );
+        valuesMap.put(Constant.KEY_EMAIL, email);
+        valuesMap.put(Constant.KEY_PASSWORD, password);
+        valuesMap.put(Constant.KEY_NAME, confirmPassword);
+        valuesMap.put(Constant.KEY_PHONE_NUMBER, phoneNumber);
+        valuesMap.put(Constant.KEY_ADDRESS, address);
+        valuesMap.put(Constant.KEY_BIRTHDAY, birthday);
+        valuesMap.put(Constant.KEY_ROLE, role);
+        if(imagestringbase64==null){
+            valuesMap.put(Constant.KEY_AVATAR, AVATAR_DEFAULT);
         }
         else {
-            valuesMap.put("birthday", etSP_Birthofdate.getText().toString());
-            valuesMap.put("role", role);
-            if (ext == null) {
-                valuesMap.put("imageExtension", "jpg");
+
+            if (imageextension == null) {
+                valuesMap.put(Constant.KEY_IMAGEEXTENSION, EXTENSION_DEFAULT);
             } else {
-                valuesMap.put("imageExtension", ext);
+                valuesMap.put(Constant.KEY_IMAGEEXTENSION, imageextension);
             }
-            valuesMap.put("imageBase64String", bitmap_base64);
+            valuesMap.put(Constant.KEY_IMAGEBASE64STRING, imagestringbase64);
         }
 
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(valuesMap);
 
-        Toast.makeText(SPRegisterActivity.this, json,
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(SPRegisterActivity.this, json, Toast.LENGTH_LONG).show();
         //System.out.println(json);
     }
 
@@ -187,6 +200,7 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
         etSP_Email = (EditText) findViewById(R.id.etSP_Email);
         etSP_Password = (EditText) findViewById(R.id.etSP_Password);
+        etSP_ConfirmPassword = (EditText) findViewById(R.id.etSP_ConfirmPassword);
         etSP_Name = (EditText) findViewById(R.id.etSP_Name);
         etSP_PhoneNumber = (EditText) findViewById(R.id.etSP_PhoneNumber);
         etSp_Address = (EditText) findViewById(R.id.etSP_address);
@@ -233,5 +247,15 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
         if(view== btnSP_register){
             saveToJson();
         }
+    }
+
+    private void setInformationFromShipper() {
+        email = etSP_Email.getText().toString();
+        password = etSP_Password.getText().toString();
+        confirmPassword = etSP_ConfirmPassword.getText().toString();
+        shippername = etSP_Name.getText().toString();
+        phoneNumber = etSP_PhoneNumber.getText().toString();
+        address = etSp_Address.getText().toString();
+        birthday = etSP_Birthofdate.getText().toString();
     }
 }

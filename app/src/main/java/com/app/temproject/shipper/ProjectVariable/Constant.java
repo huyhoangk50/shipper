@@ -60,6 +60,8 @@ public class Constant {
     public static final String KEY_ID_ACCOUNT = "account_id";
     public static final String KEY_ACTIVE_CODE = "active_code";
     public static final String KEY_RESET_CODE = "reset_code";
+    public static final String KEY_IMAGEBASE64STRING = "imageBase64String";
+    public static final String KEY_IMAGEEXTENSION= "imageextension";
 
 
     public static final String FROM = "Từ ";
