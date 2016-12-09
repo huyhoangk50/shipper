@@ -116,9 +116,49 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.shipper.getPassword());
         jsonObject.addProperty(Constant.KEY_STATUS, requestId);
 
-        new LoadDetailRequestAsyncTask(this).execute(Constant.URL_SP_LOAD_DETAIL_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+//        new LoadDetailRequestAsyncTask(this).execute(Constant.URL_SP_LOAD_DETAIL_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+
+        fakeData();
+        updateUI();
     }
 
+    private void fakeData(){
+        request = new Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 105.8488915,21.0024017 , 1, "12/12/2016 08:30", "12/12/2016 08:30");
+        request.setStoreName("Cửa hàng đồng hồ Huy Hoàng");
+        request.setStorePosition("Số 5 Minh khai hà nội");
+        request.setCustomerName("Nguyễn văn sang");
+        request.setStatus(Constant.PENDING_STATUS);
+
+        store = new Store(1, "123@gmail.com", "123@gmail.com", "Nguyễn Huy Hoàng", "35425343",
+                "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội",105.8474236 ,20.989865 , "Việt Nam");
+
+
+    }
+
+    private void updateUI(){
+        tvProductName.setText(request.getProductName());
+        tvStoreName.setText(store.getName());
+        tvPrice.setText(request.getPrice() + "");
+        tvDeposit.setText(request.getDeposit() + "");
+        tvStartTime.setText(request.getStartTime());
+        tvEndTime.setText(request.getEndTime());
+        tvCustomerName.setText(request.getCustomerName());
+        tvDestination.setText(request.getDestination());
+        tvCustomerPhone.setText(request.getPhoneNumber());
+
+        cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng((request.getLatitude() + store.getLatitude() )/2,
+                        (request.getLongitude() + store.getLongitude() )/2))
+                .zoom(15).build();
+        mMap.animateCamera(CameraUpdateFactory
+                .newCameraPosition(cameraPosition));
+
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(new LatLng(store.getLatitude(), store.getLongitude())))
+                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.store));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(request.getLatitude(), request.getLongitude())))
+                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.order));
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -140,39 +180,8 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            request = new Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 105.8488915,21.0024017 , 1, "12/12/2016 08:30", "12/12/2016 08:30");
-            request.setStoreName("Cửa hàng đồng hồ Huy Hoàng");
-            request.setStorePosition("Số 5 Minh khai hà nội");
-            request.setCustomerName("Nguyễn văn sang");
 
-            store = new Store(1, "123@gmail.com", "123@gmail.com", "Nguyễn Huy Hoàng", "35425343",
-                    "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội",105.8474236 ,20.989865 , "Việt Nam");
-
-            tvProductName.setText(request.getProductName());
-            tvStoreName.setText(store.getName());
-            tvPrice.setText(request.getPrice() + "");
-            tvDeposit.setText(request.getDeposit() + "");
-            tvStartTime.setText(request.getStartTime());
-            tvEndTime.setText(request.getEndTime());
-            tvCustomerName.setText(request.getCustomerName());
-            tvDestination.setText(request.getDestination());
-            tvCustomerPhone.setText(request.getPhoneNumber());
-
-            cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng((request.getLatitude() + store.getLatitude() )/2,
-                            (request.getLongitude() + store.getLongitude() )/2))
-                    .zoom(15).build();
-            mMap.animateCamera(CameraUpdateFactory
-                    .newCameraPosition(cameraPosition));
-
-            mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(new LatLng(store.getLatitude(), store.getLongitude())))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.store));
-            mMap.addMarker(new MarkerOptions().position(new LatLng(request.getLatitude(), request.getLongitude())))
-                    .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.order));
         }
-
-
 
     }
 }
