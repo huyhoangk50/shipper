@@ -96,6 +96,15 @@
                             android:layout_height="wrap_content"
                             android:text="Đồng hồ smart watch"
                             android:hint="@string/product_name" />
+                        <TextView
+                            android:id="@+id/tvCheckProductName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -109,6 +118,15 @@
                             android:text="13000000"
                             android:inputType="number"
                             android:hint="@string/deposit" />
+                        <TextView
+                            android:id="@+id/tvCheckDeposit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -122,6 +140,15 @@
                             android:text="13000000"
                             android:inputType="number"
                             android:hint="@string/price" />
+                        <TextView
+                            android:id="@+id/tvCheckPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -173,7 +200,7 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/tvStartDate"
-                                android:text="22/12/2016"
+                                android:text="2016-12-22"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical"
@@ -221,7 +248,7 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:id="@+id/tvEndDate"
-                                android:text="22/12/2016"
+                                android:text="2016-12-22"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_gravity="center_vertical"
@@ -242,7 +269,7 @@
                                 android:id="@+id/tvEndTime"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:text="08:30:00"
+                                android:text="08:35:00"
                                 android:layout_gravity="center_vertical"
                                 android:layout_height="wrap_content" />
                             <Button
@@ -252,7 +279,18 @@
                                 android:layout_height="30dp" />
                         </LinearLayout>
 
+
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvCheckDateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:text=""
+                        android:textColor="@color/Red"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -314,6 +352,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/customer_name" />
+                        <TextView
+                            android:id="@+id/tvCheckCustomerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -326,6 +373,15 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:hint="@string/phone_number" />
+                        <TextView
+                            android:id="@+id/tvCheckPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>

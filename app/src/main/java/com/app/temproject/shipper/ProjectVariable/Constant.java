@@ -61,7 +61,7 @@ public class Constant {
     public static final String KEY_RESET_CODE = "reset_code";
 
     //constant for url
-    public static final String BASE_URL = "http://192.168.0.102:3000/";
+    public static final String BASE_URL = "http://192.168.0.104:3000/";
     public static final String URL_SP_LOAD_REQUEST = BASE_URL + "api/accounts/login";
     public static final String URL_SP_LOAD_REGISTERS = BASE_URL + "api/accounts/register";
     public static final String URL_SP_LOAD_DETAIL_REQUEST = BASE_URL + "";
@@ -88,6 +88,7 @@ public class Constant {
     public static final String CONTENT_TYPE = "Content-Type";
     //ERROR
     public static final String INCORRECT_REGISTRATION_INFORMATION = "Thông tin đăng ký không hợp lệ";
+    public static final String INCORRECT_CREATE_REQUEST_INFORMATION = "Thông tin đơn hàng không hợp lệ";
     public static final String INCORRECT_INFORMATION = "Tài khoản hoặc mật khẩu không đúng";
     public static final String NO_DATA_IS_RECEIVED = "Không có dữ liệu";
     public static final String INVALID_PHONE_NUMBER = "Số điện thoại không hợp lệ";
@@ -95,10 +96,17 @@ public class Constant {
     public static final String INVALID_PASSWORD = "Mật khẩu ít hơn 6 ký tự";
     public static final String INCORRECT_PASSWORD = "Không trùng với mật khẩu";
     public static final String INVALID_STORE = "Điền tên cửa hàng";
+    public static final String INVALID_PRODUCT_NAME = "Điền tên sản phẩm";
+    public static final String INVALID_CUSTOMER_NAME = "Điền tên khách hàng";
+    public static final String INVALID_DEPOSIT = "Tiền đặt cọc là số lớn hơn 0";
+    public static final String INVALID_PRICE = "Giá ship là số lớn hơn 0";
+    public static final String INVALID_DATETIME = "Thời gian nhập không đúng";
+
 
     public static final String DUPLICATE_EMAIL = "Email này đã tồn tại";
 
     public static final String NOT_EXISTED_EMAIL = "Email không tồn tại";
+    public static final String ACTIVE_CODE_MESSAGE = "Mã số kích hoạt đã được gửi vào địa chỉ email";
     public static int ACTIVE_STATUS = 1;
     public static int NOT_ACTIVE_STATUS = 0;
     public static int MIN_PASS_LENGTH = 6;
