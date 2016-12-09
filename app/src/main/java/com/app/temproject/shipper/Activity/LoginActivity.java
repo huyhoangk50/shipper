@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
+import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
 import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
@@ -51,6 +52,9 @@ public class LoginActivity extends Activity {
 
     private int role;
     private String email, password;
+
+    private boolean isValidEmail;
+    private boolean isValidPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,15 +222,17 @@ public class LoginActivity extends Activity {
 //                }
 
 
+                setInformationFromUser();
+                checkInformationCorrectness();
 
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                if (isValid(email, password)) {
+                if (isAllInformationCorrect()) {
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
                     new LoginAsyncTask(LoginActivity.this).execute(Constant.URL_LOGIN, Constant.POST_METHOD, jsonObject.toString());
+                }else {
+                    notifyToUser();
                 }
 
             }
@@ -259,10 +265,22 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private boolean isValid(String email, String password) {
+    private void setInformationFromUser(){
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+    }
 
-        boolean isValidEmail = CheckingInformation.isValidEmail(email);
-        boolean isValidPassword = CheckingInformation.isValidPassword(password);
+    private void checkInformationCorrectness(){
+        isValidEmail = CheckingInformation.isValidEmail(email);
+        isValidPassword = CheckingInformation.isValidPassword(password);
+    }
+    private boolean isAllInformationCorrect(){
+        if(!isValidEmail) return false;
+        if(!isValidPassword) return false;
+        return true;
+    }
+
+    private void notifyToUser(){
         if(!(isValidEmail)){
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
@@ -273,12 +291,8 @@ public class LoginActivity extends Activity {
         }else{
             tvCheckPassword.setText("");
         }
-
-        if(!isValidEmail || !isValidPassword){
-            return false;
-        }
-        return true;
     }
+
 
 //    String response = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":19,\"email\":\"123@gmail.com\",\"password\":\"8604968e69fafb4e65e8bd952dbddd122fc600cd05bb5b48ffdf5dfb462888e505325e542a276f5898842d2458af6991c22918c9852ddeff34f63b667ddd6059\",\"salt\":\"aca4ad29034dddea\",\"name\":\"AnhTu\",\"phone_number\":\"1234567890\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":12,\"latitude\":12,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-30T02:57:39.462Z\",\"updated_time\":null,\"status\":0,\"reset_code\":\"3a69ba91\",\"active_code\":\"82b29bd5\"}}\n"
 }

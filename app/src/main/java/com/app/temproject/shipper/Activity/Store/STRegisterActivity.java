@@ -1,7 +1,9 @@
 package com.app.temproject.shipper.Activity.Store;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -76,6 +78,12 @@ public class STRegisterActivity extends AppCompatActivity {
     private String[] districtsInHaNoi;
     private String[] districtsInHoChiMinh;
     private String[] countries;
+
+    private boolean isValidPhoneNumber ;
+    private boolean isValidEmail;
+    private boolean isValidPassword;
+    private boolean isValidConfirmPassword;
+    private boolean isValidStoreName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,21 +160,9 @@ public class STRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    email = etEmail.getText().toString();
-                    password = etPassword.getText().toString();
-                    confirmPassword = etConfirmPassword.getText().toString();
-                    storeName = etStoreName.getText().toString();
-                    storeType = etStoreType.getText().toString();
-                    phoneNumber = etPhoneNumber.getText().toString();
-                    street = etStreet.getText().toString();
-                    district = spDistrict.getSelectedItem().toString();
-                    city = spCity.getSelectedItem().toString();
-                    country = spCountry.getSelectedItem().toString();
-                    longitude = mapsFragment.getLongitude();
-                    latitude = mapsFragment.getLatitude();
-
-                    if (isValid(email, password, confirmPassword, storeName, storeType, phoneNumber,
-                            street, city, district, longitude, latitude, country)) {
+                    setInformationFromUser();
+                    checkInformationCorrectness();
+                    if (isAllInformationCorrect()) {
 
                         Store store = new Store(email, password, storeName, storeType, phoneNumber,
                                 street, district, city, longitude, latitude, country);
@@ -174,7 +170,7 @@ public class STRegisterActivity extends AppCompatActivity {
                         String requestContent = new Gson().toJson(store);
                         new STRegisterAsyncTask(STRegisterActivity.this).execute(Constant.URL_SP_LOAD_REGISTERS, Constant.POST_METHOD, requestContent);
                     } else {
-                        Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
+                        notifyToUser();
                     }
                 } catch (Exception e) {
                     Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
@@ -245,51 +241,74 @@ public class STRegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean isValid(String email, String password, String confirmPassword, String storeName,
-                            String storeType, String phoneNumber, String street,
-                            String city, String district, double longitude, double latitude, String country) {
+    private void setInformationFromUser() {
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        confirmPassword = etConfirmPassword.getText().toString();
+        storeName = etStoreName.getText().toString();
+        storeType = etStoreType.getText().toString();
+        phoneNumber = etPhoneNumber.getText().toString();
+        street = etStreet.getText().toString();
+        district = spDistrict.getSelectedItem().toString();
+        city = spCity.getSelectedItem().toString();
+        country = spCountry.getSelectedItem().toString();
+        longitude = mapsFragment.getLongitude();
+        latitude = mapsFragment.getLatitude();
+    }
 
-        boolean isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
-        boolean isValidEmail = CheckingInformation.isValidEmail(email);
-        boolean isValidPassword = CheckingInformation.isValidPassword(password);
-        boolean isValidConfirmPassword = confirmPassword.equals(password);
-        boolean isValidStoreName = !storeName.trim().equals("");
+    private void checkInformationCorrectness() {
 
+        isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
+        isValidEmail = CheckingInformation.isValidEmail(email);
+        isValidPassword = CheckingInformation.isValidPassword(password);
+        isValidConfirmPassword = confirmPassword.equals(password);
+        isValidStoreName = !CheckingInformation.isEmpty(storeName);
+    }
 
-        if(!isValidPhoneNumber){
+    private boolean isAllInformationCorrect() {
+        if (!isValidPhoneNumber) return false;
+        if (!isValidEmail) return false;
+        if (!isValidPassword) return false;
+        if (!isValidConfirmPassword) return false;
+        if (!isValidStoreName) return false;
+
+        return true;
+    }
+
+    private void notifyToUser() {
+        if (!isValidPhoneNumber) {
             tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
-        }else{
+        } else {
             tvCheckPhoneNumber.setText("");
         }
-        if(!isValidEmail){
+
+        if (!isValidEmail) {
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
             tvCheckEmail.setText("");
         }
-        if(!isValidPassword){
+
+        if (!isValidPassword){
             tvCheckPassWord.setText(Constant.INVALID_PASSWORD);
-        }else{
+        }else {
             tvCheckPassWord.setText("");
         }
-        if(!isValidConfirmPassword){
+
+        if (!isValidConfirmPassword) {
             tvCheckConfirmPassword.setText(Constant.INCORRECT_PASSWORD);
         }else{
             tvCheckConfirmPassword.setText("");
         }
-        if(!isValidStoreName){
+
+        if (!isValidStoreName) {
             tvCheckStoreName.setText(Constant.INVALID_STORE);
         }else{
             tvCheckStoreName.setText("");
         }
-
-        if(!isValidEmail || !isValidPhoneNumber || !isValidPassword
-                || !isValidConfirmPassword || !isValidStoreName){
-            return false;
-        }else{
-            return true;
-        }
-
+        Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
     }
+
+
 
     private class STRegisterAsyncTask extends ServiceAsyncTask {
         public STRegisterAsyncTask(Activity activity) {
@@ -301,9 +320,21 @@ public class STRegisterActivity extends AppCompatActivity {
             if(error){
                 Toast.makeText(STRegisterActivity.this, Constant.DUPLICATE_EMAIL, Toast.LENGTH_LONG).show();
             }else{
-                Intent intent = new Intent(STRegisterActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(STRegisterActivity.this);
+                alertDialogBuilder.setMessage(Constant.ACTIVE_CODE_MESSAGE);
+
+                alertDialogBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1){
+
+                        Intent intent = new Intent(STRegisterActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
+
+                alertDialogBuilder.create().show();
             }
         }
 

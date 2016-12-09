@@ -2,6 +2,7 @@ package com.app.temproject.shipper.Activity.Store;
 
 import android.app.Activity;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -24,7 +26,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
-public class STCreateRequestActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public class STCreateRequestActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private double distance;
     private String productName;
@@ -42,22 +44,28 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
 
     private boolean isProductNameEmpty;
     private boolean isDepositBetterThanZero;
-    private  boolean isPriceBetterThanZero;
+    private boolean isPriceBetterThanZero;
     private boolean isDestinationEmpty;
     private boolean isCustomerNameEmpty;
-    private boolean isPhoneNumberValid;
-    private boolean isEndTimeLaterThanStartTime;
+    private boolean isValidPhoneNumber;
+    private boolean isValidDateTime;
 
     private EditText etProductName;
     private EditText etDeposit;
     private EditText etPrice;
     private EditText etDestination;
-    private  EditText etCustomerName;
+    private EditText etCustomerName;
     private EditText etPhoneNumber;
     private TextView tvEndDate;
     private TextView tvEndTime;
     private TextView tvStartTime;
     private TextView tvStartDate;
+    private TextView tvCheckProductName;
+    private TextView tvCheckDeposit;
+    private TextView tvCheckPrice;
+    private TextView tvCheckCustomerName;
+    private TextView tvCheckPhoneNumber;
+    private TextView tvCheckDateTime;
     private Button btnEndDate;
     private Button btnEndTime;
     private Button btnStartTime;
@@ -81,7 +89,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         setEvent();
     }
 
-    private void initView(){
+    private void initView() {
         etProductName = (EditText) findViewById(R.id.etProductName);
         etDeposit = (EditText) findViewById(R.id.etDeposit);
         etPrice = (EditText) findViewById(R.id.etPrice);
@@ -96,12 +104,18 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
         tvStartDate = (TextView) findViewById(R.id.tvStartDate);
+        tvCheckCustomerName = (TextView) findViewById(R.id.tvCheckCustomerName);
+        tvCheckDateTime = (TextView) findViewById(R.id.tvCheckDateTime);
+        tvCheckDeposit = (TextView) findViewById(R.id.tvCheckDeposit);
+        tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
+        tvCheckPrice = (TextView) findViewById(R.id.tvCheckPrice);
+        tvCheckProductName = (TextView) findViewById(R.id.tvCheckProductName);
         fabAddRequest = (FloatingActionButton) findViewById(R.id.fabAddRequest);
         nsvCreateRequest = (NestedScrollView) findViewById(R.id.nsvCreateRequest);
         mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapsStCreateRequest);
     }
 
-    private void setEvent(){
+    private void setEvent() {
         btnEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,7 +194,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
             public void onClick(View view) {
                 setInformationFromUser();
                 checkInformationCorrectness();
-                if(!isAllInformationCorrect()){
+                if (!isAllInformationCorrect()) {
                     notifyToUser();
                 } else {
                     //fake data
@@ -211,7 +225,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         });
     }
 
-    private double getDistanceFromStoreToDestination(){
+    private double getDistanceFromStoreToDestination() {
         Location startLocation = new Location("");
         startLocation.setLongitude(ProjectManagement.store.getLongitude());
         startLocation.setLatitude(ProjectManagement.store.getLatitude());
@@ -224,29 +238,30 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        if(view == endTimePickerDialog){
-            endTime = hourOfDay + ":" + minute + ":" + second;
+        if (view == endTimePickerDialog) {
+            endTime = hourOfDay + ":" + minute + ":" + "00";
             tvEndTime.setText(endTime);
         }
-        if(view == startTimePickerDialog){
-            startTime = hourOfDay + ":" + minute + ":" + second;
+        if (view == startTimePickerDialog) {
+            startTime = hourOfDay + ":" + minute + ":" + "00";
             tvStartTime.setText(startTime);
         }
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        if(view == endDatePickerDialog){
-            endDate = year + "/" + monthOfYear + "/" + dayOfMonth;
+        monthOfYear++;
+        if (view == endDatePickerDialog) {
+            endDate = year + "-" + monthOfYear + "-" + dayOfMonth;
             tvEndDate.setText(endDate);
         }
-        if(view == startDatePickerDialog){
-            startDate = year + "/" + monthOfYear + "/" + dayOfMonth;
+        if (view == startDatePickerDialog) {
+            startDate = year + "-" + monthOfYear + "-" + dayOfMonth;
             tvStartDate.setText(startDate);
         }
     }
 
-    private void setInformationFromUser(){
+    private void setInformationFromUser() {
         productName = etProductName.getText().toString();
         deposit = etDeposit.getText().toString();
         price = etPrice.getText().toString();
@@ -260,36 +275,71 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         latitude = mapsFragment.getLatitude();
         longitude = mapsFragment.getLongitude();
     }
-    private void checkInformationCorrectness(){
-        isProductNameEmpty = productName.equals("");
-        isCustomerNameEmpty = customerName.equals("");
-        isDepositBetterThanZero = (Integer.valueOf(deposit) > 0);
-        isPriceBetterThanZero = Integer.valueOf(price) > 0;
-        isDestinationEmpty = destination.equals("");
-        isEndTimeLaterThanStartTime = checkEndTimeEarlierThanStartTime();
-        isPhoneNumberValid = checkPhoneNumber();
+
+    private void checkInformationCorrectness() {
+        String startDateTime = startDate + " " + startTime ;
+        String endDateTime = endDate + " " + endTime ;
+
+        isProductNameEmpty = CheckingInformation.isEmpty(productName);
+        isCustomerNameEmpty = CheckingInformation.isEmpty(customerName);
+        isDepositBetterThanZero = CheckingInformation.isNumericGreaterThanZero(deposit);
+        isPriceBetterThanZero = CheckingInformation.isNumericGreaterThanZero(price);
+        isDestinationEmpty = CheckingInformation.isEmpty(destination);
+        isValidDateTime = (CheckingInformation.isValidDateTime(startDateTime, endDateTime));
+        isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
     }
 
-    private boolean checkEndTimeEarlierThanStartTime(){
-        return false;
-    }
-    private boolean checkPhoneNumber(){
+    private boolean isAllInformationCorrect() {
+        if (isProductNameEmpty) return false;
+        if (isCustomerNameEmpty) return false;
+        if (!isDepositBetterThanZero) return false;
+        if (!isPriceBetterThanZero) return false;
+        if (isDestinationEmpty) return false;
+        if (!isValidDateTime) return false;
+        if (!isValidPhoneNumber) return false;
         return true;
     }
 
-    private boolean isAllInformationCorrect(){
-        if(isProductNameEmpty) return false;
-        if(isCustomerNameEmpty) return false;
-        if(!isDepositBetterThanZero) return false;
-        if(!isPriceBetterThanZero) return false;
-        if(isDestinationEmpty) return false;
-        if(isEndTimeLaterThanStartTime) return false;
-        if(!isPhoneNumberValid) return false;
-        return true;
-    }
-    private void notifyToUser(){
+    private void notifyToUser() {
+        if (isProductNameEmpty) {
+            tvCheckProductName.setText(Constant.INVALID_PRODUCT_NAME);
+        } else {
+            tvCheckProductName.setText("");
+        }
 
+        if (isCustomerNameEmpty) {
+            tvCheckCustomerName.setText(Constant.INVALID_CUSTOMER_NAME);
+        }else{
+            tvCheckCustomerName.setText("");
+        }
+
+        if (!isDepositBetterThanZero){
+            tvCheckDeposit.setText(Constant.INVALID_DEPOSIT);
+        }else {
+            tvCheckDeposit.setText("");
+        }
+
+        if (!isPriceBetterThanZero) {
+            tvCheckPrice.setText(Constant.INVALID_PRICE);
+        }else{
+            tvCheckPrice.setText("");
+        }
+
+        if (!isValidDateTime) {
+            tvCheckDateTime.setText(Constant.INVALID_DATETIME);
+        }else{
+            tvCheckDateTime.setText("");
+        }
+
+        if (!isValidPhoneNumber) {
+            tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
+        }else{
+            tvCheckPhoneNumber.setText("");
+        }
+        Toast.makeText(STCreateRequestActivity.this, Constant.INCORRECT_CREATE_REQUEST_INFORMATION, Toast.LENGTH_LONG).show();
     }
+
+
 
     private class CreateRequestAsyncTask extends ServiceAsyncTask {
         public CreateRequestAsyncTask(Activity activity) {
@@ -298,9 +348,10 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            if(error){
+            if (error) {
                 //notify to user
-            } else{
+
+            } else {
                 Toast.makeText(STCreateRequestActivity.this, getString(R.string.create_request_successfully), Toast.LENGTH_LONG).show();
                 finish();
                 //notify to user and go to main activity
