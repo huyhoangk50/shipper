@@ -61,16 +61,16 @@ public class Constant {
     public static final String KEY_RESET_CODE = "reset_code";
 
     //constant for url
-    public static final String BASE_URL = "http://192.168.0.104:3000/";
-    public static final String URL_SP_LOAD_REQUEST = BASE_URL + "api/accounts/login";
-    public static final String URL_SP_LOAD_REGISTERS = BASE_URL + "api/accounts/register";
-    public static final String URL_SP_LOAD_DETAIL_REQUEST = BASE_URL + "";
-    public static final String URL_LOGIN = BASE_URL + "api/accounts/login";
-    public static final String URL_ACTIVE_ACCOUNT = BASE_URL + "api/accounts/active";
-    public static final String URL_CONFIRM_EMAIL = BASE_URL + "api/accounts/requireResetPassword";
-    public static final String URL_RESET_PASSWORD = BASE_URL + "api/accounts/checkResetCodeAndUpdatePassword";
-    public static final String URL_ST_CREATE_REQUEST = BASE_URL + "api/requests";
-    public static final String URL_ST_LOAD_REQUEST = BASE_URL + "";
+    public static String BASE_URL = "";
+    public static String URL_SP_LOAD_REQUEST = "";
+    public static String URL_SP_LOAD_REGISTERS ="";
+    public static String URL_SP_LOAD_DETAIL_REQUEST = "";
+    public static String URL_LOGIN = "";
+    public static String URL_ACTIVE_ACCOUNT = "";
+    public static String URL_CONFIRM_EMAIL = "";
+    public static String URL_RESET_PASSWORD = "";
+    public static String URL_ST_CREATE_REQUEST = "";
+    public static String URL_ST_LOAD_REQUEST = "";
 
     public static final String FROM = "Từ ";
     public static final String TO = " đến ";
