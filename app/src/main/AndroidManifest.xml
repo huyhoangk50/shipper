@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.ResetPasswordActivity"
+            android:name=".Activity.Shipper.SPRegisterActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -39,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Shipper.SPRegisterActivity" />
+
         <activity android:name=".Activity.Store.STRegisterActivity" />
         <!--<activity android:name=".Activity.Shipper.SPDetailRequestActivity"></activity>-->
         <!-- <activity android:name=".Activity.Store.STRegisterActivity" /> -->

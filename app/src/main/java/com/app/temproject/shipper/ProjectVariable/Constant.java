@@ -32,7 +32,8 @@ public class Constant {
     public static final String KEY_LATITUDE = "latitude";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_COUNTRY = "country";
-
+    public static final String KEY_IMAGEBASE64STRING = "imageBase64String";
+    public static final String KEY_IMAGEEXTENSION= "imageextension";
     public static final String KEY_DISTANCE = "distance";
     public static final String KEY_START_TIME = "start_time";
     public static final String KEY_DEPOSIT = "deposit";
