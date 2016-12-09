@@ -162,7 +162,7 @@ public class STRegisterActivity extends AppCompatActivity {
                     checkInformationCorrectness();
                     if (isAllInformationCorrect()) {
 
-                        Store store = new Store(email, password, storeName, storeType, phoneNumber,
+                        Store store = new Store(email, password, storeName, phoneNumber, storeType,
                                 street, district, city, longitude, latitude, country);
 
                         String requestContent = new Gson().toJson(store);
