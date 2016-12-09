@@ -1,4 +1,4 @@
-package com.app.temproject.shipper.Adapter;
+package com.app.temproject.shipper.Adapter.Shipper;
 
 import android.content.Context;
 import android.content.Intent;

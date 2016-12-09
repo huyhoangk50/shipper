@@ -1,8 +1,4 @@
-package com.app.temproject.shipper.Fragment.Shipper;
-
-/**
- * Created by Admin on 28/11/2016.
- */
+package com.app.temproject.shipper.Fragment.Store;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.temproject.shipper.Adapter.Shipper.SPRequestAdapter;
+import com.app.temproject.shipper.Adapter.Store.STRequestAdapter;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -24,7 +20,11 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
-public class SPRequestsFragment extends Fragment {
+/**
+ * Created by Admin on 09/12/2016.
+ */
+
+public class STRequestsFragment extends Fragment{
     protected RecyclerView recyclerView;
     protected ArrayList<Request> requests;
     private int status;
@@ -34,7 +34,7 @@ public class SPRequestsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.sp_request_fragment, container, false);
+        rootView = inflater.inflate(R.layout.st_request_fragment, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rcvRequest);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         status = getArguments().getInt(Constant.KEY_STATUS);
@@ -51,10 +51,10 @@ public class SPRequestsFragment extends Fragment {
 //        String requestPacket = HttpPacketProcessing.createBodyOfPacket(keys, values);
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(Constant.KEY_USER_ID, ProjectManagement.shipper.getId());
-        jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.shipper.getPassword());
+        jsonObject.addProperty(Constant.KEY_USER_ID, ProjectManagement.store.getId());
+        jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.store.getPassword());
         jsonObject.addProperty(Constant.KEY_STATUS, status);
-        new LoadRequestAsyncTask(getActivity()).execute(Constant.URL_SP_LOAD_REQUEST, Constant.POST_METHOD, jsonObject.toString());
+        new STRequestsFragment.LoadRequestAsyncTask(getActivity()).execute(Constant.URL_ST_LOAD_REQUEST, Constant.POST_METHOD, jsonObject.toString());
     }
 
 
@@ -89,7 +89,7 @@ public class SPRequestsFragment extends Fragment {
     }
 
     protected void setAdapter() {
-        SPRequestAdapter requestAdapter = new SPRequestAdapter(getActivity(), requests);
+        STRequestAdapter requestAdapter = new STRequestAdapter(getActivity(), requests);
         recyclerView.setAdapter(requestAdapter);
     }
 }
