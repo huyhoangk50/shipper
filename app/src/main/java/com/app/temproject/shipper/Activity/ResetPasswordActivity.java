@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -25,7 +26,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private int role;
     private String email;
     private String password;
+    private String confirmPassword;
     private String resetCode;
+
+    private boolean isValidPassword;
+    private boolean isValidConfirmPassword;
+    private boolean isValidResetCode;
 
     private EditText etPassword;
     private EditText etConfirmPassword;
@@ -62,10 +68,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                password = etPassword.getText().toString();
-                resetCode = etResetCode.getText().toString();
-                String confirmPassword = etConfirmPassword.getText().toString();
-                if(isValid(password, confirmPassword)){
+                setInformationFromUser();
+                checkInformationCorrectness();
+
+                if(isAllInformationCorrect()){
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
@@ -73,6 +79,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     jsonObject.addProperty(Constant.KEY_RESET_CODE, resetCode);
 
                     new ResetPasswordAsyncTask(ResetPasswordActivity.this).execute(Constant.URL_RESET_PASSWORD, Constant.POST_METHOD, jsonObject.toString());
+                }else {
+                    notifyToUser();
                 }
             }
         });
@@ -121,7 +129,39 @@ public class ResetPasswordActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isValid(String password, String confirmPassword){
-        return  true;
+    private void setInformationFromUser(){
+        password = etPassword.getText().toString();
+        confirmPassword = etConfirmPassword.getText().toString();
+        resetCode = etResetCode.getText().toString();
     }
+
+    private void checkInformationCorrectness(){
+        isValidPassword = CheckingInformation.isValidPassword(password);
+        isValidConfirmPassword = confirmPassword.equals(password);
+        isValidResetCode = !CheckingInformation.isEmpty(resetCode);
+    }
+
+    private boolean isAllInformationCorrect(){
+        if(!isValidPassword) return false;
+        if(!isValidConfirmPassword) return false;
+        if(!isValidResetCode) return false;
+        return true;
+    }
+
+    private void notifyToUser(){
+        if(!isValidPassword){
+            tvCheckPassword.setText(Constant.INVALID_PASSWORD);
+        }else {
+            tvCheckPassword.setText("");
+        }
+        if(!isValidConfirmPassword){
+            tvCheckConfirmPassword.setText(Constant.INCORRECT_PASSWORD);
+        }else {
+            tvCheckConfirmPassword.setText("");
+        }
+        if(!isValidResetCode){
+            tvCheckResetCode.setText(Constant.NULL_INFORMATION);
+        }
+    }
+
 }
