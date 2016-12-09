@@ -186,7 +186,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         mMap.addMarker(new MarkerOptions().position(new LatLng(store.getLatitude(), store.getLongitude())))
                 .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.store));
         mMap.addMarker(new MarkerOptions().position(new LatLng(request.getLatitude(), request.getLongitude())))
-                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.order));
+                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.destination));
     }
     private class LoadDetailRequestAsyncTask extends ServiceAsyncTask {
 
