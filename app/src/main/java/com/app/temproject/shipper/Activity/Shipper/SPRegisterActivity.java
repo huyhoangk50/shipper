@@ -3,6 +3,7 @@ package com.app.temproject.shipper.Activity.Shipper;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -11,6 +12,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Base64;
 import android.view.Menu;
@@ -20,25 +23,29 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.app.temproject.shipper.Activity.LoginActivity;
+import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
+import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
+import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.app.temproject.shipper.ServiceAsyncTask;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by huyhoang on 12/08/2016.
  */
-public class SPRegisterActivity extends Activity implements OnClickListener {
+public class SPRegisterActivity extends AppCompatActivity implements OnClickListener {
 
     private int PICK_IMAGE_REQUEST = 1;
     private Bitmap bitmap;
@@ -49,31 +56,35 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
     final private String EXTENSION_DEFAULT = "jpg";
 
 
-    private EditText DateEtxt;
-    private EditText etSP_Email;
-    private EditText etSP_Password;
-    private EditText etSP_ConfirmPassword;
-    private EditText etSP_Name;
-    private EditText etSP_PhoneNumber;
-    private EditText etSp_Address;
-    private EditText etSP_Birthofdate;
+    private ScrollView svRegister;
+    private MapsFragment mapsFragment;
+    private EditText etDate;
+    private EditText etEmail;
+    private EditText etPassword;
+    private EditText etConfirmPassword;
+    private EditText etName;
+    private EditText etPhoneNumber;
+    private EditText etAddress;
+    private EditText etBirthDay;
     private String role = "1";
 
     private String email;
     private String password;
     private String confirmPassword;
-    private String shippername;
+    private String shipperName;
     private String phoneNumber;
     private String address;
     private String birthday;
-    private String imagestringbase64;
-    private String imageextension;
+    private String imageStringBase64;
+    private String imageExtension;
+    private double longitude;
+    private double latitude;
 
-    private Button btnSPUploadAvatar ;
-    private Button btnSP_register;
-    private ImageView ivSPUploadAvatar;
+    private Button btnUploadAvatar;
+    private Button btnRegister;
+    private ImageView ivUploadAvatar;
 
-    private DatePickerDialog DatePickerDialog;
+    private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
 
     @Override
@@ -83,13 +94,12 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        findViewsById();
+        initView();
 
         setDateTimeField();
 
-        setInformationFromShipper();
-        btnSPUploadAvatar.setOnClickListener(this);
-        btnSP_register.setOnClickListener(this);
+        btnUploadAvatar.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
     }
 
     private void showFileChooser() {
@@ -107,7 +117,7 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
             try {
                 Uri selectedImage = data.getData();
                 //Log.i(Tag, "" + selectedImage.toString());
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 Cursor cursor = getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
@@ -121,16 +131,16 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 //Setting the Bitmap to ImageView
-                ivSPUploadAvatar.setImageBitmap(getResizedBitmap(bitmap));
+                ivUploadAvatar.setImageBitmap(getResizedBitmap(bitmap));
 
-                BitmapDrawable drawable = (BitmapDrawable) ivSPUploadAvatar.getDrawable();
+                BitmapDrawable drawable = (BitmapDrawable) ivUploadAvatar.getDrawable();
                 Bitmap bitmap64 = drawable.getBitmap();
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                bitmap64.compress(Bitmap.CompressFormat.PNG,100,bos);
+                bitmap64.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 byte[] bb = bos.toByteArray();
 
-                imagestringbase64 = Base64.encodeToString(bb,0);
-                imageextension = picturePath;
+                imageStringBase64 = Base64.encodeToString(bb, 0);
+                imageExtension = picturePath;
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -157,69 +167,46 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
         return resizedBitmap;
     }
 
-    private void saveToJson(){
 
-        Map<String, String> valuesMap = new HashMap<String, String>();
-        valuesMap.put(Constant.KEY_EMAIL, email);
-        valuesMap.put(Constant.KEY_PASSWORD, password);
-        valuesMap.put(Constant.KEY_NAME, confirmPassword);
-        valuesMap.put(Constant.KEY_PHONE_NUMBER, phoneNumber);
-        valuesMap.put(Constant.KEY_ADDRESS, address);
-        valuesMap.put(Constant.KEY_BIRTHDAY, birthday);
-        valuesMap.put(Constant.KEY_ROLE, role);
-        if(imagestringbase64==null){
-            valuesMap.put(Constant.KEY_AVATAR, AVATAR_DEFAULT);
-        }
-        else {
+    private void initView() {
+        etDate = (EditText) findViewById(R.id.etDateOfBirth);
+        etDate.setInputType(InputType.TYPE_NULL);
+        etDate.requestFocus();
+        svRegister = (ScrollView) findViewById(R.id.svRegister);
+        btnUploadAvatar = (Button) findViewById(R.id.btnUpload);
 
-            if (imageextension == null) {
-                valuesMap.put(Constant.KEY_IMAGEEXTENSION, EXTENSION_DEFAULT);
-            } else {
-                valuesMap.put(Constant.KEY_IMAGEEXTENSION, imageextension);
+        ivUploadAvatar = (ImageView) findViewById(R.id.ivUpload);
+
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etSP_Password);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
+        etName = (EditText) findViewById(R.id.etSP_Name);
+        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
+        etAddress = (EditText) findViewById(R.id.etAddress);
+        etBirthDay = (EditText) findViewById(R.id.etDateOfBirth);
+
+        mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapSPRegister);
+
+        mapsFragment.setListener(new WorkaroundMapFragment.OnTouchListener() {
+            @Override
+            public void onTouch() {
+                svRegister.requestDisallowInterceptTouchEvent(true);
             }
-            valuesMap.put(Constant.KEY_IMAGEBASE64STRING, imagestringbase64);
-        }
-
-        Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(valuesMap);
-
-        Toast.makeText(SPRegisterActivity.this, json, Toast.LENGTH_LONG).show();
-        //System.out.println(json);
-    }
-
-    private void findViewsById() {
-        DateEtxt = (EditText) findViewById(R.id.etSP_dateofbirth);
-        DateEtxt.setInputType(InputType.TYPE_NULL);
-        DateEtxt.requestFocus();
-
-        btnSPUploadAvatar = (Button) findViewById(R.id.btnSP_Upload);
-
-        ivSPUploadAvatar = (ImageView) findViewById(R.id.ivSP_Upload);
-
-        btnSP_register = (Button) findViewById(R.id.btnSP_Register);
-
-        etSP_Email = (EditText) findViewById(R.id.etSP_Email);
-        etSP_Password = (EditText) findViewById(R.id.etSP_Password);
-        etSP_ConfirmPassword = (EditText) findViewById(R.id.etSP_ConfirmPassword);
-        etSP_Name = (EditText) findViewById(R.id.etSP_Name);
-        etSP_PhoneNumber = (EditText) findViewById(R.id.etSP_PhoneNumber);
-        etSp_Address = (EditText) findViewById(R.id.etSP_address);
-        etSP_Birthofdate = (EditText) findViewById(R.id.etSP_dateofbirth);
-
-
-
+        });
     }
 
     private void setDateTimeField() {
-        DateEtxt.setOnClickListener(this);
+        etDate.setOnClickListener(this);
 
         Calendar newCalendar = Calendar.getInstance();
-        DatePickerDialog = new DatePickerDialog(this, new OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(this, new OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
-                DateEtxt.setText(dateFormatter.format(newDate.getTime()));
+                etDate.setText(dateFormatter.format(newDate.getTime()));
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -235,27 +222,81 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-
-        if(view == btnSPUploadAvatar){
+        if (view == btnUploadAvatar) {
             showFileChooser();
         }
+        if (view == etDate) {
+            datePickerDialog.show();
+        }
+        if (view == btnRegister) {
+            setInformationFromShipper();
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty(Constant.KEY_EMAIL, email);
+            jsonObject.addProperty(Constant.KEY_PASSWORD, password);
+            jsonObject.addProperty(Constant.KEY_NAME, confirmPassword);
+            jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
+            jsonObject.addProperty(Constant.KEY_ADDRESS, address);
+            jsonObject.addProperty(Constant.KEY_BIRTHDAY, birthday);
+            jsonObject.addProperty(Constant.KEY_ROLE, role);
+            jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
+            jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
+            jsonObject.addProperty(Constant.KEY_NAME, shipperName);
+            if (imageStringBase64 == null) {
 
-        if (view == DateEtxt) {
-            DatePickerDialog.show();
+                jsonObject.addProperty(Constant.KEY_AVATAR, AVATAR_DEFAULT);
+            } else {
+
+                if (imageExtension == null) {
+                    jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, EXTENSION_DEFAULT);
+                } else {
+                    jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, imageExtension);
+                }
+                jsonObject.addProperty(Constant.KEY_IMAGE_BASE_64_STRING, imageStringBase64);
+            }
+            new RegisterAsyncTask(SPRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, jsonObject.toString());
         }
 
-        if(view== btnSP_register){
-            saveToJson();
-        }
     }
 
     private void setInformationFromShipper() {
-        email = etSP_Email.getText().toString();
-        password = etSP_Password.getText().toString();
-        confirmPassword = etSP_ConfirmPassword.getText().toString();
-        shippername = etSP_Name.getText().toString();
-        phoneNumber = etSP_PhoneNumber.getText().toString();
-        address = etSp_Address.getText().toString();
-        birthday = etSP_Birthofdate.getText().toString();
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        confirmPassword = etConfirmPassword.getText().toString();
+        shipperName = etName.getText().toString();
+        phoneNumber = etPhoneNumber.getText().toString();
+        address = etAddress.getText().toString();
+        birthday = etBirthDay.getText().toString();
+        longitude = mapsFragment.getLongitude();
+        latitude = mapsFragment.getLatitude();
+    }
+
+    private class RegisterAsyncTask extends ServiceAsyncTask {
+
+        public RegisterAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(error){
+                Toast.makeText(SPRegisterActivity.this, Constant.DUPLICATE_EMAIL, Toast.LENGTH_LONG).show();
+            }else{
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SPRegisterActivity.this);
+                alertDialogBuilder.setMessage(Constant.ACTIVE_CODE_MESSAGE);
+
+                alertDialogBuilder.setNeutralButton(Constant.OK, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1){
+
+                        Intent intent = new Intent(SPRegisterActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
+
+                alertDialogBuilder.create().show();
+            }
+        }
     }
 }

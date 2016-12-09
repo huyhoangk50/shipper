@@ -60,8 +60,8 @@ public class Constant {
     public static final String KEY_ID_ACCOUNT = "account_id";
     public static final String KEY_ACTIVE_CODE = "active_code";
     public static final String KEY_RESET_CODE = "reset_code";
-    public static final String KEY_IMAGEBASE64STRING = "imageBase64String";
-    public static final String KEY_IMAGEEXTENSION= "imageextension";
+    public static final String KEY_IMAGE_BASE_64_STRING = "image_base64string";
+    public static final String KEY_IMAGE_EXTENSION = "image_extension";
 
 
     public static final String FROM = "Từ ";
@@ -105,6 +105,7 @@ public class Constant {
 
     public static final String NOT_EXISTED_EMAIL = "Email không tồn tại";
     public static final String ACTIVE_CODE_MESSAGE = "Mã số kích hoạt đã được gửi vào địa chỉ email";
+    public static final String OK = "Ok";
     public static int ACTIVE_STATUS = 1;
     public static int NOT_ACTIVE_STATUS = 0;
     public static int MIN_PASS_LENGTH = 6;

@@ -23,6 +23,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
 </android.support.design.widget.AppBarLayout>
 
 <ScrollView
+    android:id="@+id/svRegister"
     android:padding="30dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -75,7 +76,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:text="@string/email" />
 
             <EditText
-                android:id="@+id/etSP_Email"
+                android:id="@+id/etEmail"
                 android:background="@drawable/border"
                 android:layout_marginBottom="10dp"
                 android:textStyle="italic"
@@ -112,7 +113,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:text="@string/confirm_password" />
 
             <EditText
-                android:id="@+id/etSP_ConfirmPassword"
+                android:id="@+id/etConfirmPassword"
                 android:background="@drawable/border"
                 android:layout_marginBottom="10dp"
                 android:textStyle="italic"
@@ -131,7 +132,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:text="@string/phonenumber" />
 
             <EditText
-                android:id="@+id/etSP_PhoneNumber"
+                android:id="@+id/etPhoneNumber"
                 android:background="@drawable/border"
                 android:textStyle="italic"
                 android:layout_marginBottom="10dp"
@@ -152,7 +153,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:text="@string/date_of_birth" />
 
             <EditText
-                android:id="@+id/etSP_dateofbirth"
+                android:id="@+id/etDateOfBirth"
                 android:background="@drawable/border"
                 android:textStyle="italic"
                 android:layout_marginBottom="10dp"
@@ -173,7 +174,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:text="@string/address" />
 
             <EditText
-                android:id="@+id/etSP_address"
+                android:id="@+id/etAddress"
                 android:background="@drawable/border"
                 android:textStyle="italic"
                 android:layout_width="match_parent"
@@ -182,20 +183,26 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:hint="@string/address" />
 
             <ImageView
-                android:id="@+id/ivSP_Upload"
+                android:id="@+id/ivUpload"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnSP_Upload"
+                android:id="@+id/btnUpload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/upload_image" />
 
+            <fragment
+                android:id="@+id/mapSPRegister"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:name="com.app.temproject.shipper.Fragment.Maps.MapsFragment" />
+
             <Button
-                android:id="@+id/btnSP_Register"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
