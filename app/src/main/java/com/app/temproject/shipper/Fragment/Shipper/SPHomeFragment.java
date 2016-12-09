@@ -8,11 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.temproject.shipper.Adapter.SPRequestPagerAdapter;
+import com.app.temproject.shipper.Adapter.Shipper.SPRequestPagerAdapter;
 import com.app.temproject.shipper.R;
 
 public class SPHomeFragment extends Fragment {
-    public SPHomeFragment(){}
 
     @Override
     public void onCreate ( Bundle savedInstanceState )

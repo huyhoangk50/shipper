@@ -70,9 +70,11 @@ public class Constant {
     public static final String URL_CONFIRM_EMAIL = BASE_URL + "api/accounts/requireResetPassword";
     public static final String URL_RESET_PASSWORD = BASE_URL + "api/accounts/checkResetCodeAndUpdatePassword";
     public static final String URL_ST_CREATE_REQUEST = BASE_URL + "api/requests";
+    public static final String URL_ST_LOAD_REQUEST = BASE_URL + "";
 
     public static final String FROM = "Từ ";
     public static final String TO = " đến ";
+    public static final String CUSTOMER = "Khách hàng: ";
 
     public static final int ALL = 0;
     public static final int PENDING_STATUS = 1;

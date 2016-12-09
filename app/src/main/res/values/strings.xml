@@ -165,7 +165,6 @@
     <string name="title_activity_sthome">STHomeActivity</string>
 
 
-
     <string name="hint_name">Full Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -174,5 +173,7 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
     <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
 
 </resources>
