@@ -104,6 +104,7 @@ public class Constant {
     public static final String INVALID_DEPOSIT = "Tiền đặt cọc là số lớn hơn 0";
     public static final String INVALID_PRICE = "Giá ship là số lớn hơn 0";
     public static final String INVALID_DATETIME = "Thời gian nhập không đúng";
+    public static final String NULL_INFORMATION = "Cần điền thông tin";
 
 
     public static final String DUPLICATE_EMAIL = "Email này đã tồn tại";

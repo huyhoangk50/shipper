@@ -61,6 +61,15 @@
                 android:layout_height="wrap_content"
                 android:text="huyhoangk50@gmail.com"
                 android:hint="@string/put_your_email_hear" />
+            <TextView
+                android:id="@+id/tvCheckEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text=""
+                android:textColor="@color/Red"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnSubmit"
