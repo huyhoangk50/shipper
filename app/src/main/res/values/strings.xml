@@ -51,6 +51,13 @@
     <string name="phone_number">Số điện thoại</string>
     <string name="number_and_street">Số nhà và tên đường phố</string>
     <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="name">Họ và tên</string>
+    <string name="phonenumber">Số điện thoại</string>
+    <string name="date_of_birth">Ngày tháng năm sinh</string>
+    <string name="address">Địa chỉ </string>
+
+
+
 
     <!-- -->
     <string name="ok">Đồng ý</string>
@@ -175,5 +182,6 @@
     <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công</string>
     <string name="logout">Đăng xuất</string>
     <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
+    <string name="upload_image">Tải hình đại diện</string>
 
 </resources>
