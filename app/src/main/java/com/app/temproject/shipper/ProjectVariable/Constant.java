@@ -23,6 +23,7 @@ public class Constant {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_NAME = "name";
     public static final String KEY_STORE_TYPE = "store_type";
+    public static final String KEY_TYPE = "type";
     public static final String KEY_PHONE_NUMBER = "phone_number";
     public static final String KEY_STREET = "street";
     public static final String KEY_CITY = "city";
