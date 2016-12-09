@@ -40,7 +40,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Shipper.SPRegisterActivity" />
-<<<<<<< HEAD
         <activity android:name=".Activity.Store.STRegisterActivity" />
 
 =======

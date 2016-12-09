@@ -158,16 +158,19 @@ public class SPRegisterActivity extends Activity implements OnClickListener {
         valuesMap.put("name", etSP_Name.getText().toString());
         valuesMap.put("phoneNumber", etSP_PhoneNumber.getText().toString());
         valuesMap.put("address", etSp_Address.getText().toString());
-        valuesMap.put("avatar","userdefault.jpg" );
-        valuesMap.put("birthday", etSP_Birthofdate.getText().toString());
-        valuesMap.put("role",role );
-        if(ext==null){
-            valuesMap.put("imageExtension", "dkm");
-        } else {
-            valuesMap.put("imageExtension", ext);
+        if(bitmap_base64==null){
+            valuesMap.put("avatar","userdefault.jpg" );
         }
-        valuesMap.put("imageBase64String", bitmap_base64 );
-
+        else {
+            valuesMap.put("birthday", etSP_Birthofdate.getText().toString());
+            valuesMap.put("role", role);
+            if (ext == null) {
+                valuesMap.put("imageExtension", "jpg");
+            } else {
+                valuesMap.put("imageExtension", ext);
+            }
+            valuesMap.put("imageBase64String", bitmap_base64);
+        }
 
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(valuesMap);
