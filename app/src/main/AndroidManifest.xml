@@ -41,6 +41,7 @@
         </activity>
         <activity android:name=".Activity.Shipper.SPRegisterActivity" />
         <activity android:name=".Activity.Store.STRegisterActivity" />
+        <activity android:name=".Activity.Shipper.SPDetailRequestActivity"></activity>
         <!-- <activity android:name=".Activity.Store.STRegisterActivity" /> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

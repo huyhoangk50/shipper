@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -28,6 +30,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonObject;
 
+import java.util.Random;
+
 public class SPDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private WorkaroundMapFragment workaroundMapFragment;
@@ -45,6 +49,8 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private TextView tvDestination;
     private TextView tvCustomerPhone;
     private ScrollView svDetailRequest;
+    private LinearLayout llApply;
+    private Button btnDelete;
 
 
     private Store store;
@@ -76,7 +82,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         svDetailRequest = (ScrollView) findViewById(R.id.svDetailRequest);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.detail_info));
+        toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        setSupportActionBar(toolbar);
 
@@ -127,12 +133,13 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         request.setStoreName("Cửa hàng đồng hồ Huy Hoàng");
         request.setStorePosition("Số 5 Minh khai hà nội");
         request.setCustomerName("Nguyễn văn sang");
+        Random random = new Random();
+        int status = random.nextInt(4);
+        request.setStatus(status);
         request.setStatus(Constant.PENDING_STATUS);
 
         store = new Store(1, "123@gmail.com", "123@gmail.com", "Nguyễn Huy Hoàng", "35425343",
                 "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội",105.8474236 ,20.989865 , "Việt Nam");
-
-
     }
 
     private void updateUI(){
@@ -145,6 +152,28 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvCustomerName.setText(request.getCustomerName());
         tvDestination.setText(request.getDestination());
         tvCustomerPhone.setText(request.getPhoneNumber());
+
+        if(mMap!= null){
+            updateMap();
+        }
+    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+        if(request!=null && store!=null){
+            updateMap();
+        }
+        // Add a marker in Sydney and move the camera
+//        googleMap.animateCamera(CameraUpdateFactory
+//                .newCameraPosition(cameraPosition));
+    }
+
+    private void updateMap(){
 
         cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng((request.getLatitude() + store.getLatitude() )/2,
@@ -159,19 +188,6 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         mMap.addMarker(new MarkerOptions().position(new LatLng(request.getLatitude(), request.getLongitude())))
                 .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.order));
     }
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
-
-        // Add a marker in Sydney and move the camera
-//        googleMap.animateCamera(CameraUpdateFactory
-//                .newCameraPosition(cameraPosition));
-    }
-
     private class LoadDetailRequestAsyncTask extends ServiceAsyncTask {
 
         public LoadDetailRequestAsyncTask(Activity activity) {

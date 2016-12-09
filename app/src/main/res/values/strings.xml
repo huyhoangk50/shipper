@@ -183,5 +183,6 @@
     <string name="logout">Đăng xuất</string>
     <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
     <string name="upload_image">Tải hình đại diện</string>
+    <string name="apply">Nhận đơn hàng</string>
 
 </resources>
