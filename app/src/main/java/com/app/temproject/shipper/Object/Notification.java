@@ -8,44 +8,37 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Notification {
-    @SerializedName(Constant.KEY_USER_ID)
-    private int UserID;
+    @SerializedName(Constant.KEY_ACTOR_NAME)
+    private String ActorName;
 
     @SerializedName(Constant.KEY_ROLE)
     private int Role;
 
-    @SerializedName(Constant.KEY_TYPE)
-    private int Type;
+    @SerializedName(Constant.KEY_CODE)
+    private int Code;
 
     @SerializedName(Constant.KEY_CREATED_TIME)
     private String CreatedTime;
-
-    @SerializedName(Constant.KEY_UPDATED_TIME)
-    private String UpdatedTime;
-
-
-
-
-    public Notification(int UserID, int Type, int Role, String CreatedTime, String UpdatedTime ) {
-        //super(UserID, Type, Role, CreatedTime, UpdatedTime);
-        this.UserID = UserID;
-        this. Type  = Type;
-        this.Role = Role;
-        this.CreatedTime = CreatedTime;
-        this.UpdatedTime = UpdatedTime;
-
-    }
 
     public Notification() {
 
     }
 
-    public int getUserID() {
-        return UserID;
+    public Notification(String ActorName, int Role, int Code,String CreatedTime) {
+        //super(UserID, Type, Role, CreatedTime, UpdatedTime);
+        this.ActorName = ActorName;
+        this.Role = Role;
+        this.Code = Code;
+        this.CreatedTime = CreatedTime;
+
     }
 
-    public void setUserID(int userID) {
-        UserID = userID;
+    public String getActorName() {
+        return ActorName;
+    }
+
+    public void setActorName(String actorName) {
+        ActorName = actorName;
     }
 
     public int getRole() {
@@ -56,12 +49,12 @@ public class Notification {
         Role = role;
     }
 
-    public int getType() {
-        return Type;
+    public int getCode() {
+        return Code;
     }
 
-    public void setType(int type) {
-        Type = type;
+    public void setCode(int code) {
+        Code = code;
     }
 
     public String getCreatedTime() {
@@ -71,13 +64,4 @@ public class Notification {
     public void setCreatedTime(String createdTime) {
         CreatedTime = createdTime;
     }
-
-    public String getUpdatedTime() {
-        return UpdatedTime;
-    }
-
-    public void setUpdatedTime(String updatedTime) {
-        UpdatedTime = updatedTime;
-    }
-
 }

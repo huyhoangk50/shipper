@@ -36,7 +36,7 @@ public class ReadFileActivity{
         }
 
         if(text.toString().trim().equals("")){
-            return "http://192.168.0.102:3000/";
+            return "http://192.168.0.103:3000/";
         }else {
             return text.toString().trim();
         }
