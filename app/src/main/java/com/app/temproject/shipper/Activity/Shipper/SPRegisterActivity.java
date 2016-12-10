@@ -24,10 +24,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.LoginActivity;
 import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -67,6 +69,20 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
     private EditText etAddress;
     private EditText etBirthDay;
     private String role = "1";
+
+    private TextView tvCheckShipperName;
+    private TextView tvCheckEmail;
+    private TextView tvCheckPassword;
+    private TextView tvCheckConfirmPassword;
+    private TextView tvCheckPhoneNumber;
+    private TextView tvCheckAddress;
+
+    private boolean isValidShipperName;
+    private boolean isValidEmail;
+    private boolean isValidPassword;
+    private boolean isValidConfirmPassword;
+    private boolean isValidPhoneNumber;
+    private boolean isValidAddress;
 
     private String email;
     private String password;
@@ -187,6 +203,13 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         etAddress = (EditText) findViewById(R.id.etAddress);
         etBirthDay = (EditText) findViewById(R.id.etDateOfBirth);
 
+        tvCheckShipperName = (TextView) findViewById(R.id.tvCheckShipperName);
+        tvCheckEmail = (TextView) findViewById(R.id.tvCheckEmail);
+        tvCheckPassword = (TextView) findViewById(R.id.tvCheckPassword);
+        tvCheckConfirmPassword = (TextView) findViewById(R.id.tvCheckConfirmPassword);
+        tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
+        tvCheckAddress = (TextView) findViewById(R.id.tvCheckAddress);
+
         mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapSPRegister);
 
         mapsFragment.setListener(new WorkaroundMapFragment.OnTouchListener() {
@@ -222,6 +245,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
 
     @Override
     public void onClick(View view) {
+
         if (view == btnUploadAvatar) {
             showFileChooser();
         }
@@ -230,30 +254,35 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         }
         if (view == btnRegister) {
             setInformationFromShipper();
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty(Constant.KEY_EMAIL, email);
-            jsonObject.addProperty(Constant.KEY_PASSWORD, password);
-            jsonObject.addProperty(Constant.KEY_NAME, confirmPassword);
-            jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
-            jsonObject.addProperty(Constant.KEY_ADDRESS, address);
-            jsonObject.addProperty(Constant.KEY_BIRTHDAY, birthday);
-            jsonObject.addProperty(Constant.KEY_ROLE, role);
-            jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
-            jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
-            jsonObject.addProperty(Constant.KEY_NAME, shipperName);
-            if (imageStringBase64 == null) {
+            checkInformationCorrectness();
+            if(isAllInformationCorrect()) {
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty(Constant.KEY_EMAIL, email);
+                jsonObject.addProperty(Constant.KEY_PASSWORD, password);
+                jsonObject.addProperty(Constant.KEY_NAME, confirmPassword);
+                jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
+                jsonObject.addProperty(Constant.KEY_ADDRESS, address);
+                jsonObject.addProperty(Constant.KEY_BIRTHDAY, birthday);
+                jsonObject.addProperty(Constant.KEY_ROLE, role);
+                jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
+                jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
+                jsonObject.addProperty(Constant.KEY_NAME, shipperName);
+                if (imageStringBase64 == null) {
 
-                jsonObject.addProperty(Constant.KEY_AVATAR, AVATAR_DEFAULT);
-            } else {
-
-                if (imageExtension == null) {
-                    jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, EXTENSION_DEFAULT);
+                    jsonObject.addProperty(Constant.KEY_AVATAR, AVATAR_DEFAULT);
                 } else {
-                    jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, imageExtension);
+
+                    if (imageExtension == null) {
+                        jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, EXTENSION_DEFAULT);
+                    } else {
+                        jsonObject.addProperty(Constant.KEY_IMAGE_EXTENSION, imageExtension);
+                    }
+                    jsonObject.addProperty(Constant.KEY_IMAGE_BASE_64_STRING, imageStringBase64);
                 }
-                jsonObject.addProperty(Constant.KEY_IMAGE_BASE_64_STRING, imageStringBase64);
+                new RegisterAsyncTask(SPRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, jsonObject.toString());
+            }else {
+                notifyToUser();
             }
-            new RegisterAsyncTask(SPRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, jsonObject.toString());
         }
 
     }
@@ -270,6 +299,64 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         latitude = mapsFragment.getLatitude();
     }
 
+    private void checkInformationCorrectness(){
+        isValidShipperName = !CheckingInformation.isEmpty(shipperName);
+        isValidEmail = CheckingInformation.isValidEmail(email);
+        isValidPassword = CheckingInformation.isValidPassword(password);
+        isValidConfirmPassword = confirmPassword.equals(password);
+        isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
+        isValidAddress = !CheckingInformation.isEmpty(address);
+    }
+
+    private boolean isAllInformationCorrect(){
+        if(!isValidShipperName) return false;
+        if(!isValidEmail) return false;
+        if(!isValidPassword) return false;
+        if(!isValidConfirmPassword) return false;
+        if(!isValidPhoneNumber) return false;
+        if(!isValidAddress) return false;
+        return true;
+    }
+
+    private void notifyToUser(){
+        if(!isValidShipperName){
+            tvCheckShipperName.setText(Constant.NULL_INFORMATION);
+        }else {
+            tvCheckShipperName.setText("");
+        }
+
+        if(!isValidEmail){
+            tvCheckEmail.setText(Constant.INVALID_EMAIL);
+        }else {
+            tvCheckEmail.setText("");
+        }
+
+        if(!isValidPassword){
+            tvCheckPassword.setText(Constant.INVALID_PASSWORD);
+        }else {
+            tvCheckPassword.setText("");
+        }
+
+        if(!isValidConfirmPassword){
+            tvCheckConfirmPassword.setText(Constant.INCORRECT_PASSWORD);
+        }else {
+            tvCheckConfirmPassword.setText("");
+        }
+
+        if(!isValidPhoneNumber){
+            tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
+        }else{
+            tvCheckPhoneNumber.setText("");
+        }
+
+        if(!isValidAddress){
+            tvCheckAddress.setText(Constant.NULL_INFORMATION);
+        }else {
+            tvCheckAddress.setText("");
+        }
+
+        Toast.makeText(SPRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
+    }
     private class RegisterAsyncTask extends ServiceAsyncTask {
 
         public RegisterAsyncTask(Activity activity) {
