@@ -18,8 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
+import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
-import com.app.temproject.shipper.Object.Shipper;
+import com.app.temproject.shipper.Object.Response;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -32,7 +33,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Random;
 
@@ -56,11 +61,14 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private LinearLayout llApply;
     private Button btnCancel;
     private LinearLayout llDone;
+    private TextView tvDescription;
 
 
+    private Location location;
     private Store store;
     private Request request;
     private int requestId;
+    private Response response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +95,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         llApply = (LinearLayout) findViewById(R.id.llApply);
         llDone = (LinearLayout) findViewById(R.id.llDone);
         btnCancel = (Button) findViewById(R.id.btnCancel);
-
+        tvDescription = (TextView) findViewById(R.id.tvDescription);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -184,11 +192,11 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     }
 
     private void loadData() {
-        new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlSpLoadDetailRequest + requestId, Constant.GET_METHOD);
+        new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlSpLoadDetailRequest + requestId + "/" + ProjectManagement.shipper.getId(), Constant.GET_METHOD);
     }
 
-    private void fakeData(){
-        request = new Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 105.8488915,21.0024017 , 1, "12/12/2016 08:30", "12/12/2016 08:30");
+    private void fakeData() {
+        request = new Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 105.8488915, 21.0024017, 1, "12/12/2016 08:30", "12/12/2016 08:30");
         request.setStoreName("Cửa hàng đồng hồ Huy Hoàng");
         request.setStorePosition("Số 5 Minh khai hà nội");
         request.setCustomerName("Nguyễn văn sang");
@@ -198,10 +206,10 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         request.setStatus(Constant.WAITING_REQUEST);
 
         store = new Store(1, "123@gmail.com", "123@gmail.com", "Nguyễn Huy Hoàng", "35425343",
-                "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội",105.8474236 ,20.989865 , "Việt Nam");
+                "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội", 105.8474236, 20.989865, "Việt Nam");
     }
 
-    private void updateUI(){
+    private void updateUI() {
         tvProductName.setText(request.getProductName());
         tvStoreName.setText(store.getName());
         tvPrice.setText(request.getPrice() + "");
@@ -212,10 +220,71 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvDestination.setText(request.getDestination());
         tvCustomerPhone.setText(request.getPhoneNumber());
 
-        if(mMap!= null){
+        if (mMap != null) {
             updateMap();
         }
+
+        switch (request.getStatus()){
+            case Constant.NEW_REQUEST:
+                break;
+            case  Constant.WAITING_REQUEST:
+                break;
+            case Constant.PROCESSING_REQUEST:
+                break;
+            case Constant.DONE_REQUEST:
+                break;
+            case Constant.COMPLETED_REQUEST:
+                break;
+            case Constant.CANCELED_REQUEST:
+                break;
+        }
+        if (request.getStatus() == Constant.NEW_REQUEST) {
+            llApply.setVisibility(View.VISIBLE);
+        } else if(request.getStatus() == Constant.WAITING_REQUEST){
+            if(response == null){
+                llApply.setVisibility(View.VISIBLE);
+            } else {
+                btnCancel.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
+            }
+        } else if(request.getStatus() == Constant.PROCESSING_REQUEST){
+            if(response == null){
+                tvDescription.setText(getString(R.string.can_not_apply_this_request));
+            } else {
+                llDone.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.VISIBLE);
+            }
+        }
+        else if(request.getStatus() == Constant.COMPLETED_REQUEST){
+            if(response == null){
+                tvDescription.setText(getString(R.string.can_not_apply_this_request));
+            } else {
+                tvDescription.setText(getString(R.string.request_is_completed));
+            }
+        }
+
+
+
+        if (response == null) {
+            if (request.getStatus() == Constant.NEW_REQUEST || request.getStatus() == Constant.WAITING_REQUEST) {
+                llApply.setVisibility(View.VISIBLE);
+            } else {
+                tvDescription.setText(getString(R.string.can_not_apply_this_request));
+//                if (request.getStatus() == Constant.PROCESSING_REQUEST
+//                        || request.getStatus() == Constant.COMPLETED_REQUEST
+//                        || request.getStatus() == Constant.CANCELED_REQUEST
+//                        || request.getStatus() == Constant.DONE_REQUEST)
+            }
+
+        } else if (response.getStatus() == Constant.WAITING_RESPONSE) {
+            btnCancel.setVisibility(View.VISIBLE);
+        }
+//        else if (response.getStatus() == Constant.PROCESSING_RESPONSE) {
+//
+//        }
+
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -224,7 +293,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
         mMap.setMyLocationEnabled(true);
 
-        if(request!=null && store!=null){
+        if (request != null && store != null) {
             updateMap();
         }
         // Add a marker in Sydney and move the camera
@@ -232,21 +301,22 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 //                .newCameraPosition(cameraPosition));
     }
 
-    private void updateMap(){
+    private void updateMap() {
 
         cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng((request.getLatitude() + store.getLatitude() )/2,
-                        (request.getLongitude() + store.getLongitude() )/2))
+                .target(new LatLng((request.getLatitude() + store.getLatitude()) / 2,
+                        (request.getLongitude() + store.getLongitude()) / 2))
                 .zoom(15).build();
         mMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
 
         mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(new LatLng(store.getLatitude(), store.getLongitude())))
+        mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())))
                 .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.store));
         mMap.addMarker(new MarkerOptions().position(new LatLng(request.getLatitude(), request.getLongitude())))
                 .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.destination));
     }
+
     private class LoadDetailRequestAsyncTask extends ServiceAsyncTask {
 
         public LoadDetailRequestAsyncTask(Activity activity) {
@@ -255,15 +325,40 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            if(!error){
+            if (!error) {
+                try {
 
+                    Gson gson = new Gson();
+                    JSONObject jsonObject = new JSONObject(data);
+                    JSONObject requestJson = jsonObject.getJSONObject(Constant.KEY_REQUEST);
+                    request = gson.fromJson(requestJson.toString(), Request.class);
+
+                    JSONObject storeJson = jsonObject.getJSONObject(Constant.KEY_STORE);
+                    store = gson.fromJson(storeJson.toString(), Store.class);
+
+                    JSONObject locationJson = jsonObject.getJSONObject(Constant.KEY_LOCATION);
+                    location = gson.fromJson(locationJson.toString(), Location.class);
+
+
+                    JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
+                    response = gson.fromJson(responseJson.toString(), Response.class);
+
+//                    if (jsonObject.has(Constant.KEY_RESPONSE)) {
+//                        JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
+//                        response = gson.fromJson(responseJson.toString(), Response.class);
+//                    }
+                    updateUI();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
 
             }
         }
     }
 
-    private class CancelRequestAsyncTask extends ServiceAsyncTask{
+    private class CancelRequestAsyncTask extends ServiceAsyncTask {
 
         public CancelRequestAsyncTask(Activity activity) {
             super(activity);
@@ -271,7 +366,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            if(!error){
+            if (!error) {
 
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
@@ -279,7 +374,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
 
-    private class ApplyRequestAsyncTask extends ServiceAsyncTask{
+    private class ApplyRequestAsyncTask extends ServiceAsyncTask {
 
         public ApplyRequestAsyncTask(Activity activity) {
             super(activity);
@@ -287,7 +382,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            if(!error){
+            if (!error) {
 
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
@@ -295,7 +390,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
 
-    private class FinishRequestAsyncTask extends ServiceAsyncTask{
+    private class FinishRequestAsyncTask extends ServiceAsyncTask {
 
         public FinishRequestAsyncTask(Activity activity) {
             super(activity);
@@ -303,7 +398,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         @Override
         protected void processData(boolean error, String message, String data) {
-            if(!error){
+            if (!error) {
 
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
