@@ -47,8 +47,8 @@ public class Constant {
     public static final String KEY_UPDATED_TIME = "updated_time";
     public static final String KEY_STORE_NAME = "name";
     public static final String KEY_STORE_POSITION = "street";
-    public static final String KEY_REQUEST_ID = "requestId";
-    public static final String KEY_USER_ID = "userId";
+    public static final String KEY_REQUEST_ID = "request_id";
+    public static final String KEY_USER_ID = "user_id";
     public static final String KEY_CUSTOMER_NAME = "customer_name";
     public static final String KEY_RATING = "rating";
     public static final String KEY_VOTE = "vote";
@@ -66,6 +66,9 @@ public class Constant {
     public static final String KEY_STORE = "store";
     public static final String KEY_REQUEST = "request";
     public static final String KEY_RESPONSE = "response";
+    public static final String KEY_LOCATION = "location";
+    public static final String KEY_RESPONSE_STATUS = "response_status";
+    public static final String KEY_RESPONSE_ID = "response_id";
 
 
     public static final String FROM = "Từ ";
@@ -78,10 +81,13 @@ public class Constant {
     public static final int NEW_REQUEST = 0;
     public static final int WAITING_REQUEST = 1;
     public static final int PROCESSING_REQUEST = 2;
-    public static final int DONE_STATUS = 3;
+    public static final int DONE_REQUEST = 3;
     public static final int COMPLETED_REQUEST = 4;
+    public static final int CANCELED_REQUEST = 5;
 
 
+
+    public static final int NEW_RESPONSE = -1;
     public static final int WAITING_RESPONSE = 0;
     public static final int CANCELED_RESPONSE = 1;
     public static final int ACCEPTED_RESPONSE = 2;
