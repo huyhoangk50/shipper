@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Environment;
 
 
+import com.app.temproject.shipper.ProjectVariable.Constant;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,13 +17,13 @@ import java.io.IOException;
  * Created by paladin on 09/12/2016.
  */
 
-public class ReadFileActivity{
-    public static final String readTextFromFile(String fileName, Activity activity){
+public class FileProcessing {
+    public static final String readFileFromExternalStorager(String pathToFile){
         StringBuilder text = new StringBuilder();
         try{
             File sdcard = Environment.getExternalStorageDirectory();
 
-            File file = new File(sdcard, fileName);
+            File file = new File(sdcard, pathToFile);
 
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
@@ -36,7 +38,7 @@ public class ReadFileActivity{
         }
 
         if(text.toString().trim().equals("")){
-            return "http://192.168.0.102:3000/";
+            return Constant.DEFAULT_URL;
         }else {
             return text.toString().trim();
         }

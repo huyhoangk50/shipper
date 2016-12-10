@@ -66,7 +66,6 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
     private EditText etPhoneNumber;
     private EditText etAddress;
     private EditText etBirthDay;
-    private String role = "1";
 
     private String email;
     private String password;
@@ -160,7 +159,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         // RESIZE THE BIT MAP
         matrix.postScale(scale, scale);
 
-        // "RECREATE" THE NEW BITMAP
+        // "RECREATE" THE NEW_REQUEST BITMAP
         Bitmap resizedBitmap = Bitmap.createBitmap(
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
@@ -237,7 +236,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
             jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
             jsonObject.addProperty(Constant.KEY_ADDRESS, address);
             jsonObject.addProperty(Constant.KEY_BIRTHDAY, birthday);
-            jsonObject.addProperty(Constant.KEY_ROLE, role);
+            jsonObject.addProperty(Constant.KEY_ROLE, Constant.SHIPPER_ROLE);
             jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
             jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
             jsonObject.addProperty(Constant.KEY_NAME, shipperName);

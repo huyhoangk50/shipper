@@ -56,16 +56,16 @@ public class SPRequestsFragment extends Fragment {
         JsonObject jsonObject = new JsonObject();
 
         switch (status){
-            case Constant.PENDING_STATUS:
+            case Constant.WAITING_REQUEST:
                 new LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlSpLoadWaitingRequest + ProjectManagement.shipper.getId(), Constant.GET_METHOD, "");
                 break;
-            case Constant.COMPLETED_STATUS:
+            case Constant.COMPLETED_REQUEST:
                 new LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlSpLoadCompletedRequest + ProjectManagement.shipper.getId(), Constant.GET_METHOD, "");
                 break;
-            case Constant.PROCESSING_STATUS:
+            case Constant.PROCESSING_REQUEST:
                 new LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlSpLoadProcessingRequest + ProjectManagement.shipper.getId(), Constant.GET_METHOD, "");
                 break;
-            case Constant.ALL:
+            case Constant.NEW_REQUEST:
                 new LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlSpLoadNewRequest + ProjectManagement.shipper.getId(), Constant.GET_METHOD, "");
                 break;
         }

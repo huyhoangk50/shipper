@@ -170,6 +170,9 @@
     <string name="reset_code">Mã xác nhận</string>
     <string name="incorrect_reset_code">Mã xác nhận của bạn không đúng, vui lòng kiểm tra lại mã trong email của bạn</string>
     <string name="title_activity_sthome">STHomeActivity</string>
+    <string name="processing_request_notification">Bạn đang thực hiện đơn hàng này</string>
+    <string name="waiting_request_notification">Đang chờ xác nhận từ cửa hàng</string>
+    <string name="completed_request_notification">Bạn đã hoàn thành đơn hàng này</string>
 
 
     <string name="hint_name">Full Name</string>
@@ -183,6 +186,12 @@
     <string name="logout">Đăng xuất</string>
     <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
     <string name="upload_image">Tải hình đại diện</string>
-    <string name="apply">Nhận đơn hàng</string>
+    <string name="apply">Nhận ngay</string>
+    <string name="done">Hoàn thành</string>
+    <string name="finish_request">Hoàn thành đơn hàng</string>
+    <string name="really_finish_request">Bạn đã hoàn thành nhiệm vụ?</string>
+    <string name="sp_cancel_request">Hủy đơn hàng</string>
+    <string name="really_want_to_cancel">Bạn thực sự muốn hủy đơn hàng này?</string>
+    <string name="please_try_again">Đã có lỗi xảy ra, xin vui lòng thử lại.</string>
 
 </resources>
