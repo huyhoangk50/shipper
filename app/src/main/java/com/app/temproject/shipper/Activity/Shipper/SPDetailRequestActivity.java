@@ -224,6 +224,20 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
             updateMap();
         }
 
+        switch (request.getStatus()){
+            case Constant.NEW_REQUEST:
+                break;
+            case  Constant.WAITING_REQUEST:
+                break;
+            case Constant.PROCESSING_REQUEST:
+                break;
+            case Constant.DONE_REQUEST:
+                break;
+            case Constant.COMPLETED_REQUEST:
+                break;
+            case Constant.CANCELED_REQUEST:
+                break;
+        }
         if (request.getStatus() == Constant.NEW_REQUEST) {
             llApply.setVisibility(View.VISIBLE);
         } else if(request.getStatus() == Constant.WAITING_REQUEST){
@@ -240,13 +254,17 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                 llDone.setVisibility(View.VISIBLE);
                 btnCancel.setVisibility(View.VISIBLE);
             }
-        } else if(request.getStatus() == Constant.COMPLETED_REQUEST){
+        }
+        else if(request.getStatus() == Constant.COMPLETED_REQUEST){
             if(response == null){
                 tvDescription.setText(getString(R.string.can_not_apply_this_request));
             } else {
                 tvDescription.setText(getString(R.string.request_is_completed));
             }
         }
+
+
+
         if (response == null) {
             if (request.getStatus() == Constant.NEW_REQUEST || request.getStatus() == Constant.WAITING_REQUEST) {
                 llApply.setVisibility(View.VISIBLE);
