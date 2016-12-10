@@ -26,19 +26,28 @@ public class ProjectManagement {
     public static String urlSpLoadWaitingRequest = "";
     public static String urlSpLoadProcessingRequest = "";
     public static String urlSpLoadCompletedRequest = "";
+    public static String urlSpFinishRequest = "";
+    public static String urlSpApplyRequest = "";
+    public static String urlSpCancelRequest = "";
+
+
     public static void changeURL(String baseURL){
         urlSpLoadNewRequest = baseURL + "api/requests/new/";
         urlSpLoadProcessingRequest = baseURL + "api/requests/processing/";
         urlSpLoadWaitingRequest = baseURL + "api/requests/waiting/";
         urlSpLoadCompletedRequest = baseURL + "api/requests/completed/";
         urlSpRegister = baseURL + "api/accounts/register";
-        urlSpLoadDetailRequest = baseURL + "";
+        urlSpLoadDetailRequest = baseURL + "requests/request/";
         urlLogin = baseURL + "api/accounts/login";
         urlActiveAccount = baseURL + "api/accounts/active";
         urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
         urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
         urlStCreateRequest = baseURL + "api/requests";
         urlStLoadRequest = baseURL + "";
+        urlSpFinishRequest = baseURL + "api/confirm/";
+        urlSpCancelRequest = baseURL + "api/";
+        urlSpApplyRequest = baseURL + "api/responses";
+
 
     }
 }

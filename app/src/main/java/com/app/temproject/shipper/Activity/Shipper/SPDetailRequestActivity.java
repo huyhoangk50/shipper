@@ -2,9 +2,11 @@ package com.app.temproject.shipper.Activity.Shipper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Request;
+import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -51,7 +54,8 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private TextView tvCustomerPhone;
     private ScrollView svDetailRequest;
     private LinearLayout llApply;
-    private Button btnDelete;
+    private Button btnCancel;
+    private LinearLayout llDone;
 
 
     private Store store;
@@ -64,7 +68,6 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         setContentView(R.layout.sp_detail_request_layout);
         Intent intent = getIntent();
         requestId = intent.getIntExtra(Constant.KEY_REQUEST_ID, 0);
-
         initView();
         setEvent();
         loadData();
@@ -81,12 +84,14 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvDestination = (TextView) findViewById(R.id.tvCustomerPlace);
         tvCustomerPhone = (TextView) findViewById(R.id.tvCustomerPhone);
         svDetailRequest = (ScrollView) findViewById(R.id.svDetailRequest);
+        llApply = (LinearLayout) findViewById(R.id.llApply);
+        llDone = (LinearLayout) findViewById(R.id.llDone);
+        btnCancel = (Button) findViewById(R.id.btnCancel);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        setSupportActionBar(toolbar);
-
         if (mMap == null) {
             workaroundMapFragment = ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapSpDetailRequest));
             workaroundMapFragment.getMapAsync(this);
@@ -112,21 +117,74 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                 svDetailRequest.requestDisallowInterceptTouchEvent(true);
             }
         });
+
+        llDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(SPDetailRequestActivity.this)
+                        .setIcon(R.drawable.finish)
+                        .setTitle(R.string.finish_request)
+                        .setMessage(R.string.really_finish_request)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.GET_METHOD, "");
+                            }
+
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+
+                        })
+                        .show();
+            }
+        });
+
+        llApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
+                jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
+                new ApplyRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpApplyRequest, Constant.GET_METHOD, jsonObject.toString());
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(SPDetailRequestActivity.this)
+                        .setIcon(R.drawable.delete)
+                        .setTitle(R.string.sp_cancel_request)
+                        .setMessage(R.string.really_want_to_cancel)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest, Constant.GET_METHOD, "");
+                            }
+
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+
+                        })
+                        .show();
+            }
+        });
     }
 
     private void loadData() {
-//        String keys[] = {Constant.KEY_USER_ID, Constant.KEY_PASSWORD, Constant.KEY_STATUS};
-//        String values[] = {ProjectManagement.shipper.getId() + "", ProjectManagement.shipper.getPassword(), request.getId() + ""};
-//        String httpBody = HttpPacketProcessing.createBodyOfPacket(keys, values);
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(Constant.KEY_USER_ID, ProjectManagement.shipper.getId());
-        jsonObject.addProperty(Constant.KEY_PASSWORD, ProjectManagement.shipper.getPassword());
-        jsonObject.addProperty(Constant.KEY_STATUS, requestId);
-
-//        new LoadDetailRequestAsyncTask(this).execute(Constant.urlSpLoadDetailRequest, Constant.POST_METHOD, jsonObject.toString());
-
-        fakeData();
-        updateUI();
+        new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlSpLoadDetailRequest + requestId, Constant.GET_METHOD);
     }
 
     private void fakeData(){
@@ -137,7 +195,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         Random random = new Random();
         int status = random.nextInt(4);
         request.setStatus(status);
-        request.setStatus(Constant.PENDING_STATUS);
+        request.setStatus(Constant.WAITING_REQUEST);
 
         store = new Store(1, "123@gmail.com", "123@gmail.com", "Nguyễn Huy Hoàng", "35425343",
                 "Thời trang", "số 3 tân mai", "Hoàng Mai", "Hà Nội",105.8474236 ,20.989865 , "Việt Nam");
@@ -200,9 +258,56 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
             if(!error){
 
             } else {
-//                Toast.makeText(SPDetailRequestActivity)
+
             }
         }
+    }
 
+    private class CancelRequestAsyncTask extends ServiceAsyncTask{
+
+        public CancelRequestAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+
+            } else {
+                Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class ApplyRequestAsyncTask extends ServiceAsyncTask{
+
+        public ApplyRequestAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+
+            } else {
+                Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private class FinishRequestAsyncTask extends ServiceAsyncTask{
+
+        public FinishRequestAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+
+            } else {
+                Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

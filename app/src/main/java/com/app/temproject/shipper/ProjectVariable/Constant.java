@@ -62,6 +62,10 @@ public class Constant {
     public static final String KEY_RESET_CODE = "reset_code";
     public static final String KEY_IMAGE_BASE_64_STRING = "image_base64string";
     public static final String KEY_IMAGE_EXTENSION = "image_extension";
+    public static final String KEY_SHIPPER_ID = "shipper_id";
+    public static final String KEY_STORE = "store";
+    public static final String KEY_REQUEST = "request";
+    public static final String KEY_RESPONSE = "response";
 
 
     public static final String FROM = "Từ ";
@@ -71,18 +75,27 @@ public class Constant {
     public static final String PRICE = "Giá ship: ";
     public static final String THOUSAND_DONG = "Nghìn đồng";
 
-    public static final int ALL = 0;
-    public static final int PENDING_STATUS = 1;
-    public static final int PROCESSING_STATUS = 2;
-    public static final int COMPLETED_STATUS = 3;
+    public static final int NEW_REQUEST = 0;
+    public static final int WAITING_REQUEST = 1;
+    public static final int PROCESSING_REQUEST = 2;
+    public static final int DONE_STATUS = 3;
+    public static final int COMPLETED_REQUEST = 4;
 
+
+    public static final int WAITING_RESPONSE = 0;
+    public static final int CANCELED_RESPONSE = 1;
+    public static final int ACCEPTED_RESPONSE = 2;
+
+    //http protocol
     public static final String POST_METHOD = "POST";
     public static final String GET_METHOD = "GET";
     public static final String PUT_METHOD = "PUT";
     public static final String DELETE_METHOD = "DELETE";
 
+    //http configuration
     public static final String JSON_TYPE = "application/json; charset=utf-8";
     public static final String CONTENT_TYPE = "Content-Type";
+
     //ERROR
     public static final String INCORRECT_REGISTRATION_INFORMATION = "Thông tin đăng ký không hợp lệ";
     public static final String INCORRECT_CREATE_REQUEST_INFORMATION = "Thông tin đơn hàng không hợp lệ";
@@ -99,16 +112,18 @@ public class Constant {
     public static final String INVALID_PRICE = "Giá ship là số lớn hơn 0";
     public static final String INVALID_DATETIME = "Thời gian nhập không đúng";
     public static final String NULL_INFORMATION = "Cần điền thông tin";
-
-
     public static final String DUPLICATE_EMAIL = "Email này đã tồn tại";
-
     public static final String NOT_EXISTED_EMAIL = "Email không tồn tại";
     public static final String ACTIVE_CODE_MESSAGE = "Mã số kích hoạt đã được gửi vào địa chỉ email";
+
     public static final String OK = "Ok";
+
     public static int ACTIVE_STATUS = 1;
     public static int NOT_ACTIVE_STATUS = 0;
     public static int MIN_PASS_LENGTH = 6;
     public static int MIN_PHONE_NUM_LENGTH = 9;
     public static int MAX_PHONE_NUM_LENGTH = 12;
+
+    public static final String DEFAULT_URL = "http://192.168.0.102:3000/";
+    public static final String PATH_TO_CONFIG_FILE = "text.txt";
 }

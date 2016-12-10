@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String res = ReadFileActivity.readTextFromFile("text.txt",this);
+        String res = FileProcessing.readFileFromExternalStorager(Constant.PATH_TO_CONFIG_FILE);
         ProjectManagement.baseUrl = res;
         ProjectManagement.changeURL(res);
         //test

@@ -28,19 +28,19 @@ public class STRequestPagerAdapter extends FragmentStatePagerAdapter {
         STRequestsFragment stRequestsFragment = new STRequestsFragment();
         switch (position){
             case 0:
-                bundle.putInt(Constant.KEY_STATUS, Constant.ALL);
+                bundle.putInt(Constant.KEY_STATUS, Constant.NEW_REQUEST);
                 break;
             case 1:
-                bundle.putInt(Constant.KEY_STATUS, Constant.PENDING_STATUS);
+                bundle.putInt(Constant.KEY_STATUS, Constant.WAITING_REQUEST);
                 break;
             case 2:
-                bundle.putInt(Constant.KEY_STATUS, Constant.PROCESSING_STATUS);
+                bundle.putInt(Constant.KEY_STATUS, Constant.PROCESSING_REQUEST);
                 break;
             case 3:
-                bundle.putInt(Constant.KEY_STATUS, Constant.COMPLETED_STATUS);
+                bundle.putInt(Constant.KEY_STATUS, Constant.COMPLETED_REQUEST);
                 break;
             default:
-                bundle.putInt(Constant.KEY_STATUS, Constant.ALL);
+                bundle.putInt(Constant.KEY_STATUS, Constant.NEW_REQUEST);
                 break;
         }
         stRequestsFragment.setArguments(bundle);
