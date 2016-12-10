@@ -37,7 +37,7 @@ public class ProjectManagement {
         urlSpLoadWaitingRequest = baseURL + "api/requests/waiting/";
         urlSpLoadCompletedRequest = baseURL + "api/requests/completed/";
         urlSpRegister = baseURL + "api/accounts/register";
-        urlSpLoadDetailRequest = baseURL + "requests/request/";
+        urlSpLoadDetailRequest = baseURL + "api/requests/request/";
         urlLogin = baseURL + "api/accounts/login";
         urlActiveAccount = baseURL + "api/accounts/active";
         urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
