@@ -54,7 +54,7 @@
                 android:background="@drawable/border"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="huyhoangk50@gmail.com"
+                android:text="d@gmail.com"
                 android:hint="@string/email" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:text="123456"
+                android:text="d@gmail.com"
                 android:hint="@string/password" />
 
             <TextView

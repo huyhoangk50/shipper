@@ -43,9 +43,11 @@ public class Constant {
     public static final String KEY_PRODUCT_ID = "product_id";
     public static final String KEY_PRODUCT_NAME = "product_name";
     public static final String KEY_STATUS = "status";
+    public static final String KEY_ACTOR_NAME = "actor_name";
     public static final String KEY_CREATED_TIME = "created_time";
     public static final String KEY_UPDATED_TIME = "updated_time";
     public static final String KEY_STORE_NAME = "name";
+    public static final String KEY_CODE = "code";
     public static final String KEY_STORE_POSITION = "street";
     public static final String KEY_REQUEST_ID = "requestId";
     public static final String KEY_USER_ID = "userId";
@@ -117,6 +119,10 @@ public class Constant {
     public static final String ACTIVE_CODE_MESSAGE = "Mã số kích hoạt đã được gửi vào địa chỉ email";
 
     public static final String OK = "Ok";
+    public static int ST_ACCEPT_CODE = 0;
+    public static int ST_REFUSE_CODE = 1;
+    public static int SP_REQUEST_CODE = 2;
+    public static int SP_CANCEL_CODE = 3;
 
     public static int ACTIVE_STATUS = 1;
     public static int NOT_ACTIVE_STATUS = 0;
