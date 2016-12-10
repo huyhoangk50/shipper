@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
 import com.app.temproject.shipper.CheckingInformation;
+import com.app.temproject.shipper.LoginAsyncTask;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -26,9 +28,12 @@ import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -78,58 +83,67 @@ public class LoginActivity extends Activity {
         spRole.setAdapter(roleAdapter);
     }
 
-    private class LoginAsyncTask extends ServiceAsyncTask {
-
-        public LoginAsyncTask(Activity activity) {
-            super(activity);
-        }
-
-        @Override
-        protected void processData(boolean error, String message, String data) {
-            if (error) {
-                Toast.makeText(LoginActivity.this, getString(R.string.incorrect_information), Toast.LENGTH_LONG).show();
-            } else {
-                if (role == Constant.STORE_ROLE) {
-                    Store store = new Gson().fromJson(data, Store.class);
-                    store.setPassword(password);
-//                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
-//                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
-//                    store.setStatus(Constant.ACTIVE_STATUS);
-                    ProjectManagement.store = store;
-                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        intent.putExtra(Constant.KEY_ID_ACCOUNT, store.getId());
-                        startActivity(intent);
-                        finish();
-                    }
-                } else {
-                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
-                    shipper.setPassword(password);
-
-//                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
-//                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
-//                    shipper.setStatus(Constant.ACTIVE_STATUS);
-                    ProjectManagement.shipper = shipper;
-                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        intent.putExtra(Constant.KEY_ID_ACCOUNT, shipper.getId());
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            }
-        }
-    }
+//    private class LoginAsyncTask extends ServiceAsyncTask {
+//
+//        public LoginAsyncTask(Activity activity) {
+//            super(activity);
+//        }
+//
+//        @Override
+//        protected void processData(boolean error, String message, String data) {
+//            if (error) {
+//                Toast.makeText(LoginActivity.this, getString(R.string.incorrect_information), Toast.LENGTH_LONG).show();
+//            } else {
+//                JsonObject loginJSONObject = new JsonObject();
+//                loginJSONObject.addProperty(Constant.KEY_EMAIL, email);
+//                loginJSONObject.addProperty(Constant.KEY_PASSWORD, password);
+//                loginJSONObject.addProperty(Constant.KEY_ROLE, role);
+//
+//                FileProcessing.writeToInternalStorageFile(loginJSONObject.toString(), "loginInformation.txt",LoginActivity.this);
+//                Log.e("login", FileProcessing.readFileFromInternalStorage("loginInformation.txt", LoginActivity.this));
+//
+//                if (role == Constant.STORE_ROLE) {
+//                    Store store = new Gson().fromJson(data, Store.class);
+//                    store.setPassword(password);
+////                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
+////                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
+////                    store.setStatus(Constant.ACTIVE_STATUS);
+//                    ProjectManagement.store = store;
+//                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
+//                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        intent.putExtra(Constant.KEY_ID_ACCOUNT, store.getId());
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                } else {
+//                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
+//                    shipper.setPassword(password);
+//
+////                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
+////                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
+////                    shipper.setStatus(Constant.ACTIVE_STATUS);
+//                    ProjectManagement.shipper = shipper;
+//                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
+//
+//                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        intent.putExtra(Constant.KEY_ID_ACCOUNT, shipper.getId());
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private class LoginAsync extends AsyncTask<String, String, String> {
         @Override
@@ -227,7 +241,7 @@ public class LoginActivity extends Activity {
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
-                    new LoginAsyncTask(LoginActivity.this).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
+                    new LoginAsyncTask(LoginActivity.this,email,password,role).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
                 }else {
                     notifyToUser();
                 }

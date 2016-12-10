@@ -23,7 +23,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.temproject.shipper.Activity.FileProcessing;
 import com.app.temproject.shipper.Activity.HomeActivity;
+import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 
@@ -194,6 +196,7 @@ public class SPHomeActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 try{
+                                    FileProcessing.deleteInternalStorageFile(Constant.PATH_TO_LOGIN_INFORMATION_FILE, SPHomeActivity.this);
                                     ProjectManagement.shipper = null;
                                     Intent intent = new Intent(SPHomeActivity.this, HomeActivity.class);
                                     startActivity(intent);
