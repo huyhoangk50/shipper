@@ -20,10 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.app.temproject.shipper.Activity.FileProcessing;
 import com.app.temproject.shipper.Activity.HomeActivity;
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Fragment.Store.STHomeFragment;
 import com.app.temproject.shipper.Fragment.Store.STNotificationFragment;
+import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 
@@ -193,6 +195,7 @@ public class STHomeActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 try{
+                                    FileProcessing.deleteInternalStorageFile(Constant.PATH_TO_LOGIN_INFORMATION_FILE, STHomeActivity.this);
                                     ProjectManagement.store = null;
                                     Intent intent = new Intent(STHomeActivity.this, HomeActivity.class);
                                     startActivity(intent);

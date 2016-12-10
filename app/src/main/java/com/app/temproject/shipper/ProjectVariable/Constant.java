@@ -126,4 +126,6 @@ public class Constant {
 
     public static final String DEFAULT_URL = "http://192.168.0.102:3000/";
     public static final String PATH_TO_CONFIG_FILE = "text.txt";
+
+    public static final String PATH_TO_LOGIN_INFORMATION_FILE = "loginInformation.txt";
 }
