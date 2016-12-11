@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Activity.Shipper.SPDetailRequestActivity">
+    tools:activity=".Activity.Shipper.SPDetailRequestActivity">
     <item
         android:id="@+id/action_add_plant"
         android:icon="@drawable/done"

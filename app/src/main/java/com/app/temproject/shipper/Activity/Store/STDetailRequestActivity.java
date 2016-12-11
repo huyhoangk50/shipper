@@ -9,19 +9,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Response;
+import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -36,9 +37,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class STDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -57,27 +63,28 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     private TextView tvDestination;
     private TextView tvCustomerPhone;
     private ScrollView svDetailRequest;
-    private LinearLayout llApply;
     private Button btnCancel;
-    private LinearLayout llDone;
     private TextView tvDescription;
+    private RecyclerView rcvShipper;
+    private BaseShipperAdapter  baseShipperAdapter;
+
 
 
     private Location location;
     private Store store;
     private Request request;
     private int requestId;
-    private Response response;
+    private int requestStatus;
     private int rating;
+    private ArrayList<Shipper> shippers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.st_activity_detail_request);
-
         Intent intent = getIntent();
         requestId = intent.getIntExtra(Constant.KEY_REQUEST_ID, 0);
-
+        requestStatus = intent.getIntExtra(Constant.KEY_REQUEST_STATUS, 0);
         initView();
         setEvent();
         loadData();
@@ -96,6 +103,8 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         svDetailRequest = (ScrollView) findViewById(R.id.svDetailRequest);
         btnCancel = (Button) findViewById(R.id.btnCancel);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
+        rcvShipper  = (RecyclerView) findViewById(R.id.rcvShipper);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -130,7 +139,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             public void onClick(View view) {
                 AlertDialog.Builder warningDialog = new AlertDialog.Builder(STDetailRequestActivity.this);
                 warningDialog.setIcon(R.drawable.delete);
-                if (response.getStatus() == Constant.ACCEPTED_RESPONSE) {
+                if (request.getStatus() == Constant.PROCESSING_REQUEST) {
                     warningDialog.setMessage(R.string.warninng_about_judgement);
                 } else {
                     warningDialog.setMessage(R.string.really_want_to_cancel);
@@ -204,132 +213,43 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvDestination.setText(request.getDestination());
         tvCustomerPhone.setText(request.getPhoneNumber());
 
-        if (mMap != null) {
-            updateMap();
+
+
+
+        if(shippers!=null){
+            rcvShipper.setLayoutManager(new LinearLayoutManager(STDetailRequestActivity.this));
+            baseShipperAdapter = new BaseShipperAdapter(STDetailRequestActivity.this, shippers, request);
+            rcvShipper.setAdapter(baseShipperAdapter);
         }
 
         switch (request.getStatus()){
             case Constant.NEW_REQUEST:
+                tvDescription.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.no_shipper_accept));
+                btnCancel.setVisibility(View.VISIBLE);
+                break;
             case Constant.WAITING_REQUEST:
+                tvDescription.setVisibility(View.GONE);
+                btnCancel.setVisibility(View.VISIBLE);
                 break;
             case Constant.PROCESSING_REQUEST:
+                tvDescription.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.request_is_processing));
+                btnCancel.setVisibility(View.VISIBLE);
                 break;
             case Constant.COMPLETED_REQUEST:
-                break;
-        }
-
-        switch (response.getStatus()) {
-            case Constant.NEW_RESPONSE:
-            case Constant.CANCELED_RESPONSE:
-                if (request.getStatus() == Constant.PROCESSING_REQUEST
-                        || request.getStatus() == Constant.DONE_REQUEST
-                        || request.getStatus() == Constant.COMPLETED_REQUEST
-                        || request.getStatus() == Constant.CANCELED_REQUEST) {
-                    tvDescription.setText(getString(R.string.can_not_apply_this_request));
-                } else {
-                    llApply.setVisibility(View.VISIBLE);
-                    btnCancel.setVisibility(View.GONE);
-                    llDone.setVisibility(View.GONE);
-                    tvDescription.setVisibility(View.GONE);
-                }
-                break;
-            case Constant.WAITING_RESPONSE:
-                tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
-                btnCancel.setVisibility(View.VISIBLE);
-                llApply.setVisibility(View.GONE);
-                llDone.setVisibility(View.GONE);
-                break;
-            case Constant.BE_CANCELED_RESPONSE:
-                tvDescription.setText(getString(R.string.can_not_apply_this_request));
-                llApply.setVisibility(View.GONE);
+                tvDescription.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.request_is_completed));
                 btnCancel.setVisibility(View.GONE);
-                llDone.setVisibility(View.GONE);
                 break;
-            case Constant.ACCEPTED_RESPONSE:
-                switch (request.getStatus()) {
-                    case Constant.PROCESSING_REQUEST:
-                        tvDescription.setText(getString(R.string.request_is_processing));
-                        btnCancel.setVisibility(View.VISIBLE);
-                        llDone.setVisibility(View.VISIBLE);
-                        llApply.setVisibility(View.GONE);
-                        break;
-                    case Constant.DONE_REQUEST:
-                        tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
-                        llApply.setVisibility(View.GONE);
-                        btnCancel.setVisibility(View.GONE);
-                        llDone.setVisibility(View.GONE);
-                        break;
-                    case Constant.COMPLETED_REQUEST:
-                        tvDescription.setText(getString(R.string.request_is_completed));
-                        llApply.setVisibility(View.GONE);
-                        btnCancel.setVisibility(View.GONE);
-                        llDone.setVisibility(View.GONE);
-                        break;
-                }
+            case Constant.DONE_REQUEST:
+                tvDescription.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.shipper_require_confirm_completion));
                 break;
         }
-
-
-//        switch (request.getStatus()){
-//
-//            case Constant.NEW_REQUEST:
-////                switch (response.getStatus()){
-////                    case Constant.WAITING_REQUEST:
-////                        break;
-////                    default:
-////                        llApply.setVisibility(View.VISIBLE);
-////                        break;
-////                }
-////                break;
-//
-//            case  Constant.WAITING_REQUEST:
-//                switch (response.getStatus()){
-//                    case Constant.NEW_RESPONSE:
-//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
-//                        break;
-//                    default:
-//                        tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
-//                        btnCancel.setVisibility(View.VISIBLE);
-//                        break;
-//                }
-//                break;
-//            case Constant.PROCESSING_REQUEST:
-//                switch (response.getStatus()){
-//                    case Constant.NEW_RESPONSE:
-//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
-//                        break;
-//                    default:
-//                        tvDescription.setText(getString(R.string.request_is_processing));
-//                        btnCancel.setVisibility(View.VISIBLE);
-//                        llDone.setVisibility(View.VISIBLE);
-//                        break;
-//                }
-//                break;
-//            case Constant.DONE_REQUEST:
-//                switch (response.getStatus()){
-//                    case Constant.NEW_RESPONSE:
-//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
-//                        break;
-//                    default:
-//                        tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
-//                        break;
-//                }
-//                break;
-//            case Constant.COMPLETED_REQUEST:
-//                switch (response.getStatus()){
-//                    case Constant.NEW_RESPONSE:
-//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
-//                        break;
-//                    default:
-//                        tvDescription.setText(getString(R.string.request_is_completed));
-//                        break;
-//                }
-//                break;
-//            case Constant.CANCELED_REQUEST:
-//                tvDescription.setText(getString(R.string.request_is_canceled));
-//                break;
-//        }
-
+        if (mMap != null) {
+            updateMap();
+        }
 
     }
 
@@ -355,12 +275,11 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                     JSONObject locationJson = jsonObject.getJSONObject(Constant.KEY_LOCATION);
                     location = gson.fromJson(locationJson.toString(), Location.class);
 
+                    JSONArray shippersJson = jsonObject.getJSONArray(Constant.KEY_SHIPPER);
+                    Type token = new TypeToken<ArrayList<Shipper>>() {
+                    }.getType();
+                    shippers = (new Gson().fromJson(shippersJson.toString(), token));
 
-                    JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
-                    response = gson.fromJson(responseJson.toString(), Response.class);
-                    if (response.getRequestId() == 0) {
-                        response.setStatus(Constant.NEW_RESPONSE);
-                    }
 
 //                    if (jsonObject.has(Constant.KEY_RESPONSE)) {
 //                        JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
@@ -368,7 +287,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
 //                    }
                     updateUI();
 
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
@@ -393,7 +312,10 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
     private void loadData() {
-        new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlSpLoadDetailRequest + requestId + "/" + ProjectManagement.shipper.getId(), Constant.GET_METHOD);
-
+        if(requestStatus == Constant.WAITING_REQUEST || requestStatus == Constant.NEW_REQUEST){
+            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 0, Constant.GET_METHOD);
+        } else {
+            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+        }
     }
 }

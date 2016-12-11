@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity">
+    tools:activity="com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity">
 
 
     <android.support.design.widget.AppBarLayout

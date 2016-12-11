@@ -283,12 +283,14 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                 }
                 break;
             case Constant.WAITING_RESPONSE:
+                tvDescription.setVisibility(View.VISIBLE);
                 tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
                 btnCancel.setVisibility(View.VISIBLE);
                 llApply.setVisibility(View.GONE);
                 llDone.setVisibility(View.GONE);
                 break;
             case Constant.BE_CANCELED_RESPONSE:
+                tvDescription.setVisibility(View.VISIBLE);
                 tvDescription.setText(getString(R.string.can_not_apply_this_request));
                 llApply.setVisibility(View.GONE);
                 btnCancel.setVisibility(View.GONE);
@@ -297,18 +299,21 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
             case Constant.ACCEPTED_RESPONSE:
                 switch (request.getStatus()) {
                     case Constant.PROCESSING_REQUEST:
+                        tvDescription.setVisibility(View.VISIBLE);
                         tvDescription.setText(getString(R.string.request_is_processing));
                         btnCancel.setVisibility(View.VISIBLE);
                         llDone.setVisibility(View.VISIBLE);
                         llApply.setVisibility(View.GONE);
                         break;
                     case Constant.DONE_REQUEST:
+                        tvDescription.setVisibility(View.VISIBLE);
                         tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
                         llApply.setVisibility(View.GONE);
                         btnCancel.setVisibility(View.GONE);
                         llDone.setVisibility(View.GONE);
                         break;
                     case Constant.COMPLETED_REQUEST:
+                        tvDescription.setVisibility(View.VISIBLE);
                         tvDescription.setText(getString(R.string.request_is_completed));
                         llApply.setVisibility(View.GONE);
                         btnCancel.setVisibility(View.GONE);

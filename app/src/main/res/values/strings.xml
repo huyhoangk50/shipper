@@ -205,5 +205,8 @@
     <string name="register_as">Đăng ký với tư cách</string>
     <string name="store">Store</string>
     <string name="shipper">shipper</string>
+    <string name="no_shipper_accept">Chưa có shipper nào accept</string>
+    <string name="shipper_require_confirm_completion">Shipper yêu cầu xác nhận hoàn thành đơn hàng này.</string>
+    <string name="accept_shipper_successfully">Bạn đã chấp nhận shipper này</string>
 
 </resources>

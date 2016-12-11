@@ -60,9 +60,6 @@ public class STHomeActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -74,12 +71,13 @@ public class STHomeActivity extends AppCompatActivity
         header = LayoutInflater.from(this).inflate(R.layout.st_nav_header_home, null);
         tvName = (TextView) header.findViewById(R.id.tvName);
         tvAddress = (TextView) header.findViewById(R.id.tvAddress);
-        try{
-            tvAddress.setText(ProjectManagement.store.getStreet());
-            tvName.setText(ProjectManagement.store.getName());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        tvAddress.setText(ProjectManagement.store.getStreet());
+        tvName.setText(ProjectManagement.store.getName());
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.addHeaderView(header);
     }
 
     private void setEvent() {
@@ -193,13 +191,13 @@ public class STHomeActivity extends AppCompatActivity
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                try{
+                                try {
                                     FileProcessing.deleteInternalStorageFile(Constant.PATH_TO_LOGIN_INFORMATION_FILE, STHomeActivity.this);
                                     ProjectManagement.store = null;
                                     Intent intent = new Intent(STHomeActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
-                                } catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
