@@ -393,6 +393,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
     private void loadData() {
+        new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlSpLoadDetailRequest + requestId + "/" + ProjectManagement.shipper.getId(), Constant.GET_METHOD);
 
     }
 }
