@@ -48,7 +48,7 @@ public class ProjectManagement {
         urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
         urlStCreateRequest = baseURL + "api/requests/create";
         urlStLoadRequest = baseURL + "";
-        urlSpFinishRequest = baseURL + "api/confirm/";
+        urlSpFinishRequest = baseURL + "api/requests/confirm/";
         urlSpCancelRequest = baseURL + "api/responses/cancel";
         urlSpApplyRequest = baseURL + "api/responses/create";
         urlStLoadWaitingRequest = baseURL + "api/";

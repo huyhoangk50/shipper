@@ -2,6 +2,7 @@ package com.app.temproject.shipper.Activity.Shipper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +72,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private Request request;
     private int requestId;
     private Response response;
+    private int rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +141,42 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.GET_METHOD, "");
+                                final Dialog ratingDialog = new Dialog(SPDetailRequestActivity.this);
+                                ratingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                ratingDialog.setContentView(R.layout.sp_rating_dialog);
+                                Button btnSubmitRating = (Button) ratingDialog.findViewById(R.id.btnSubmitRating);
+                                Button btnCancelRating = (Button) ratingDialog.findViewById(R.id.btnCancelRating);
+                                final RatingBar rbRating = (RatingBar) ratingDialog.findViewById(R.id.ratingBar);
+
+                                ratingDialog.show();
+
+                                btnSubmitRating.setOnClickListener(new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View arg0) {
+                                        rating = (int) rbRating.getRating();
+                                        JsonObject jsonObject = new JsonObject();
+                                        jsonObject.addProperty(Constant.KEY_STORE_ID, store.getId());
+                                        jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
+                                        new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest + request.getId(), Constant.PUT_METHOD, jsonObject.toString());
+                                        ratingDialog.dismiss();
+                                    }
+
+                                });
+
+                                btnCancelRating.setOnClickListener(new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View arg0) {
+                                        rating = 0;
+                                        JsonObject jsonObject = new JsonObject();
+                                        jsonObject.addProperty(Constant.KEY_STORE_ID, store.getId());
+                                        jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
+                                        new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.POST_METHOD, jsonObject.toString());
+                                        ratingDialog.dismiss();
+                                    }
+
+                                });
                             }
 
                         })
@@ -168,7 +207,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
             public void onClick(View view) {
                 AlertDialog.Builder warningDialog = new AlertDialog.Builder(SPDetailRequestActivity.this);
                 warningDialog.setIcon(R.drawable.delete);
-                if(response.getStatus() == Constant.ACCEPTED_RESPONSE){
+                if (response.getStatus() == Constant.ACCEPTED_RESPONSE) {
                     warningDialog.setMessage(R.string.warninng_about_judgement);
                 } else {
                     warningDialog.setMessage(R.string.really_want_to_cancel);
@@ -179,7 +218,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                         JsonObject jsonObject = new JsonObject();
                         jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
                         jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
-                        new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest , Constant.POST_METHOD, jsonObject.toString());
+                        new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest, Constant.POST_METHOD, jsonObject.toString());
                     }
 
                 });
@@ -246,13 +285,14 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
             case Constant.WAITING_RESPONSE:
                 tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
                 btnCancel.setVisibility(View.VISIBLE);
-
                 llApply.setVisibility(View.GONE);
                 llDone.setVisibility(View.GONE);
-                tvDescription.setVisibility(View.GONE);
                 break;
             case Constant.BE_CANCELED_RESPONSE:
                 tvDescription.setText(getString(R.string.can_not_apply_this_request));
+                llApply.setVisibility(View.GONE);
+                btnCancel.setVisibility(View.GONE);
+                llDone.setVisibility(View.GONE);
                 break;
             case Constant.ACCEPTED_RESPONSE:
                 switch (request.getStatus()) {
@@ -260,12 +300,19 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                         tvDescription.setText(getString(R.string.request_is_processing));
                         btnCancel.setVisibility(View.VISIBLE);
                         llDone.setVisibility(View.VISIBLE);
+                        llApply.setVisibility(View.GONE);
                         break;
                     case Constant.DONE_REQUEST:
                         tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
+                        llApply.setVisibility(View.GONE);
+                        btnCancel.setVisibility(View.GONE);
+                        llDone.setVisibility(View.GONE);
                         break;
                     case Constant.COMPLETED_REQUEST:
                         tvDescription.setText(getString(R.string.request_is_completed));
+                        llApply.setVisibility(View.GONE);
+                        btnCancel.setVisibility(View.GONE);
+                        llDone.setVisibility(View.GONE);
                         break;
                 }
                 break;

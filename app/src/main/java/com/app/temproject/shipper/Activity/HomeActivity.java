@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class HomeActivity extends AppCompatActivity {
 
     private Button btnLogin;
-    private Button btnRatingBarCheck;
+//    private Button btnRatingBarCheck;
     private Button btnSignUpAsStore;
     private Button btnSignUpAsShipper;
     private String data;
@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             initViews();
             setEvents();
         }else {
-            //login(data);
+            login(data);
         }
     }
 
@@ -73,7 +73,6 @@ public class HomeActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnSignUpAsShipper = (Button) findViewById(R.id.btnSignUpAsShipper);
         btnSignUpAsStore = (Button) findViewById(R.id.btnSignUpAsStore);
-        btnRatingBarCheck = (Button) findViewById(R.id.btnRatingBarCheck);
         new MyLocationListener();
     }
 
@@ -106,13 +105,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btnRatingBarCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, SPRatingActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void login(String loginInformation){

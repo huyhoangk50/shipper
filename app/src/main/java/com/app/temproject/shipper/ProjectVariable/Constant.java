@@ -71,6 +71,7 @@ public class Constant {
     public static final String KEY_LOCATION = "location";
     public static final String KEY_RESPONSE_STATUS = "response_status";
     public static final String KEY_RESPONSE_ID = "response_id";
+    public static final String KEY_NEW_RATING = "new_rate";
 
 
     public static final String FROM = "Từ ";

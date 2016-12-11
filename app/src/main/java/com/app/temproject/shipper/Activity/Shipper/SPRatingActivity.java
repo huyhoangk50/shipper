@@ -1,22 +1,16 @@
 package com.app.temproject.shipper.Activity.Shipper;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Activity;
-import android.support.v7.app.AlertDialog;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.R;
-
-import static android.R.attr.rating;
 
 public class SPRatingActivity extends Activity {
         private Button btnCheck;
@@ -55,9 +49,9 @@ public class SPRatingActivity extends Activity {
             popdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             popdialog.setContentView(R.layout.sp_rating_dialog);
 
-            btn_SubmitRatingNumber = (Button) popdialog.findViewById(R.id.btn_SPSubmitRatingNumber);
-            btn_CancleRatingNumber = (Button) popdialog.findViewById(R.id.btn_SPCancelRatingNumber);
-            rb_RatingStarsNumber = (RatingBar) popdialog.findViewById(R.id.ratingsBar);
+            btn_SubmitRatingNumber = (Button) popdialog.findViewById(R.id.btnSubmitRating);
+            btn_CancleRatingNumber = (Button) popdialog.findViewById(R.id.btnCancelRating);
+            rb_RatingStarsNumber = (RatingBar) popdialog.findViewById(R.id.ratingBar);
 
             popdialog.show();
 

@@ -22,7 +22,7 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingsBar"
+        android:id="@+id/ratingBar"
         android:foregroundGravity="center"
         android:clickable="false"
         android:rating="5"
@@ -39,7 +39,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingsBar"
+        android:layout_below="@+id/ratingBar"
         android:layout_gravity="center"
         android:weightSum="2">
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Cancel"
-            android:id="@+id/btn_SPCancelRatingNumber"
+            android:id="@+id/btnCancelRating"
             android:layout_weight="1"
             android:layout_alignParentRight="true"/>
         <Button
@@ -57,7 +57,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Submit"
             android:layout_weight="1"
-            android:id="@+id/btn_SPSubmitRatingNumber"
+            android:id="@+id/btnSubmitRating"
             />
 
     </LinearLayout>
