@@ -30,7 +30,7 @@ public abstract class User {
     protected int status;
 
     @SerializedName(Constant.KEY_RATING)
-    protected int rating;
+    protected double rating;
 
     @SerializedName(Constant.KEY_VOTE)
     protected int vote;
@@ -62,7 +62,7 @@ public abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(int id, String email, String password, int role, String name, String phoneNumber, int status, int rating, int vote, String createTime, String updateTime) {
+    public User(int id, String email, String password, int role, String name, String phoneNumber, int status, double rating, int vote, String createTime, String updateTime) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -132,11 +132,11 @@ public abstract class User {
         return status;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

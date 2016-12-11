@@ -173,6 +173,7 @@
     <string name="processing_request_notification">Bạn đang thực hiện đơn hàng này</string>
     <string name="waiting_request_notification">Đang chờ xác nhận từ cửa hàng</string>
     <string name="completed_request_notification">Bạn đã hoàn thành đơn hàng này</string>
+    <string name="accept">Đồng ý</string>
 
 
     <string name="hint_name">Full Name</string>
@@ -199,5 +200,6 @@
     <string name="request_is_canceled">Bạn không thể nhận đơn hàng này vì nó đã bị hủy!!</string>
     <string name="waiting_for_vetification_to_be_completed_from_store">Nhiệm vụ đã hoàn thành, đang chờ xác nhận từ cửa hàng</string>
     <string name="request_is_processing">Đang thực hiện</string>
+    <string name="warninng_about_judgement">Bạn đang thực hiện đơn hàng này, nếu đồng ý bạn sẽ bị trừ điểm đánh giá.</string>
 
 </resources>

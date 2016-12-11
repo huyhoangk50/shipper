@@ -49,7 +49,7 @@ public class ProjectManagement {
         urlStCreateRequest = baseURL + "api/requests/create";
         urlStLoadRequest = baseURL + "";
         urlSpFinishRequest = baseURL + "api/confirm/";
-        urlSpCancelRequest = baseURL + "api/";
+        urlSpCancelRequest = baseURL + "api/responses/cancel";
         urlSpApplyRequest = baseURL + "api/responses/create";
         urlStLoadWaitingRequest = baseURL + "api/";
         urlStLoadCompletedRequest = baseURL + "api/";
