@@ -28,19 +28,16 @@ public class STRequestPagerAdapter extends FragmentStatePagerAdapter {
         STRequestsFragment stRequestsFragment = new STRequestsFragment();
         switch (position){
             case 0:
-                bundle.putInt(Constant.KEY_STATUS, Constant.NEW_REQUEST);
-                break;
-            case 1:
                 bundle.putInt(Constant.KEY_STATUS, Constant.WAITING_REQUEST);
                 break;
-            case 2:
+            case 1:
                 bundle.putInt(Constant.KEY_STATUS, Constant.PROCESSING_REQUEST);
                 break;
-            case 3:
+            case 2:
                 bundle.putInt(Constant.KEY_STATUS, Constant.COMPLETED_REQUEST);
                 break;
             default:
-                bundle.putInt(Constant.KEY_STATUS, Constant.NEW_REQUEST);
+                bundle.putInt(Constant.KEY_STATUS, Constant.WAITING_REQUEST);
                 break;
         }
         stRequestsFragment.setArguments(bundle);
@@ -50,14 +47,13 @@ public class STRequestPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position==0) return context.getString(R.string.all);
-        if(position==1) return context.getString(R.string.pending);
-        if(position==2) return context.getString(R.string.on_going);
+        if(position==0) return context.getString(R.string.pending);
+        if(position==1) return context.getString(R.string.on_going);
         else return context.getString(R.string.completed);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

@@ -57,8 +57,8 @@ public class STRequestsFragment extends Fragment{
             case Constant.PROCESSING_REQUEST:
                 new STRequestsFragment.LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlStLoadProcessingRequest + ProjectManagement.store.getId(), Constant.GET_METHOD);
                 break;
-            case Constant.NEW_REQUEST:
-                new STRequestsFragment.LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlStLoadNewRequest + ProjectManagement.store.getId(), Constant.GET_METHOD);
+            default:
+                new STRequestsFragment.LoadRequestAsyncTask(getActivity()).execute(ProjectManagement.urlStLoadWaitingRequest + ProjectManagement.store.getId(), Constant.GET_METHOD);
                 break;
         }
     }

@@ -32,7 +32,7 @@
 
     <!--Home fragment-->
 
-    <string name="all">Tất cả</string>
+    <string name="all">Mới nhất</string>
     <string name="pending">Đang chờ</string>
     <string name="on_going">Đang thực hiện</string>
     <string name="completed">Đã hoàn thành</string>
@@ -200,6 +200,10 @@
     <string name="request_is_canceled">Bạn không thể nhận đơn hàng này vì nó đã bị hủy!!</string>
     <string name="waiting_for_vetification_to_be_completed_from_store">Nhiệm vụ đã hoàn thành, đang chờ xác nhận từ cửa hàng</string>
     <string name="request_is_processing">Đang thực hiện</string>
-    <string name="warninng_about_judgement">Bạn đang thực hiện đơn hàng này, nếu đồng ý bạn sẽ bị trừ điểm đánh giá.</string>
+    <string name="warninng_about_judgement">Bạn sẽ bị trừ điểm đánh giá nếu bạn chọn đồng ý!!</string>
+    <string name="register_account">Đăng ký tài khoản</string>
+    <string name="register_as">Đăng ký với tư cách</string>
+    <string name="store">Store</string>
+    <string name="shipper">shipper</string>
 
 </resources>
