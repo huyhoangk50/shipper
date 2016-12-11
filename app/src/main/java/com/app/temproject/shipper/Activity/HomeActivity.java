@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.app.temproject.shipper.Activity.Shipper.SPRatingActivity;
 import com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity;
 import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
 import com.app.temproject.shipper.LoginAsyncTask;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 public class HomeActivity extends AppCompatActivity {
 
     private Button btnLogin;
+    private Button btnRatingBarCheck;
     private Button btnSignUpAsStore;
     private Button btnSignUpAsShipper;
     private String data;
@@ -60,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             initViews();
             setEvents();
         }else {
-            login(data);
+            //login(data);
         }
     }
 
@@ -71,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnSignUpAsShipper = (Button) findViewById(R.id.btnSignUpAsShipper);
         btnSignUpAsStore = (Button) findViewById(R.id.btnSignUpAsStore);
+        btnRatingBarCheck = (Button) findViewById(R.id.btnRatingBarCheck);
         new MyLocationListener();
     }
 
@@ -99,6 +102,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, SPRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRatingBarCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, SPRatingActivity.class);
                 startActivity(intent);
             }
         });
