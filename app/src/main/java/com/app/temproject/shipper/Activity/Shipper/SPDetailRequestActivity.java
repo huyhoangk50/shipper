@@ -133,7 +133,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                         .setIcon(R.drawable.finish)
                         .setTitle(R.string.finish_request)
                         .setMessage(R.string.really_finish_request)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -166,27 +166,32 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(SPDetailRequestActivity.this)
-                        .setIcon(R.drawable.delete)
-                        .setTitle(R.string.sp_cancel_request)
-                        .setMessage(R.string.really_want_to_cancel)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                AlertDialog.Builder warningDialog = new AlertDialog.Builder(SPDetailRequestActivity.this);
+                warningDialog.setIcon(R.drawable.delete);
+                if(response.getStatus() == Constant.ACCEPTED_RESPONSE){
+                    warningDialog.setMessage(R.string.warninng_about_judgement);
+                } else {
+                    warningDialog.setMessage(R.string.really_want_to_cancel);
+                }
+                warningDialog.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
+                        jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
+                        new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest , Constant.POST_METHOD, jsonObject.toString());
+                    }
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest, Constant.GET_METHOD, "");
-                            }
+                });
+                warningDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                    }
 
-                            }
-
-                        })
-                        .show();
+                });
+                warningDialog.show();
             }
         });
     }
@@ -414,7 +419,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         @Override
         protected void processData(boolean error, String message, String data) {
             if (!error) {
-
+                loadData();
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
             }
@@ -446,7 +451,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         @Override
         protected void processData(boolean error, String message, String data) {
             if (!error) {
-
+                loadData();
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
             }
