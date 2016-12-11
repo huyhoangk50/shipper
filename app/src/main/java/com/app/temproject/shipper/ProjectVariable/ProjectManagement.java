@@ -8,53 +8,58 @@ import com.app.temproject.shipper.Object.Store;
  */
 public class ProjectManagement {
 
-    public static final String SERVER_NAME = "http://www.";
     public static Shipper shipper;
     public static Store store;
 
     //constant for url
     public static String baseUrl = "";
-    public static String urlSpLoadNewRequest = "";
-    public static String urlSpRegister ="";
-    public static String urlSpLoadDetailRequest = "";
     public static String urlLogin = "";
     public static String urlActiveAccount = "";
     public static String urlConfirmEmail = "";
     public static String urlResetPassword = "";
-    public static String urlStCreateRequest = "";
-    public static String urlStLoadRequest = "";
+
+    public static String urlSpLoadNewRequest = "";
+    public static String urlSpRegister ="";
+    public static String urlSpLoadDetailRequest = "";
     public static String urlSpLoadWaitingRequest = "";
     public static String urlSpLoadProcessingRequest = "";
     public static String urlSpLoadCompletedRequest = "";
     public static String urlSpFinishRequest = "";
     public static String urlSpApplyRequest = "";
     public static String urlSpCancelRequest = "";
+
+    public static String urlStCreateRequest = "";
+    public static String urlStLoadRequest = "";
     public static String urlStLoadWaitingRequest = "";
     public static String urlStLoadCompletedRequest = "";
     public static String urlStLoadNewRequest = "";
     public static String urlStLoadProcessingRequest = "";
+    public static String urlStCancelRequest = "";
 
 
     public static void changeURL(String baseURL){
-        urlSpLoadNewRequest = baseURL + "api/requests/new/";
-        urlSpLoadProcessingRequest = baseURL + "api/requests/processing/";
-        urlSpLoadWaitingRequest = baseURL + "api/requests/waiting/";
-        urlSpLoadCompletedRequest = baseURL + "api/requests/completed/";
-        urlSpRegister = baseURL + "api/accounts/register";
-        urlSpLoadDetailRequest = baseURL + "api/requests/request/";
         urlLogin = baseURL + "api/accounts/login";
         urlActiveAccount = baseURL + "api/accounts/active";
         urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
         urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
-        urlStCreateRequest = baseURL + "api/requests/create";
-        urlStLoadRequest = baseURL + "";
+
+        urlSpLoadNewRequest = baseURL + "api/requests/shipper/new/";
+        urlSpLoadProcessingRequest = baseURL + "api/requests/shipper/processing/";
+        urlSpLoadWaitingRequest = baseURL + "api/requests/shipper/waiting/";
+        urlSpLoadCompletedRequest = baseURL + "api/requests/shipper/completed/";
+        urlSpRegister = baseURL + "api/accounts/register";
+        urlSpLoadDetailRequest = baseURL + "api/requests/request/";
         urlSpFinishRequest = baseURL + "api/requests/confirm/";
         urlSpCancelRequest = baseURL + "api/responses/cancel";
+
+        urlStCreateRequest = baseURL + "api/requests/create";
+//        urlStLoadRequest = baseURL + "";
         urlSpApplyRequest = baseURL + "api/responses/create";
-        urlStLoadWaitingRequest = baseURL + "api/";
-        urlStLoadCompletedRequest = baseURL + "api/";
-        urlStLoadNewRequest = baseURL + "api/";
-        urlStLoadProcessingRequest = baseURL + "api/";
+        urlStLoadWaitingRequest = baseURL + "api/requests/store/waiting/";
+        urlStLoadCompletedRequest = baseURL + "api/requests/store/completed/";
+        urlStLoadProcessingRequest = baseURL + "api/requests/store/processing/";
+        urlStCancelRequest = baseURL + "api/requests/store/processing/";
+
 
 
     }

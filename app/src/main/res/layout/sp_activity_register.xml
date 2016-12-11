@@ -63,6 +63,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:text="Nguyễn Huy Hoàng"
                 android:hint="@string/name" />
 
             <TextView
@@ -90,6 +91,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:background="@drawable/border"
                 android:layout_marginBottom="10dp"
                 android:textStyle="italic"
+                android:text="huyhoangk50@gmail.com"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -119,6 +121,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:textStyle="italic"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
+                android:text="123456"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="@string/password" />
@@ -148,6 +151,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:background="@drawable/border"
                 android:layout_marginBottom="10dp"
                 android:textStyle="italic"
+                android:text="123456"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -177,6 +181,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:id="@+id/etPhoneNumber"
                 android:background="@drawable/border"
                 android:textStyle="italic"
+                android:text="0987653456"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -214,6 +219,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:hint="@string/date_of_birth"
+                android:text="2016-04-04"
                 android:layout_weight="0.05" />
 
             <TextView
@@ -244,6 +250,7 @@ tools:context="com.app.temproject.shipper.Activity.Shipper.SPRegisterActivity">
                 android:layout_width="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
+                android:text="Số 50 Tôn Thất Tùng"
                 android:hint="@string/address" />
 
             <TextView

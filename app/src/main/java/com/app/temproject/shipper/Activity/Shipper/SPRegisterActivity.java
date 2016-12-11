@@ -262,7 +262,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
                 jsonObject.addProperty(Constant.KEY_PHONE_NUMBER, phoneNumber);
                 jsonObject.addProperty(Constant.KEY_ADDRESS, address);
                 jsonObject.addProperty(Constant.KEY_BIRTHDAY, birthday);
-                jsonObject.addProperty(Constant.KEY_ROLE, ProjectManagement.shipper.getRole());
+                jsonObject.addProperty(Constant.KEY_ROLE, Constant.SHIPPER_ROLE);
                 jsonObject.addProperty(Constant.KEY_LONGITUDE, longitude);
                 jsonObject.addProperty(Constant.KEY_LATITUDE, latitude);
                 jsonObject.addProperty(Constant.KEY_NAME, shipperName);
