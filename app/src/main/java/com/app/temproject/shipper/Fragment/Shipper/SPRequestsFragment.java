@@ -53,7 +53,6 @@ public class SPRequestsFragment extends Fragment {
 //        String values[] = {ProjectManagement.shipper.getId() + "", ProjectManagement.shipper.getPassword(), status + ""};;
 //        String requestPacket = HttpPacketProcessing.createBodyOfPacket(keys, values);
 
-        JsonObject jsonObject = new JsonObject();
 
         switch (status){
             case Constant.WAITING_REQUEST:

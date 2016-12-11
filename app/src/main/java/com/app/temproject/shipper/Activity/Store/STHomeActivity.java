@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.app.temproject.shipper.Activity.FileProcessing;
 import com.app.temproject.shipper.Activity.HomeActivity;
-import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Fragment.Store.STHomeFragment;
 import com.app.temproject.shipper.Fragment.Store.STNotificationFragment;
 import com.app.temproject.shipper.ProjectVariable.Constant;

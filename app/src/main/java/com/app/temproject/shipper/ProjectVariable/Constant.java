@@ -91,8 +91,9 @@ public class Constant {
 
     public static final int NEW_RESPONSE = -1;
     public static final int WAITING_RESPONSE = 0;
-    public static final int CANCELED_RESPONSE = 1;
+    public static final int BE_CANCELED_RESPONSE = 1;
     public static final int ACCEPTED_RESPONSE = 2;
+    public static final int CANCELED_RESPONSE = 3;
 
     //http protocol
     public static final String POST_METHOD = "POST";

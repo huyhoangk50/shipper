@@ -10,10 +10,20 @@ import com.google.gson.annotations.SerializedName;
 public class Response {
     @SerializedName(Constant.KEY_ID)
     private int id;
-    @SerializedName(Constant.KEY_REQUEST_ID)
+    @SerializedName(Constant.KEY_STATUS)
     private int status;
-    @SerializedName(Constant.KEY_RESPONSE_STATUS)
+    @SerializedName(Constant.KEY_REQUEST_ID)
     private int requestId;
+    @SerializedName(Constant.KEY_SHIPPER_ID)
+    private int shipperId;
+
+    public int getShipperId() {
+        return shipperId;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;

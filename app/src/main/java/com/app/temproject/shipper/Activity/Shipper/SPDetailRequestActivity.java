@@ -159,7 +159,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
                 jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
-                new ApplyRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpApplyRequest, Constant.GET_METHOD, jsonObject.toString());
+                new ApplyRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpApplyRequest, Constant.POST_METHOD, jsonObject.toString());
             }
         });
 
@@ -223,65 +223,109 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         if (mMap != null) {
             updateMap();
         }
-
-        switch (request.getStatus()){
-            case Constant.NEW_REQUEST:
+        switch (response.getStatus()) {
+            case Constant.NEW_RESPONSE:
+            case Constant.CANCELED_RESPONSE:
+                if (request.getStatus() == Constant.PROCESSING_REQUEST
+                        || request.getStatus() == Constant.DONE_REQUEST
+                        || request.getStatus() == Constant.COMPLETED_REQUEST
+                        || request.getStatus() == Constant.CANCELED_REQUEST) {
+                    tvDescription.setText(getString(R.string.can_not_apply_this_request));
+                } else {
+                    llApply.setVisibility(View.VISIBLE);
+                    btnCancel.setVisibility(View.GONE);
+                    llDone.setVisibility(View.GONE);
+                    tvDescription.setVisibility(View.GONE);
+                }
                 break;
-            case  Constant.WAITING_REQUEST:
-                break;
-            case Constant.PROCESSING_REQUEST:
-                break;
-            case Constant.DONE_REQUEST:
-                break;
-            case Constant.COMPLETED_REQUEST:
-                break;
-            case Constant.CANCELED_REQUEST:
-                break;
-        }
-        if (request.getStatus() == Constant.NEW_REQUEST) {
-            llApply.setVisibility(View.VISIBLE);
-        } else if(request.getStatus() == Constant.WAITING_REQUEST){
-            if(response == null){
-                llApply.setVisibility(View.VISIBLE);
-            } else {
-                btnCancel.setVisibility(View.VISIBLE);
+            case Constant.WAITING_RESPONSE:
                 tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
-            }
-        } else if(request.getStatus() == Constant.PROCESSING_REQUEST){
-            if(response == null){
-                tvDescription.setText(getString(R.string.can_not_apply_this_request));
-            } else {
-                llDone.setVisibility(View.VISIBLE);
                 btnCancel.setVisibility(View.VISIBLE);
-            }
-        }
-        else if(request.getStatus() == Constant.COMPLETED_REQUEST){
-            if(response == null){
+
+                llApply.setVisibility(View.GONE);
+                llDone.setVisibility(View.GONE);
+                tvDescription.setVisibility(View.GONE);
+                break;
+            case Constant.BE_CANCELED_RESPONSE:
                 tvDescription.setText(getString(R.string.can_not_apply_this_request));
-            } else {
-                tvDescription.setText(getString(R.string.request_is_completed));
-            }
+                break;
+            case Constant.ACCEPTED_RESPONSE:
+                switch (request.getStatus()) {
+                    case Constant.PROCESSING_REQUEST:
+                        tvDescription.setText(getString(R.string.request_is_processing));
+                        btnCancel.setVisibility(View.VISIBLE);
+                        llDone.setVisibility(View.VISIBLE);
+                        break;
+                    case Constant.DONE_REQUEST:
+                        tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
+                        break;
+                    case Constant.COMPLETED_REQUEST:
+                        tvDescription.setText(getString(R.string.request_is_completed));
+                        break;
+                }
+                break;
         }
 
-
-
-        if (response == null) {
-            if (request.getStatus() == Constant.NEW_REQUEST || request.getStatus() == Constant.WAITING_REQUEST) {
-                llApply.setVisibility(View.VISIBLE);
-            } else {
-                tvDescription.setText(getString(R.string.can_not_apply_this_request));
-//                if (request.getStatus() == Constant.PROCESSING_REQUEST
-//                        || request.getStatus() == Constant.COMPLETED_REQUEST
-//                        || request.getStatus() == Constant.CANCELED_REQUEST
-//                        || request.getStatus() == Constant.DONE_REQUEST)
-            }
-
-        } else if (response.getStatus() == Constant.WAITING_RESPONSE) {
-            btnCancel.setVisibility(View.VISIBLE);
-        }
-//        else if (response.getStatus() == Constant.PROCESSING_RESPONSE) {
+//        switch (request.getStatus()){
 //
+//            case Constant.NEW_REQUEST:
+////                switch (response.getStatus()){
+////                    case Constant.WAITING_REQUEST:
+////                        break;
+////                    default:
+////                        llApply.setVisibility(View.VISIBLE);
+////                        break;
+////                }
+////                break;
+//
+//            case  Constant.WAITING_REQUEST:
+//                switch (response.getStatus()){
+//                    case Constant.NEW_RESPONSE:
+//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
+//                        break;
+//                    default:
+//                        tvDescription.setText(getString(R.string.waiting_for_vetification_from_store));
+//                        btnCancel.setVisibility(View.VISIBLE);
+//                        break;
+//                }
+//                break;
+//            case Constant.PROCESSING_REQUEST:
+//                switch (response.getStatus()){
+//                    case Constant.NEW_RESPONSE:
+//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
+//                        break;
+//                    default:
+//                        tvDescription.setText(getString(R.string.request_is_processing));
+//                        btnCancel.setVisibility(View.VISIBLE);
+//                        llDone.setVisibility(View.VISIBLE);
+//                        break;
+//                }
+//                break;
+//            case Constant.DONE_REQUEST:
+//                switch (response.getStatus()){
+//                    case Constant.NEW_RESPONSE:
+//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
+//                        break;
+//                    default:
+//                        tvDescription.setText(getString(R.string.waiting_for_vetification_to_be_completed_from_store));
+//                        break;
+//                }
+//                break;
+//            case Constant.COMPLETED_REQUEST:
+//                switch (response.getStatus()){
+//                    case Constant.NEW_RESPONSE:
+//                        tvDescription.setText(getString(R.string.can_not_apply_this_request));
+//                        break;
+//                    default:
+//                        tvDescription.setText(getString(R.string.request_is_completed));
+//                        break;
+//                }
+//                break;
+//            case Constant.CANCELED_REQUEST:
+//                tvDescription.setText(getString(R.string.request_is_canceled));
+//                break;
 //        }
+
 
     }
 
@@ -342,6 +386,9 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
 
                     JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
                     response = gson.fromJson(responseJson.toString(), Response.class);
+                    if (response.getRequestId() == 0) {
+                        response.setStatus(Constant.NEW_RESPONSE);
+                    }
 
 //                    if (jsonObject.has(Constant.KEY_RESPONSE)) {
 //                        JSONObject responseJson = jsonObject.getJSONObject(Constant.KEY_RESPONSE);
@@ -383,7 +430,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         @Override
         protected void processData(boolean error, String message, String data) {
             if (!error) {
-
+                loadData();
             } else {
                 Toast.makeText(SPDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
             }

@@ -72,7 +72,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
     private MapsFragment mapsFragment;
     private NestedScrollView nsvCreateRequest;
 
-    private FloatingActionButton fabAddRequest;
+    private FloatingActionButton fabCreateRequest;
     DatePickerDialog endDatePickerDialog;
     DatePickerDialog startDatePickerDialog;
     TimePickerDialog startTimePickerDialog;
@@ -109,7 +109,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
         tvCheckPrice = (TextView) findViewById(R.id.tvCheckPrice);
         tvCheckProductName = (TextView) findViewById(R.id.tvCheckProductName);
-        fabAddRequest = (FloatingActionButton) findViewById(R.id.fabAddRequest);
+        fabCreateRequest = (FloatingActionButton) findViewById(R.id.fabCreateRequest);
         nsvCreateRequest = (NestedScrollView) findViewById(R.id.nsvCreateRequest);
         mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapsStCreateRequest);
     }
@@ -188,7 +188,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
             }
         });
 
-        fabAddRequest.setOnClickListener(new View.OnClickListener() {
+        fabCreateRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setInformationFromUser();

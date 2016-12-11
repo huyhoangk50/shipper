@@ -29,6 +29,10 @@ public class ProjectManagement {
     public static String urlSpFinishRequest = "";
     public static String urlSpApplyRequest = "";
     public static String urlSpCancelRequest = "";
+    public static String urlStLoadWaitingRequest = "";
+    public static String urlStLoadCompletedRequest = "";
+    public static String urlStLoadNewRequest = "";
+    public static String urlStLoadProcessingRequest = "";
 
 
     public static void changeURL(String baseURL){
@@ -42,11 +46,15 @@ public class ProjectManagement {
         urlActiveAccount = baseURL + "api/accounts/active";
         urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
         urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
-        urlStCreateRequest = baseURL + "api/requests";
+        urlStCreateRequest = baseURL + "api/requests/create";
         urlStLoadRequest = baseURL + "";
         urlSpFinishRequest = baseURL + "api/confirm/";
         urlSpCancelRequest = baseURL + "api/";
-        urlSpApplyRequest = baseURL + "api/responses";
+        urlSpApplyRequest = baseURL + "api/responses/create";
+        urlStLoadWaitingRequest = baseURL + "api/";
+        urlStLoadCompletedRequest = baseURL + "api/";
+        urlStLoadNewRequest = baseURL + "api/";
+        urlStLoadProcessingRequest = baseURL + "api/";
 
 
     }

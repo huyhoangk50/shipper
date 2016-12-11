@@ -143,7 +143,7 @@ public class STRegisterActivity extends AppCompatActivity {
         spCity = (Spinner) findViewById(R.id.spCity);
         spCountry = (Spinner) findViewById(R.id.spCountry);
 //        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
-//        spCity.setAdapter(cityAdapter);
+//        spCity.updateUI(cityAdapter);
         ArrayAdapter countryAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);
         btnRegister = (Button) findViewById(R.id.btnRegister);
