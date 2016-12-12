@@ -18,11 +18,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.temproject.shipper.Adapter.Shipper.BaseShipperAdapter;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Inteface.AcceptShipper;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
-import com.app.temproject.shipper.Object.Response;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -41,7 +41,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
@@ -67,7 +66,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     private Button btnCancel;
     private TextView tvDescription;
     private RecyclerView rcvShipper;
-    private BaseShipperAdapter  baseShipperAdapter;
+    private BaseShipperAdapter baseShipperAdapter;
 
 
 

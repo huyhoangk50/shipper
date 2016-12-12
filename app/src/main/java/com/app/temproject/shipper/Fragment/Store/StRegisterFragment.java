@@ -1,13 +1,15 @@
-package com.app.temproject.shipper.Activity.Store;
+package com.app.temproject.shipper.Fragment.Store;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,14 +30,11 @@ import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.Gson;
 
-public class STRegisterActivity extends AppCompatActivity {
+/**
+ * Created by Admin on 12/12/2016.
+ */
 
-    //map properties
-//    private GoogleMap mMap;
-//    //    MapView mMapView;
-//    private Button btnSearch;
-//    private EditText etSearch;
-//    CameraPosition cameraPosition;
+public class StRegisterFragment extends Fragment {
     private MapsFragment mapsFragment;
 
     //view properties
@@ -58,6 +57,7 @@ public class STRegisterActivity extends AppCompatActivity {
     private Spinner spCity;
     private Button btnRegister;
     private ScrollView svRegister;
+    private View rootView;
 
     //globe variable properties
     private String email;
@@ -84,58 +84,59 @@ public class STRegisterActivity extends AppCompatActivity {
     private boolean isValidStoreName;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate ( Bundle savedInstanceState )    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.st_activity_register);
-
-        citiesInVietNam = getResources().getStringArray(R.array.cities_in_viet_nam);
-        districtsInHaNoi = getResources().getStringArray(R.array.districts_in_ha_noi);
-        districtsInHoChiMinh = getResources().getStringArray(R.array.districts_in_ho_chi_minh);
-        countries = getResources().getStringArray(R.array.countries);
+    }
+    @Override
+    public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
+    {
+        rootView = inflater.inflate(R.layout.st_activity_register, container, false);
+        getdata();
         initView();
         setEvent();
-
+        return rootView;
     }
-
     private void initView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.register));
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
-                finish();
+                getActivity().onBackPressed();
+                getActivity().finish();
             }
         });
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        tvCheckEmail = (TextView) findViewById(R.id.tvCheckEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        tvCheckPassWord = (TextView) findViewById(R.id.tvCheckPassword);
-        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
-        tvCheckConfirmPassword = (TextView) findViewById(R.id.tvCheckConfirmPassword);
-        etStoreName = (EditText) findViewById(R.id.etStoreName);
-        tvCheckStoreName = (TextView) findViewById(R.id.tvCheckStoreName);
-        etStoreType = (EditText) findViewById(R.id.etStoreType);
-        tvCheckStoreType = (TextView) findViewById(R.id.tvCheckStoreType);
-        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
-        tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
-        etStreet = (EditText) findViewById(R.id.etStreet);
-        spDistrict = (Spinner) findViewById(R.id.spDistrict);
-        spCity = (Spinner) findViewById(R.id.spCity);
-        spCountry = (Spinner) findViewById(R.id.spCountry);
+        etEmail = (EditText) rootView.findViewById(R.id.etEmail);
+        tvCheckEmail = (TextView) rootView.findViewById(R.id.tvCheckEmail);
+        etPassword = (EditText) rootView.findViewById(R.id.etPassword);
+        tvCheckPassWord = (TextView) rootView.findViewById(R.id.tvCheckPassword);
+        etConfirmPassword = (EditText) rootView.findViewById(R.id.etConfirmPassword);
+        tvCheckConfirmPassword = (TextView) rootView.findViewById(R.id.tvCheckConfirmPassword);
+        etStoreName = (EditText) rootView.findViewById(R.id.etStoreName);
+        tvCheckStoreName = (TextView) rootView.findViewById(R.id.tvCheckStoreName);
+        etStoreType = (EditText) rootView.findViewById(R.id.etStoreType);
+        tvCheckStoreType = (TextView) rootView.findViewById(R.id.tvCheckStoreType);
+        etPhoneNumber = (EditText) rootView.findViewById(R.id.etPhoneNumber);
+        tvCheckPhoneNumber = (TextView) rootView.findViewById(R.id.tvCheckPhoneNumber);
+        etStreet = (EditText) rootView.findViewById(R.id.etStreet);
+        spDistrict = (Spinner) rootView.findViewById(R.id.spDistrict);
+        spCity = (Spinner) rootView.findViewById(R.id.spCity);
+        spCountry = (Spinner) rootView.findViewById(R.id.spCountry);
 //        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
 //        spCity.updateUI(cityAdapter);
-        ArrayAdapter countryAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, countries);
+        ArrayAdapter countryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnRegister = (Button) getActivity().findViewById(R.id.btnRegister);
 //        mMapView = (MapView) findViewById(R.id.mapView);
-        svRegister = (ScrollView) findViewById(R.id.svRegister);
-        mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapStRegister);
+        svRegister = (ScrollView) getActivity().findViewById(R.id.svRegister);
+        mapsFragment = (MapsFragment) getChildFragmentManager().findFragmentById(R.id.mapStRegister);
+        if(mapsFragment == null){
+            mapsFragment = new MapsFragment();
+        }
 
     }
-
     private void setEvent() {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,12 +150,12 @@ public class STRegisterActivity extends AppCompatActivity {
                                 street, district, city, longitude, latitude, country);
 
                         String requestContent = new Gson().toJson(store);
-                        new STRegisterAsyncTask(STRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, requestContent);
+                        new STRegisterAsyncTask(getActivity()).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, requestContent);
                     } else {
                         notifyToUser();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -175,15 +176,15 @@ public class STRegisterActivity extends AppCompatActivity {
                 city = spCity.getSelectedItem().toString();
                 switch (city) {
                     case Constant.HA_NOI:
-                        districtAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, districtsInHaNoi);
+                        districtAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtsInHaNoi);
                         spDistrict.setAdapter(districtAdapter);
                         break;
                     case Constant.HO_CHI_MINH:
-                        districtAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, districtsInHoChiMinh);
+                        districtAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtsInHoChiMinh);
                         spDistrict.setAdapter(districtAdapter);
                         break;
                     default:
-                        districtAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, districtsInHaNoi);
+                        districtAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, districtsInHaNoi);
                         spDistrict.setAdapter(districtAdapter);
                         break;
                 }
@@ -202,11 +203,11 @@ public class STRegisterActivity extends AppCompatActivity {
                 country = spCountry.getSelectedItem().toString();
                 switch (country) {
                     case Constant.VIET_NAM:
-                        cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
+                        cityAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
                         spCity.setAdapter(cityAdapter);
                         break;
                     default:
-                        cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
+                        cityAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
                         spCity.setAdapter(cityAdapter);
                         break;
                 }
@@ -221,7 +222,6 @@ public class STRegisterActivity extends AppCompatActivity {
 
 
     }
-
     private void setInformationFromUser() {
         email = etEmail.getText().toString();
         password = etPassword.getText().toString();
@@ -236,7 +236,6 @@ public class STRegisterActivity extends AppCompatActivity {
         longitude = mapsFragment.getLongitude();
         latitude = mapsFragment.getLatitude();
     }
-
     private void checkInformationCorrectness() {
 
         isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
@@ -245,7 +244,6 @@ public class STRegisterActivity extends AppCompatActivity {
         isValidConfirmPassword = confirmPassword.equals(password);
         isValidStoreName = !CheckingInformation.isEmpty(storeName);
     }
-
     private boolean isAllInformationCorrect() {
         if (!isValidPhoneNumber) return false;
         if (!isValidEmail) return false;
@@ -255,7 +253,6 @@ public class STRegisterActivity extends AppCompatActivity {
 
         return true;
     }
-
     private void notifyToUser() {
         if (!isValidPhoneNumber) {
             tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
@@ -286,11 +283,8 @@ public class STRegisterActivity extends AppCompatActivity {
         }else{
             tvCheckStoreName.setText("");
         }
-        Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
     }
-
-
-
     private class STRegisterAsyncTask extends ServiceAsyncTask {
         public STRegisterAsyncTask(Activity activity) {
             super(activity);
@@ -299,18 +293,18 @@ public class STRegisterActivity extends AppCompatActivity {
         @Override
         protected void processData(boolean error, String message, String data) {
             if(error){
-                Toast.makeText(STRegisterActivity.this, Constant.DUPLICATE_EMAIL, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), Constant.DUPLICATE_EMAIL, Toast.LENGTH_LONG).show();
             }else{
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(STRegisterActivity.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                 alertDialogBuilder.setMessage(Constant.ACTIVE_CODE_MESSAGE);
 
                 alertDialogBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface arg0, int arg1){
 
-                        Intent intent = new Intent(STRegisterActivity.this,LoginActivity.class);
+                        Intent intent = new Intent(getActivity(),LoginActivity.class);
                         startActivity(intent);
-                        finish();
+                        getActivity().finish();
 
                     }
                 });
@@ -320,12 +314,10 @@ public class STRegisterActivity extends AppCompatActivity {
         }
 
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        mMapView.onResume();
+    private void getdata(){
+        citiesInVietNam = getResources().getStringArray(R.array.cities_in_viet_nam);
+        districtsInHaNoi = getResources().getStringArray(R.array.districts_in_ha_noi);
+        districtsInHoChiMinh = getResources().getStringArray(R.array.districts_in_ho_chi_minh);
+        countries = getResources().getStringArray(R.array.countries);
     }
-
-
 }

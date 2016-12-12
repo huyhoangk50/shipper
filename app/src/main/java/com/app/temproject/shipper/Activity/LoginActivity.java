@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,7 +59,6 @@ public class LoginActivity extends Activity {
     private TextView tvCheckPassword;
     private Spinner spRole;
     private TextView tvForgotPassword;
-    private Toolbar toolbar;
     private TextView tvRegister;
 
     private int role;
@@ -77,9 +77,6 @@ public class LoginActivity extends Activity {
     }
 
     private void initView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.register));
-        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         etEmail = (EditText) findViewById(R.id.etEmail);
         tvCheckEmail = (TextView) findViewById(R.id.tvCheckEmail);
@@ -91,6 +88,7 @@ public class LoginActivity extends Activity {
         String[] roles = getResources().getStringArray(R.array.roles);
         ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(LoginActivity.this, android.R.layout.simple_spinner_dropdown_item, roles);
         spRole.setAdapter(roleAdapter);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
 //    private class LoginAsyncTask extends ServiceAsyncTask {
@@ -262,19 +260,8 @@ public class LoginActivity extends Activity {
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(LoginActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.radiobutton_dialog);
-                RadioGroup rgRole = (RadioGroup) dialog.findViewById(R.id.rgRole);
-                rgRole.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        if(i == 0) {
-                            
-                        }
-                    }
-                });
-                dialog.show();
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
         spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -290,16 +277,6 @@ public class LoginActivity extends Activity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 role = Constant.SHIPPER_ROLE;
-            }
-        });
-
-
-//        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-                finish();
             }
         });
     }

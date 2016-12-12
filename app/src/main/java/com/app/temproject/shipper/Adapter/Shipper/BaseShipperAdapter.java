@@ -1,7 +1,6 @@
-package com.app.temproject.shipper.Activity.Store;
+package com.app.temproject.shipper.Adapter.Shipper;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,21 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity;
 import com.app.temproject.shipper.Inteface.AcceptShipper;
-import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
-import com.app.temproject.shipper.ServiceAsyncTask;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
