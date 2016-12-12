@@ -47,6 +47,7 @@ final Request request = requests.get(position);
 public void onClick(View view) {
         Intent intent = new Intent(context, STDetailRequestActivity.class);
         intent.putExtra(Constant.KEY_REQUEST_ID, request.getId());
+        intent.putExtra(Constant.KEY_REQUEST_STATUS, request.getStatus());
 //                intent.putExtra(Constant.KEY_USER_ID,  ProjectManagement.shipper.getId());
         context.startActivity(intent);
 

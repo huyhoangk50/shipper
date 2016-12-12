@@ -35,6 +35,9 @@ public class ProjectManagement {
     public static String urlStLoadNewRequest = "";
     public static String urlStLoadProcessingRequest = "";
     public static String urlStCancelRequest = "";
+    public static String urlStLoadDetailRequest = "";
+    public static String urlStAcceptShipper = "";
+    public static String urlStConfirmCompletedReqeust = "";
 
 
     public static void changeURL(String baseURL){
@@ -58,7 +61,10 @@ public class ProjectManagement {
         urlStLoadWaitingRequest = baseURL + "api/requests/store/waiting/";
         urlStLoadCompletedRequest = baseURL + "api/requests/store/completed/";
         urlStLoadProcessingRequest = baseURL + "api/requests/store/processing/";
+        urlStLoadDetailRequest = baseURL + "api/requests/store/specific-item/";
         urlStCancelRequest = baseURL + "api/requests/store/processing/";
+        urlStAcceptShipper = baseURL + "api/responses/accept";//post
+        urlStConfirmCompletedReqeust = baseURL + "api/requests/confirmed/";//put
 
 
 

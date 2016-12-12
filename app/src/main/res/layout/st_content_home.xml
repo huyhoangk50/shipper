@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.app.temproject.shipper.Activity.Store.STHomeActivity"
+    tools:activity="com.app.temproject.shipper.Activity.Store.STHomeActivity"
     tools:showIn="@layout/st_app_bar_home">
 
     <FrameLayout
