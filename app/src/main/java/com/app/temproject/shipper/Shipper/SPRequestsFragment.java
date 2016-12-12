@@ -1,4 +1,4 @@
-package com.app.temproject.shipper.Fragment.Shipper;
+package com.app.temproject.shipper.Shipper;
 
 /**
  * Created by Admin on 28/11/2016.
@@ -14,20 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.temproject.shipper.Shipper.SPRequestAdapter;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.Libs.ServiceAsyncTask;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class SPWaitingResponseFragment extends Fragment {
+public class SPRequestsFragment extends Fragment {
     protected RecyclerView recyclerView;
     protected ArrayList<Request> requests;
     private int status;
@@ -53,7 +51,6 @@ public class SPWaitingResponseFragment extends Fragment {
 //        String values[] = {ProjectManagement.shipper.getId() + "", ProjectManagement.shipper.getPassword(), status + ""};;
 //        String requestPacket = HttpPacketProcessing.createBodyOfPacket(keys, values);
 
-        JsonObject jsonObject = new JsonObject();
 
         switch (status){
             case Constant.WAITING_REQUEST:

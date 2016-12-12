@@ -14,12 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.app.temproject.shipper.Adapter.Shipper.SPRequestAdapter;
+import com.app.temproject.shipper.Shipper.SPRequestAdapter;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
-import com.app.temproject.shipper.ServiceAsyncTask;
+import com.app.temproject.shipper.Libs.ServiceAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;

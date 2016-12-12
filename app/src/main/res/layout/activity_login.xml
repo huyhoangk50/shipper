@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/Blue"
     android:orientation="vertical"
-    tools:activity="com.app.temproject.shipper.Activity.HomeActivity">
+    tools:activity="com.app.temproject.shipper.Both.HomeActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:activity="com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity">
+    tools:activity="com.app.temproject.shipper.Shipper.SPDetailRequestActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -294,7 +294,7 @@
                 <fragment
                     android:layout_margin="10dp"
                     android:id="@+id/mapSpDetailRequest"
-                    class="com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment"
+                    class="com.app.temproject.shipper.Libs.Maps.WorkaroundMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"/>
             </android.support.v7.widget.CardView>

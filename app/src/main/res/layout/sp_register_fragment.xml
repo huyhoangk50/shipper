@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:activity="com.app.temproject.shipper.Activity.RegisterActivity">
+    tools:activity="com.app.temproject.shipper.Both.Account.Register.RegisterActivity">
 
 
     <ScrollView
@@ -243,7 +243,7 @@
 
                 <fragment
                     android:id="@+id/mapSPRegister"
-                    android:name="com.app.temproject.shipper.Fragment.Maps.MapsFragment"
+                    android:name="com.app.temproject.shipper.Libs.Maps.MapsFragment"
                     android:layout_width="match_parent"
                     android:layout_height="300dp" />
 
