@@ -93,7 +93,7 @@ public class SpRegisterFragment extends Fragment {
     private double longitude;
     private double latitude;
 
-    private Button btnUploadAvatar;
+//    private Button btnUploadAvatar;
     private Button btnRegister;
     private ImageView ivUploadAvatar;
 
@@ -107,7 +107,7 @@ public class SpRegisterFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        rootView = inflater.inflate(R.layout.sp_activity_register, container, false);
+        rootView = inflater.inflate(R.layout.sp_register_fragment, container, false);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         initView();
         setDateTimeField();
@@ -120,7 +120,6 @@ public class SpRegisterFragment extends Fragment {
         etDate.setInputType(InputType.TYPE_NULL);
         etDate.requestFocus();
         svRegister = (ScrollView) rootView.findViewById(R.id.svRegister);
-        btnUploadAvatar = (Button) rootView.findViewById(R.id.btnUpload);
 
         ivUploadAvatar = (ImageView) rootView.findViewById(R.id.ivUpload);
 
@@ -129,7 +128,7 @@ public class SpRegisterFragment extends Fragment {
         etEmail = (EditText) rootView.findViewById(R.id.etEmail);
         etPassword = (EditText) rootView.findViewById(R.id.etSP_Password);
         etConfirmPassword = (EditText) rootView.findViewById(R.id.etConfirmPassword);
-        etName = (EditText) rootView.findViewById(R.id.etSP_Name);
+        etName = (EditText) rootView.findViewById(R.id.etName);
         etPhoneNumber = (EditText) rootView.findViewById(R.id.etPhoneNumber);
         etAddress = (EditText) rootView.findViewById(R.id.etAddress);
         etBirthDay = (EditText) rootView.findViewById(R.id.etDateOfBirth);
@@ -238,7 +237,7 @@ public class SpRegisterFragment extends Fragment {
             }
         });
 
-        btnUploadAvatar.setOnClickListener(new View.OnClickListener() {
+        ivUploadAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showFileChooser();

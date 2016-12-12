@@ -90,7 +90,7 @@ public class StRegisterFragment extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState )
     {
-        rootView = inflater.inflate(R.layout.st_activity_register, container, false);
+        rootView = inflater.inflate(R.layout.st_register_fragment, container, false);
         getdata();
         initView();
         setEvent();

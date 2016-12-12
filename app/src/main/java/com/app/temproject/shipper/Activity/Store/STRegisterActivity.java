@@ -86,7 +86,7 @@ public class STRegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.st_activity_register);
+        setContentView(R.layout.st_register_fragment);
 
         citiesInVietNam = getResources().getStringArray(R.array.cities_in_viet_nam);
         districtsInHaNoi = getResources().getStringArray(R.array.districts_in_ha_noi);

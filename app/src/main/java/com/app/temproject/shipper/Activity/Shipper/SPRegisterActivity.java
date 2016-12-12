@@ -28,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.LoginActivity;
-import com.app.temproject.shipper.Activity.Store.STRegisterActivity;
 import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
@@ -105,7 +104,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sp_activity_register);
+        setContentView(R.layout.sp_register_fragment);
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
@@ -188,7 +187,6 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         etDate.setInputType(InputType.TYPE_NULL);
         etDate.requestFocus();
         svRegister = (ScrollView) findViewById(R.id.svRegister);
-        btnUploadAvatar = (Button) findViewById(R.id.btnUpload);
 
         ivUploadAvatar = (ImageView) findViewById(R.id.ivUpload);
 
@@ -197,7 +195,7 @@ public class SPRegisterActivity extends AppCompatActivity implements OnClickList
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etSP_Password);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
-        etName = (EditText) findViewById(R.id.etSP_Name);
+        etName = (EditText) findViewById(R.id.etName);
         etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
         etAddress = (EditText) findViewById(R.id.etAddress);
         etBirthDay = (EditText) findViewById(R.id.etDateOfBirth);

@@ -8,14 +8,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -60,6 +63,7 @@ public class LoginActivity extends Activity {
     private Spinner spRole;
     private TextView tvForgotPassword;
     private TextView tvRegister;
+    private ImageView ivShipper;
 
     private int role;
     private String email, password;
@@ -76,6 +80,12 @@ public class LoginActivity extends Activity {
         setEvent();
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        //Here you can get the size!
+    }
+
     private void initView() {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -84,11 +94,29 @@ public class LoginActivity extends Activity {
         tvCheckPassword = (TextView) findViewById(R.id.tvCheckPassword);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         tvRegister = (TextView) findViewById(R.id.tvRegister);
+        ivShipper = (ImageView) findViewById(R.id.ivShipper);
+        ivShipper.setVisibility(View.VISIBLE);
         spRole = (Spinner) findViewById(R.id.spRole);
         String[] roles = getResources().getStringArray(R.array.roles);
         ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(LoginActivity.this, android.R.layout.simple_spinner_dropdown_item, roles);
         spRole.setAdapter(roleAdapter);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        Thread timer = new Thread() {
+            public void run() {
+                DisplayMetrics displaymetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+                float screenWidth = displaymetrics.widthPixels;
+                TranslateAnimation animation = new TranslateAnimation(-(screenWidth + ivShipper.getWidth()) / 2, 0, 0, 0);
+                animation.setDuration(3000);
+                animation.setFillAfter(true);
+                ivShipper.setAnimation(animation);
+                ivShipper.startAnimation(animation);
+            }
+        };
+        timer.start();
+
     }
 
 //    private class LoginAsyncTask extends ServiceAsyncTask {
@@ -249,8 +277,8 @@ public class LoginActivity extends Activity {
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
-                    new LoginAsyncTask(LoginActivity.this,email,password,role).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
-                }else {
+                    new LoginAsyncTask(LoginActivity.this, email, password, role).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
+                } else {
                     notifyToUser();
                 }
 
@@ -281,30 +309,31 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private void setInformationFromUser(){
+    private void setInformationFromUser() {
         email = etEmail.getText().toString();
         password = etPassword.getText().toString();
     }
 
-    private void checkInformationCorrectness(){
+    private void checkInformationCorrectness() {
         isValidEmail = CheckingInformation.isValidEmail(email);
         isValidPassword = CheckingInformation.isValidPassword(password);
     }
-    private boolean isAllInformationCorrect(){
-        if(!isValidEmail) return false;
-        if(!isValidPassword) return false;
+
+    private boolean isAllInformationCorrect() {
+        if (!isValidEmail) return false;
+        if (!isValidPassword) return false;
         return true;
     }
 
-    private void notifyToUser(){
-        if(!(isValidEmail)){
+    private void notifyToUser() {
+        if (!(isValidEmail)) {
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
-        }else{
+        } else {
             tvCheckEmail.setText("");
         }
-        if(!isValidPassword){
+        if (!isValidPassword) {
             tvCheckPassword.setText(Constant.INVALID_PASSWORD);
-        }else{
+        } else {
             tvCheckPassword.setText("");
         }
     }

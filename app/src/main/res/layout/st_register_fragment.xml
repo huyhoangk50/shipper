@@ -8,39 +8,17 @@
     android:orientation="vertical"
     tools:activity="com.app.temproject.shipper.Activity.RegisterActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:id="@+id/svRegister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="30dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingTop="20dp"
-                android:text="@string/register_as_store"
-                android:textColor="@color/Green"
-                android:textSize="30dp" />
+            android:orientation="vertical"
+            android:padding="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +26,6 @@
                 android:layout_weight="2"
                 android:orientation="vertical">
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -56,7 +33,7 @@
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
+                        android:maxLines="1"
                         android:text="huyhoangk50@gmail.com"
                         android:hint="@string/email" />
                 </android.support.design.widget.TextInputLayout>
@@ -100,6 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:maxLines="1"
                         android:text="123456"
                         android:hint="@string/hint_password" />
                 </android.support.design.widget.TextInputLayout>
@@ -144,6 +122,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:maxLines="1"
                         android:hint="@string/confirm_password" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -186,6 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:maxLines="1"
                         android:text="huy hoàng"
                         android:hint="@string/store_name" />
                 </android.support.design.widget.TextInputLayout>
@@ -248,6 +228,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:maxLines="1"
                         android:text="Tạp hóa"
                         android:hint="@string/store_type" />
                 </android.support.design.widget.TextInputLayout>
@@ -301,6 +282,7 @@
                     android:layout_marginBottom="2dp"
                     android:text=""
                     android:textColor="#000000"
+                    android:maxLines="1"
                     android:textSize="10sp"
                     android:textStyle="bold" />
 
@@ -332,6 +314,7 @@
                         android:text="số 64 phố tân mai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:inputType="textEmailAddress"
                         android:hint="@string/number_and_street" />
                 </android.support.design.widget.TextInputLayout>
