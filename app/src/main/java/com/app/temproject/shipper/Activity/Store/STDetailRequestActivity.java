@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
+import com.app.temproject.shipper.Inteface.AcceptShipper;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Response;
@@ -46,7 +47,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class STDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class STDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback , AcceptShipper{
 
     private GoogleMap mMap;
     private WorkaroundMapFragment workaroundMapFragment;
@@ -218,7 +219,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
 
         if(shippers!=null){
             rcvShipper.setLayoutManager(new LinearLayoutManager(STDetailRequestActivity.this));
-            baseShipperAdapter = new BaseShipperAdapter(STDetailRequestActivity.this, shippers, request);
+            baseShipperAdapter = new BaseShipperAdapter(STDetailRequestActivity.this, shippers, this);
             rcvShipper.setAdapter(baseShipperAdapter);
         }
 
@@ -253,6 +254,32 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
 
     }
 
+    @Override
+    public void acceptShipper(int shipperID) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shipperID);
+        jsonObject.addProperty(Constant.KEY_REQUEST_ID, request.getId());
+        new AcceptShipperAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStAcceptShipper, Constant.POST_METHOD, jsonObject.toString());
+    }
+
+    private class AcceptShipperAsyncTask extends ServiceAsyncTask {
+
+        public AcceptShipperAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if (!error) {
+                Toast.makeText(STDetailRequestActivity.this, getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
+                requestStatus = Constant.PROCESSING_REQUEST;
+                loadData();
+            } else {
+
+            }
+        }
+    }
     private class LoadDetailRequestAsyncTask extends ServiceAsyncTask {
 
         public LoadDetailRequestAsyncTask(Activity activity) {

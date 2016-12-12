@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity;
+import com.app.temproject.shipper.Inteface.AcceptShipper;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -33,12 +34,12 @@ import java.util.List;
 public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.ViewHolder> {
     private Activity activity;
     private List<Shipper> shippers;
-    private Request request;
+    private AcceptShipper acceptShipper;
 
-    public BaseShipperAdapter(Activity activity, List<Shipper> shippers, Request request) {
+    public BaseShipperAdapter(Activity activity, List<Shipper> shippers, AcceptShipper acceptShipper) {
         this.activity = activity;
         this.shippers = shippers;
-        this.request = request;
+        this.acceptShipper = acceptShipper;
     }
 
     @Override
@@ -72,10 +73,7 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         holder.llAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shipper.getId());
-                jsonObject.addProperty(Constant.KEY_REQUEST_ID, request.getId());
-                new AcceptShipperAsyncTask(activity).execute(ProjectManagement.urlStAcceptShipper, Constant.POST_METHOD, jsonObject.toString());
+                acceptShipper.acceptShipper(shipper.getId());
             }
         });
 
@@ -101,20 +99,5 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         }
     }
 
-    private class AcceptShipperAsyncTask extends ServiceAsyncTask {
 
-        public AcceptShipperAsyncTask(Activity activity) {
-            super(activity);
-        }
-
-        @Override
-        protected void processData(boolean error, String message, String data) {
-            if (!error) {
-                Toast.makeText(activity, activity.getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
-                activity.finish();
-            } else {
-
-            }
-        }
-    }
 }
