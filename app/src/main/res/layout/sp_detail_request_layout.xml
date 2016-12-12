@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity">
+    tools:activity="com.app.temproject.shipper.Activity.Shipper.SPDetailRequestActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -19,7 +19,31 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+
+            <LinearLayout
+                android:id="@+id/llApply"
+                android:layout_gravity="right"
+                android:background="@color/Green"
+                android:layout_marginRight="16dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_gravity="center"
+                    android:textColor="@color/White"
+                    android:text="@string/apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/done"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
     <ScrollView
@@ -31,6 +55,67 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                app:cardCornerRadius="@dimen/cardview_default_radius">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/detail_info"
+                            android:layout_gravity="center"
+                            android:textSize="30sp"
+                            android:textColor="@color/Black"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:gravity="center"
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:id="@+id/llProcessing"
+                        android:orientation="horizontal"
+                        android:layout_gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:visibility="gone"
+                            android:id="@+id/btnCancel"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:background="@drawable/delete"
+                            android:layout_marginRight="16dp"/>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/llDone"
+                            android:layout_gravity="right"
+                            android:background="@color/Green"
+                            android:layout_marginRight="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center"
+                                android:textColor="@color/White"
+                                android:text="@string/done"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <Button
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/done"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_marginBottom="2dp"
                 app:cardCornerRadius="5dp"
@@ -148,7 +233,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:text="@string/customer_place"
+                            android:text="@string/destination"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
@@ -211,7 +296,7 @@
                     android:id="@+id/mapSpDetailRequest"
                     class="com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"/>
+                    android:layout_height="300dp"/>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>

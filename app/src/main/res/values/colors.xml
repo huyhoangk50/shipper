@@ -146,4 +146,8 @@
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
+
+    <color name="action">#999999</color>
+    <color name="actorname">#222222</color>
+
 </resources>

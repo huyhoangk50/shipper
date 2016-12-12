@@ -1,21 +1,30 @@
 package com.app.temproject.shipper.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
+import com.app.temproject.shipper.CheckingInformation;
+import com.app.temproject.shipper.LoginAsyncTask;
 import com.app.temproject.shipper.Object.Shipper;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -25,14 +34,17 @@ import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by huyhoang on 12/08/2016.
@@ -47,9 +59,13 @@ public class LoginActivity extends Activity {
     private Spinner spRole;
     private TextView tvForgotPassword;
     private Toolbar toolbar;
+    private TextView tvRegister;
 
     private int role;
     private String email, password;
+
+    private boolean isValidEmail;
+    private boolean isValidPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,64 +86,74 @@ public class LoginActivity extends Activity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         tvCheckPassword = (TextView) findViewById(R.id.tvCheckPassword);
         tvForgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
+        tvRegister = (TextView) findViewById(R.id.tvRegister);
         spRole = (Spinner) findViewById(R.id.spRole);
         String[] roles = getResources().getStringArray(R.array.roles);
         ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(LoginActivity.this, android.R.layout.simple_spinner_dropdown_item, roles);
         spRole.setAdapter(roleAdapter);
     }
 
-    private class LoginAsyncTask extends ServiceAsyncTask {
-
-        public LoginAsyncTask(Activity activity) {
-            super(activity);
-        }
-
-        @Override
-        protected void processData(boolean error, String message, String data) {
-            if (error) {
-                Toast.makeText(LoginActivity.this, getString(R.string.incorrect_information), Toast.LENGTH_LONG).show();
-            } else {
-                if (role == Constant.STORE_ROLE) {
-                    Store store = new Gson().fromJson(data, Store.class);
-                    store.setPassword(password);
-//                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
-//                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
-//                    store.setStatus(Constant.ACTIVE_STATUS);
-                    ProjectManagement.store = store;
-                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        intent.putExtra(Constant.KEY_ID_ACCOUNT, store.getId());
-                        startActivity(intent);
-                        finish();
-                    }
-                } else {
-                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
-                    shipper.setPassword(password);
-
-//                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
-//                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
-//                    shipper.setStatus(Constant.ACTIVE_STATUS);
-                    ProjectManagement.shipper = shipper;
-                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        intent.putExtra(Constant.KEY_ID_ACCOUNT, shipper.getId());
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-            }
-        }
-    }
+//    private class LoginAsyncTask extends ServiceAsyncTask {
+//
+//        public LoginAsyncTask(Activity activity) {
+//            super(activity);
+//        }
+//
+//        @Override
+//        protected void processData(boolean error, String message, String data) {
+//            if (error) {
+//                Toast.makeText(LoginActivity.this, getString(R.string.incorrect_information), Toast.LENGTH_LONG).show();
+//            } else {
+//                JsonObject loginJSONObject = new JsonObject();
+//                loginJSONObject.addProperty(Constant.KEY_EMAIL, email);
+//                loginJSONObject.addProperty(Constant.KEY_PASSWORD, password);
+//                loginJSONObject.addProperty(Constant.KEY_ROLE, role);
+//
+//                FileProcessing.writeToInternalStorageFile(loginJSONObject.toString(), "loginInformation.txt",LoginActivity.this);
+//                Log.e("login", FileProcessing.readFileFromInternalStorage("loginInformation.txt", LoginActivity.this));
+//
+//                if (role == Constant.STORE_ROLE) {
+//                    Store store = new Gson().fromJson(data, Store.class);
+//                    store.setPassword(password);
+////                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
+////                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
+////                    store.setStatus(Constant.ACTIVE_STATUS);
+//                    ProjectManagement.store = store;
+//                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
+//                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        intent.putExtra(Constant.KEY_ID_ACCOUNT, store.getId());
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                } else {
+//                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
+//                    shipper.setPassword(password);
+//
+////                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
+////                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
+////                    shipper.setStatus(Constant.ACTIVE_STATUS);
+//                    ProjectManagement.shipper = shipper;
+//                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
+//
+//                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        intent.putExtra(Constant.KEY_ID_ACCOUNT, shipper.getId());
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private class LoginAsync extends AsyncTask<String, String, String> {
         @Override
@@ -217,20 +243,40 @@ public class LoginActivity extends Activity {
 //                }
 
 
+                setInformationFromUser();
+                checkInformationCorrectness();
 
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                if (isValid(email, password)) {
+                if (isAllInformationCorrect()) {
                     JsonObject jsonObject = new JsonObject();
                     jsonObject.addProperty(Constant.KEY_EMAIL, email);
                     jsonObject.addProperty(Constant.KEY_PASSWORD, password);
                     jsonObject.addProperty(Constant.KEY_ROLE, role);
-                    new LoginAsyncTask(LoginActivity.this).execute(Constant.URL_LOGIN, Constant.POST_METHOD, jsonObject.toString());
+                    new LoginAsyncTask(LoginActivity.this,email,password,role).execute(ProjectManagement.urlLogin, Constant.POST_METHOD, jsonObject.toString());
+                }else {
+                    notifyToUser();
                 }
 
             }
         });
 
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(LoginActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.radiobutton_dialog);
+                RadioGroup rgRole = (RadioGroup) dialog.findViewById(R.id.rgRole);
+                rgRole.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if(i == 0) {
+                            
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
         spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -258,28 +304,34 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private boolean isValid(String email, String password) {
-        String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Matcher matcherEmail = Pattern.compile(regexEmail).matcher(email);
-        boolean isValidEmail;
+    private void setInformationFromUser(){
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+    }
 
-        if(!(isValidEmail = matcherEmail.find())){
+    private void checkInformationCorrectness(){
+        isValidEmail = CheckingInformation.isValidEmail(email);
+        isValidPassword = CheckingInformation.isValidPassword(password);
+    }
+    private boolean isAllInformationCorrect(){
+        if(!isValidEmail) return false;
+        if(!isValidPassword) return false;
+        return true;
+    }
+
+    private void notifyToUser(){
+        if(!(isValidEmail)){
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
             tvCheckEmail.setText("");
         }
-        if(password.length() < 6){
+        if(!isValidPassword){
             tvCheckPassword.setText(Constant.INVALID_PASSWORD);
         }else{
             tvCheckPassword.setText("");
         }
-
-        if(!isValidEmail || password.length() < 6){
-            return false;
-        }
-        return true;
     }
+
 
 //    String response = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":19,\"email\":\"123@gmail.com\",\"password\":\"8604968e69fafb4e65e8bd952dbddd122fc600cd05bb5b48ffdf5dfb462888e505325e542a276f5898842d2458af6991c22918c9852ddeff34f63b667ddd6059\",\"salt\":\"aca4ad29034dddea\",\"name\":\"AnhTu\",\"phone_number\":\"1234567890\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":12,\"latitude\":12,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-30T02:57:39.462Z\",\"updated_time\":null,\"status\":0,\"reset_code\":\"3a69ba91\",\"active_code\":\"82b29bd5\"}}\n"
 }

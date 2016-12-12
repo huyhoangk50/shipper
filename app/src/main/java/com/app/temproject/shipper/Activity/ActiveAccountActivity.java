@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.temproject.shipper.Activity.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Activity.Store.STHomeActivity;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -51,7 +52,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
                     jsonObject.addProperty(Constant.KEY_ID_ACCOUNT, idAccount);
                     jsonObject.addProperty(Constant.KEY_ACTIVE_CODE, activeCode);
 
-                    new ActiveCodeAsyncTask(ActiveAccountActivity.this).execute(Constant.URL_ACTIVE_ACCOUNT, Constant.POST_METHOD, jsonObject.toString());
+                    new ActiveCodeAsyncTask(ActiveAccountActivity.this).execute(ProjectManagement.urlActiveAccount, Constant.POST_METHOD, jsonObject.toString());
                 }
             }
         });
@@ -78,7 +79,7 @@ public class ActiveAccountActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     ProjectManagement.shipper.setStatus(Constant.ACTIVE_STATUS);
-                    Intent intent = new Intent(ActiveAccountActivity.this, STHomeActivity.class);
+                    Intent intent = new Intent(ActiveAccountActivity.this, SPHomeActivity.class);
                     startActivity(intent);
                 }
             }

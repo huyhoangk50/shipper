@@ -22,15 +22,15 @@ public class Shipper extends User {
     private String birthday;
 
     @SerializedName(Constant.KEY_AVATAR)
-    private String linkAvatar;
+    private String avatar;
 
-    public Shipper(int id, String email, String password, int role, String name, String phoneNumber, int status, int rating, int vote, String createTime, String updateTime, String address, double longitude, double latitude, String birthday, String linkAvatar) {
+    public Shipper(int id, String email, String password, int role, String name, String phoneNumber, int status, int rating, int vote, String createTime, String updateTime, String address, double longitude, double latitude, String birthday, String avatar) {
         super(id, email, password, role, name, phoneNumber, status, rating, vote, createTime, updateTime);
         this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
         this.birthday = birthday;
-        this.linkAvatar = linkAvatar;
+        this.avatar = avatar;
     }
 
     public Shipper(int id, String email, String password, String name, String phoneNumber, String address, double longitude, double latitude, String birthday) {
@@ -93,4 +93,43 @@ public class Shipper extends User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

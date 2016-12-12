@@ -32,7 +32,7 @@
 
     <!--Home fragment-->
 
-    <string name="all">Tất cả</string>
+    <string name="all">Mới nhất</string>
     <string name="pending">Đang chờ</string>
     <string name="on_going">Đang thực hiện</string>
     <string name="completed">Đã hoàn thành</string>
@@ -51,6 +51,13 @@
     <string name="phone_number">Số điện thoại</string>
     <string name="number_and_street">Số nhà và tên đường phố</string>
     <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="name">Họ và tên</string>
+    <string name="phonenumber">Số điện thoại</string>
+    <string name="date_of_birth">Ngày tháng năm sinh</string>
+    <string name="address">Địa chỉ </string>
+
+
+
 
     <!-- -->
     <string name="ok">Đồng ý</string>
@@ -144,7 +151,7 @@
     <string name="place_and_time">Thời gian và địa điểm:</string>
     <string name="start_time">Thời gian nhận hàng:</string>
     <string name="end_time">Thời gian giao hàng:</string>
-    <string name="customer_place">Vị trí giao hàng:</string>
+    <string name="destination">Vị trí giao hàng:</string>
     <string name="customer_info">Thông tin khách hàng</string>
     <string name="customer_name">Tên khách hàng:</string>
     <string name="customer_phone">Số điện thoại:</string>
@@ -163,5 +170,43 @@
     <string name="reset_code">Mã xác nhận</string>
     <string name="incorrect_reset_code">Mã xác nhận của bạn không đúng, vui lòng kiểm tra lại mã trong email của bạn</string>
     <string name="title_activity_sthome">STHomeActivity</string>
+    <string name="processing_request_notification">Bạn đang thực hiện đơn hàng này</string>
+    <string name="waiting_request_notification">Đang chờ xác nhận từ cửa hàng</string>
+    <string name="completed_request_notification">Bạn đã hoàn thành đơn hàng này</string>
+    <string name="accept">Đồng ý</string>
+
+
+    <string name="hint_name">Full Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
+    <string name="upload_image">Tải hình đại diện</string>
+    <string name="apply">Nhận ngay</string>
+    <string name="done">Hoàn thành</string>
+    <string name="finish_request">Hoàn thành đơn hàng</string>
+    <string name="really_finish_request">Bạn đã hoàn thành nhiệm vụ?</string>
+    <string name="sp_cancel_request">Hủy đơn hàng</string>
+    <string name="really_want_to_cancel">Bạn thực sự muốn hủy đơn hàng này?</string>
+    <string name="please_try_again">Đã có lỗi xảy ra, xin vui lòng thử lại.</string>
+    <string name="can_not_apply_this_request">Đơn hàng này đã có người thực hiện.</string>
+    <string name="waiting_for_vetification_from_store">Đang chờ xác nhận từ cửa hàng</string>
+    <string name="request_is_completed">Nhiệm vụ đã hoàn thành</string>
+    <string name="request_is_canceled">Bạn không thể nhận đơn hàng này vì nó đã bị hủy!!</string>
+    <string name="waiting_for_vetification_to_be_completed_from_store">Nhiệm vụ đã hoàn thành, đang chờ xác nhận từ cửa hàng</string>
+    <string name="request_is_processing">Đang thực hiện</string>
+    <string name="warninng_about_judgement">Bạn sẽ bị trừ điểm đánh giá nếu bạn chọn đồng ý!!</string>
+    <string name="register_account">Đăng ký tài khoản</string>
+    <string name="register_as">Đăng ký với tư cách</string>
+    <string name="store">Store</string>
+    <string name="shipper">shipper</string>
+    <string name="no_shipper_accept">Chưa có shipper nào accept</string>
+    <string name="shipper_require_confirm_completion">Shipper yêu cầu xác nhận hoàn thành đơn hàng này.</string>
+    <string name="accept_shipper_successfully">Bạn đã chấp nhận shipper này</string>
 
 </resources>

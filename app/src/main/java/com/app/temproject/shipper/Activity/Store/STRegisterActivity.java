@@ -1,7 +1,9 @@
 package com.app.temproject.shipper.Activity.Store;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,16 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Activity.LoginActivity;
+import com.app.temproject.shipper.CheckingInformation;
 import com.app.temproject.shipper.Fragment.Maps.MapsFragment;
 import com.app.temproject.shipper.Fragment.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 import com.app.temproject.shipper.ServiceAsyncTask;
 import com.google.gson.Gson;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class STRegisterActivity extends AppCompatActivity {
 
@@ -75,6 +76,12 @@ public class STRegisterActivity extends AppCompatActivity {
     private String[] districtsInHaNoi;
     private String[] districtsInHoChiMinh;
     private String[] countries;
+
+    private boolean isValidPhoneNumber ;
+    private boolean isValidEmail;
+    private boolean isValidPassword;
+    private boolean isValidConfirmPassword;
+    private boolean isValidStoreName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,14 +136,14 @@ public class STRegisterActivity extends AppCompatActivity {
         tvCheckStoreName = (TextView) findViewById(R.id.tvCheckStoreName);
         etStoreType = (EditText) findViewById(R.id.etStoreType);
         tvCheckStoreType = (TextView) findViewById(R.id.tvCheckStoreType);
-        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumbber);
+        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
         tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
         etStreet = (EditText) findViewById(R.id.etStreet);
         spDistrict = (Spinner) findViewById(R.id.spDistrict);
         spCity = (Spinner) findViewById(R.id.spCity);
         spCountry = (Spinner) findViewById(R.id.spCountry);
 //        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
-//        spCity.setAdapter(cityAdapter);
+//        spCity.updateUI(cityAdapter);
         ArrayAdapter countryAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);
         btnRegister = (Button) findViewById(R.id.btnRegister);
@@ -151,29 +158,17 @@ public class STRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    email = etEmail.getText().toString();
-                    password = etPassword.getText().toString();
-                    confirmPassword = etConfirmPassword.getText().toString();
-                    storeName = etStoreName.getText().toString();
-                    storeType = etStoreType.getText().toString();
-                    phoneNumber = etPhoneNumber.getText().toString();
-                    street = etStreet.getText().toString();
-                    district = spDistrict.getSelectedItem().toString();
-                    city = spCity.getSelectedItem().toString();
-                    country = spCountry.getSelectedItem().toString();
-                    longitude = mapsFragment.getLongitude();
-                    latitude = mapsFragment.getLatitude();
+                    setInformationFromUser();
+                    checkInformationCorrectness();
+                    if (isAllInformationCorrect()) {
 
-                    if (isValid(email, password, confirmPassword, storeName, storeType, phoneNumber,
-                            street, city, district, longitude, latitude, country)) {
-
-                        Store store = new Store(email, password, storeName, storeType, phoneNumber,
+                        Store store = new Store(email, password, storeName, phoneNumber, storeType,
                                 street, district, city, longitude, latitude, country);
 
                         String requestContent = new Gson().toJson(store);
-                        new STRegisterAsyncTask(STRegisterActivity.this).execute(Constant.URL_SP_LOAD_REGISTERS, Constant.POST_METHOD, requestContent);
+                        new STRegisterAsyncTask(STRegisterActivity.this).execute(ProjectManagement.urlSpRegister, Constant.POST_METHOD, requestContent);
                     } else {
-                        Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
+                        notifyToUser();
                     }
                 } catch (Exception e) {
                     Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
@@ -244,54 +239,74 @@ public class STRegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean isValid(String email, String password, String confirmPassword, String storeName,
-                            String storeType, String phoneNumber, String street,
-                            String city, String district, double longitude, double latitude, String country) {
-        boolean isValidPhoneNumber;
-        boolean isValidEmail;
-        String regexPhoneNumber = "^[0-9]*$";
-        String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private void setInformationFromUser() {
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        confirmPassword = etConfirmPassword.getText().toString();
+        storeName = etStoreName.getText().toString();
+        storeType = etStoreType.getText().toString();
+        phoneNumber = etPhoneNumber.getText().toString();
+        street = etStreet.getText().toString();
+        district = spDistrict.getSelectedItem().toString();
+        city = spCity.getSelectedItem().toString();
+        country = spCountry.getSelectedItem().toString();
+        longitude = mapsFragment.getLongitude();
+        latitude = mapsFragment.getLatitude();
+    }
 
-        Matcher matcherPhoneNumber = Pattern.compile(regexPhoneNumber).matcher(phoneNumber.trim());
-        Matcher matcherEmail = Pattern.compile(regexEmail).matcher(email);
+    private void checkInformationCorrectness() {
 
+        isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
+        isValidEmail = CheckingInformation.isValidEmail(email);
+        isValidPassword = CheckingInformation.isValidPassword(password);
+        isValidConfirmPassword = confirmPassword.equals(password);
+        isValidStoreName = !CheckingInformation.isEmpty(storeName);
+    }
 
-        if(!(isValidPhoneNumber = matcherPhoneNumber.find())){
+    private boolean isAllInformationCorrect() {
+        if (!isValidPhoneNumber) return false;
+        if (!isValidEmail) return false;
+        if (!isValidPassword) return false;
+        if (!isValidConfirmPassword) return false;
+        if (!isValidStoreName) return false;
+
+        return true;
+    }
+
+    private void notifyToUser() {
+        if (!isValidPhoneNumber) {
             tvCheckPhoneNumber.setText(Constant.INVALID_PHONE_NUMBER);
-        }else{
+        } else {
             tvCheckPhoneNumber.setText("");
         }
-        if(!(isValidEmail = matcherEmail.find())){
+
+        if (!isValidEmail) {
             tvCheckEmail.setText(Constant.INVALID_EMAIL);
         }else{
             tvCheckEmail.setText("");
         }
-        if(password.length() < Constant.MIN_PASS_LENGTH){
+
+        if (!isValidPassword){
             tvCheckPassWord.setText(Constant.INVALID_PASSWORD);
-        }else{
+        }else {
             tvCheckPassWord.setText("");
         }
-        if(!confirmPassword.equals(password)){
+
+        if (!isValidConfirmPassword) {
             tvCheckConfirmPassword.setText(Constant.INCORRECT_PASSWORD);
         }else{
             tvCheckConfirmPassword.setText("");
         }
-        if(storeName.equals("")){
+
+        if (!isValidStoreName) {
             tvCheckStoreName.setText(Constant.INVALID_STORE);
         }else{
             tvCheckStoreName.setText("");
         }
-
-        if(!isValidEmail || !isValidPhoneNumber || (password.length() < Constant.MIN_PASS_LENGTH) ||
-                (phoneNumber.trim().length() < Constant.MIN_PHONE_NUM_LENGTH) || (phoneNumber.trim().length() > Constant.MAX_PHONE_NUM_LENGTH)
-                || !(confirmPassword.equals(password)) || storeName.equals("")){
-            return false;
-        }else{
-            return true;
-        }
-
+        Toast.makeText(STRegisterActivity.this, Constant.INCORRECT_REGISTRATION_INFORMATION, Toast.LENGTH_LONG).show();
     }
+
+
 
     private class STRegisterAsyncTask extends ServiceAsyncTask {
         public STRegisterAsyncTask(Activity activity) {
@@ -303,9 +318,21 @@ public class STRegisterActivity extends AppCompatActivity {
             if(error){
                 Toast.makeText(STRegisterActivity.this, Constant.DUPLICATE_EMAIL, Toast.LENGTH_LONG).show();
             }else{
-                Intent intent = new Intent(STRegisterActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(STRegisterActivity.this);
+                alertDialogBuilder.setMessage(Constant.ACTIVE_CODE_MESSAGE);
+
+                alertDialogBuilder.setNeutralButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1){
+
+                        Intent intent = new Intent(STRegisterActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
+
+                alertDialogBuilder.create().show();
             }
         }
 

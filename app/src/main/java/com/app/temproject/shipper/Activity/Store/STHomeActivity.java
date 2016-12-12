@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,73 +18,86 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.app.temproject.shipper.Activity.FileProcessing;
+import com.app.temproject.shipper.Activity.HomeActivity;
 import com.app.temproject.shipper.Fragment.Store.STHomeFragment;
 import com.app.temproject.shipper.Fragment.Store.STNotificationFragment;
+import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 
 public class STHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FloatingActionButton fabAddRequest;
+    private View header;
+    private TextView tvName;
+    private TextView tvAddress;
     private boolean doubleBackToExitPressOnce = false;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.st_activity_home);
+
+
+        initView();
+        setEvent();
+
+    }
+
+    private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fabAddRequest = (FloatingActionButton) findViewById(R.id.fabAddRequest);
 
-        try{
-            fabAddRequest = (FloatingActionButton) findViewById(R.id.fabAddRequest);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setItemIconTintList(null);
-            navigationView.setNavigationItemSelectedListener(this);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        STHomeFragment stHomeFragment = new STHomeFragment();
+        fragmentTransaction.replace(R.id.flContent, stHomeFragment);
+        fragmentTransaction.commit();
+        fragmentManager.executePendingTransactions();
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            STHomeFragment stHomeFragment = new STHomeFragment();
-            fragmentTransaction.replace(R.id.flContent, stHomeFragment);
-            fragmentTransaction.commit();
-            fragmentManager.executePendingTransactions();
+        header = LayoutInflater.from(this).inflate(R.layout.st_nav_header_home, null);
+        tvName = (TextView) header.findViewById(R.id.tvName);
+        tvAddress = (TextView) header.findViewById(R.id.tvAddress);
+        tvAddress.setText(ProjectManagement.store.getStreet());
+        tvName.setText(ProjectManagement.store.getName());
 
-            initView();
-            setEvent();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.addHeaderView(header);
     }
 
-    private void  initView(){
-
-    }
-
-    private void setEvent(){
+    private void setEvent() {
 
         fabAddRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(STHomeActivity.this, STCreateRequestActivity.class);
+                startActivity(intent);
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(doubleBackToExitPressOnce){
+            if (doubleBackToExitPressOnce) {
                 super.onBackPressed();
                 return;
             }
@@ -94,10 +107,9 @@ public class STHomeActivity extends AppCompatActivity
             alertDialogBuilder.setMessage("Do you want to exit?");
 
 
-
-            alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener(){
+            alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface arg0, int arg1){
+                public void onClick(DialogInterface arg0, int arg1) {
                     finish();
 
                     Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -110,17 +122,17 @@ public class STHomeActivity extends AppCompatActivity
                 }
             });
 
-            alertDialogBuilder.setNegativeButton("no", new DialogInterface.OnClickListener(){
+            alertDialogBuilder.setNegativeButton("no", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface arg0, int arg1){
+                public void onClick(DialogInterface arg0, int arg1) {
                 }
             });
             final AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
 
-            new Handler().postDelayed(new Runnable(){
+            new Handler().postDelayed(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     doubleBackToExitPressOnce = false;
                 }
             }, 2000);
@@ -157,19 +169,49 @@ public class STHomeActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (id){
-            case R.id.nav_home:{
+        switch (id) {
+            case R.id.nav_home: {
                 STHomeFragment stHomeFragment = new STHomeFragment();
 
                 fragmentTransaction.replace(R.id.flContent, stHomeFragment);
                 break;
             }
-            case R.id.nav_notification:{
+            case R.id.nav_notification: {
                 STNotificationFragment stNotificationFragment = new STNotificationFragment();
                 fragmentTransaction.replace(R.id.flContent, stNotificationFragment);
                 break;
             }
-            case R.id.nav_logout:{
+            case R.id.nav_logout: {
+
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.ic_menu_manage)
+                        .setTitle(R.string.logout)
+                        .setMessage(R.string.really_want_to_logout)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    FileProcessing.deleteInternalStorageFile(Constant.PATH_TO_LOGIN_INFORMATION_FILE, STHomeActivity.this);
+                                    ProjectManagement.store = null;
+                                    Intent intent = new Intent(STHomeActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+
+                        })
+                        .show();
                 break;
             }
 //            case R.id.nav_message:{
