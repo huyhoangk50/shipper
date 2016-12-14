@@ -37,7 +37,7 @@ public class ProjectManagement {
     public static String urlStCancelRequest = "";
     public static String urlStLoadDetailRequest = "";
     public static String urlStAcceptShipper = "";
-    public static String urlStConfirmCompletedReqeust = "";
+    public static String urlStConfirmCompletedRequest = "";
 
 
     public static void changeURL(String baseURL){
@@ -64,9 +64,6 @@ public class ProjectManagement {
         urlStLoadDetailRequest = baseURL + "api/requests/store/specific-item/";
         urlStCancelRequest = baseURL + "api/requests/store/processing/";
         urlStAcceptShipper = baseURL + "api/responses/accept";//post
-        urlStConfirmCompletedReqeust = baseURL + "api/requests/confirmed/";//put
-
-
-
+        urlStConfirmCompletedRequest = baseURL + "api/requests/confirmed/";//put
     }
 }

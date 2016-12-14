@@ -309,7 +309,7 @@
                         android:id="@+id/mapsStCreateRequest"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:name="com.app.temproject.shipper.Fragment.Maps.MapsFragment" />
+                        android:name="com.app.temproject.shipper.Libs.Maps.MapsFragment" />
                 </LinearLayout>
 
             </LinearLayout>

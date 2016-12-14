@@ -57,8 +57,6 @@
     <string name="address">Địa chỉ </string>
 
 
-
-
     <!-- -->
     <string name="ok">Đồng ý</string>
     <string name="cancel">Hủy bỏ</string>
@@ -201,12 +199,14 @@
     <string name="waiting_for_vetification_to_be_completed_from_store">Nhiệm vụ đã hoàn thành, đang chờ xác nhận từ cửa hàng</string>
     <string name="request_is_processing">Đang thực hiện</string>
     <string name="warninng_about_judgement">Bạn sẽ bị trừ điểm đánh giá nếu bạn chọn đồng ý!!</string>
-    <string name="register_account">Đăng ký tài khoản</string>
+    <string name="register_account">TẠO TÀI KHOẢN MỚI</string>
     <string name="register_as">Đăng ký với tư cách</string>
     <string name="store">Store</string>
     <string name="shipper">shipper</string>
     <string name="no_shipper_accept">Chưa có shipper nào accept</string>
     <string name="shipper_require_confirm_completion">Shipper yêu cầu xác nhận hoàn thành đơn hàng này.</string>
     <string name="accept_shipper_successfully">Bạn đã chấp nhận shipper này</string>
+    <string name="complete">Hoàn thành</string>
+    <string name="complete_request">Hoàn thành đơn hàng.</string>
 
 </resources>
