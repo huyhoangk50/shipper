@@ -158,7 +158,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                                         JsonObject jsonObject = new JsonObject();
                                         jsonObject.addProperty(Constant.KEY_STORE_ID, store.getId());
                                         jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
-                                        new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest + request.getId(), Constant.PUT_METHOD, jsonObject.toString());
+                                        new CompleteRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest + request.getId(), Constant.PUT_METHOD, jsonObject.toString());
                                         ratingDialog.dismiss();
                                     }
 
@@ -172,7 +172,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                                         JsonObject jsonObject = new JsonObject();
                                         jsonObject.addProperty(Constant.KEY_STORE_ID, store.getId());
                                         jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
-                                        new FinishRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.POST_METHOD, jsonObject.toString());
+                                        new CompleteRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.POST_METHOD, jsonObject.toString());
                                         ratingDialog.dismiss();
                                     }
 
@@ -494,9 +494,9 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
 
-    private class FinishRequestAsyncTask extends ServiceAsyncTask {
+    private class CompleteRequestAsyncTask extends ServiceAsyncTask {
 
-        public FinishRequestAsyncTask(Activity activity) {
+        public CompleteRequestAsyncTask(Activity activity) {
             super(activity);
         }
 

@@ -206,5 +206,7 @@
     <string name="no_shipper_accept">Chưa có shipper nào accept</string>
     <string name="shipper_require_confirm_completion">Shipper yêu cầu xác nhận hoàn thành đơn hàng này.</string>
     <string name="accept_shipper_successfully">Bạn đã chấp nhận shipper này</string>
+    <string name="complete">Hoàn thành</string>
+    <string name="complete_request">Hoàn thành đơn hàng.</string>
 
 </resources>

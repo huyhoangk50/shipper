@@ -2,6 +2,7 @@ package com.app.temproject.shipper.Store;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,7 +14,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +47,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class STDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback , AcceptShipper{
+public class STDetailRequestActivity extends AppCompatActivity implements OnMapReadyCallback , OnAcceptShipperListener, OnCompleteRequestListener{
 
     private GoogleMap mMap;
     private WorkaroundMapFragment workaroundMapFragment;
@@ -163,8 +166,6 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                 warningDialog.show();
             }
         });
-
-
     }
 
 
@@ -211,12 +212,9 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvDestination.setText(request.getDestination());
         tvCustomerPhone.setText(request.getPhoneNumber());
 
-
-
-
         if(shippers!=null){
             rcvShipper.setLayoutManager(new LinearLayoutManager(STDetailRequestActivity.this));
-            baseShipperAdapter = new BaseShipperAdapter(STDetailRequestActivity.this, shippers, this);
+            baseShipperAdapter = new BaseShipperAdapter(STDetailRequestActivity.this, shippers, request.getStatus(), this, this);
             rcvShipper.setAdapter(baseShipperAdapter);
         }
 
@@ -242,6 +240,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                 break;
             case Constant.DONE_REQUEST:
                 tvDescription.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.GONE);
                 tvDescription.setText(getString(R.string.shipper_require_confirm_completion));
                 break;
         }
@@ -252,14 +251,91 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     }
 
     @Override
-    public void acceptShipper(int shipperID) {
+    public void onAcceptShipper(int shipperID) {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shipperID);
         jsonObject.addProperty(Constant.KEY_REQUEST_ID, request.getId());
         new AcceptShipperAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStAcceptShipper, Constant.POST_METHOD, jsonObject.toString());
+
     }
 
+    @Override
+    public void onCompleteRequest() {
+        new AlertDialog.Builder(STDetailRequestActivity.this)
+                .setIcon(R.drawable.finish)
+                .setTitle(R.string.finish_request)
+                .setMessage(R.string.really_finish_request)
+                .setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final Dialog ratingDialog = new Dialog(STDetailRequestActivity.this);
+                        ratingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        ratingDialog.setContentView(R.layout.sp_rating_dialog);
+                        Button btnSubmitRating = (Button) ratingDialog.findViewById(R.id.btnSubmitRating);
+                        Button btnCancelRating = (Button) ratingDialog.findViewById(R.id.btnCancelRating);
+                        final RatingBar rbRating = (RatingBar) ratingDialog.findViewById(R.id.ratingBar);
+
+                        ratingDialog.show();
+
+                        btnSubmitRating.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View arg0) {
+                                rating = (int) rbRating.getRating();
+                                JsonObject jsonObject = new JsonObject();
+                                jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shippers.get(0).getId());
+                                jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
+                                new CompleteRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStConfirmCompletedRequest + request.getId(), Constant.PUT_METHOD, jsonObject.toString());
+                                ratingDialog.dismiss();
+                            }
+
+                        });
+
+                        btnCancelRating.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View arg0) {
+                                rating = 0;
+                                JsonObject jsonObject = new JsonObject();
+                                jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shippers.get(0).getId());
+                                jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
+                                new CompleteRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStConfirmCompletedRequest, Constant.POST_METHOD, jsonObject.toString());
+                                ratingDialog.dismiss();
+                            }
+
+                        });
+                    }
+
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+
+                })
+                .show();
+    }
+
+    private class CompleteRequestAsyncTask  extends ServiceAsyncTask{
+
+        public CompleteRequestAsyncTask(Activity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+                Toast.makeText(STDetailRequestActivity.this, getString(R.string.complete_request), Toast.LENGTH_LONG).show();
+                requestStatus = Constant.COMPLETED_REQUEST;
+                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+
+            }
+        }
+    }
     private class AcceptShipperAsyncTask extends ServiceAsyncTask {
 
         public AcceptShipperAsyncTask(Activity activity) {
@@ -271,7 +347,8 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             if (!error) {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
                 requestStatus = Constant.PROCESSING_REQUEST;
-                loadData();
+                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+
             } else {
 
             }

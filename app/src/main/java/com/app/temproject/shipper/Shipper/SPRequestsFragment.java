@@ -45,6 +45,11 @@ public class SPRequestsFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData(status);
+    }
     protected void loadData(int status) {
 
 //        String keys[] = {Constant.KEY_USER_ID, Constant.KEY_PASSWORD, Constant.KEY_STATUS};

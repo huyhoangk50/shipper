@@ -10,7 +10,7 @@
 
 
     <ScrollView
-        android:id="@+id/svRegister"
+        android:id="@+id/svSTRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etEmail"
+                        android:id="@+id/etSTEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
@@ -58,7 +58,7 @@
                     <!--android:textStyle="italic" />-->
 
                 <TextView
-                    android:id="@+id/tvCheckEmail"
+                    android:id="@+id/tvSTCheckEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etPassword"
+                        android:id="@+id/etSTPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
@@ -103,7 +103,7 @@
                     <!--android:textStyle="italic" />-->
 
                 <TextView
-                    android:id="@+id/tvCheckPassword"
+                    android:id="@+id/tvSTCheckPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -117,7 +117,7 @@
 
                     <EditText
 
-                        android:id="@+id/etConfirmPassword"
+                        android:id="@+id/etSTConfirmPassword"
                         android:text="123456"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                     <!--android:textStyle="italic" />-->
 
                 <TextView
-                    android:id="@+id/tvCheckConfirmPassword"
+                    android:id="@+id/tvSTCheckConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etStoreName"
+                        android:id="@+id/etSTStoreName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -190,7 +190,7 @@
                     <!--android:textStyle="italic" />-->
 
                 <TextView
-                    android:id="@+id/tvCheckStoreName"
+                    android:id="@+id/tvSTCheckStoreName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -224,7 +224,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etStoreType"
+                        android:id="@+id/etSTStoreType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -234,7 +234,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/tvCheckStoreType"
+                    android:id="@+id/tvSTCheckStoreType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etPhoneNumber"
+                        android:id="@+id/etSTPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -276,7 +276,7 @@
                     <!--android:textStyle="italic" />-->
 
                 <TextView
-                    android:id="@+id/tvCheckPhoneNumber"
+                    android:id="@+id/tvSTCheckPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -288,20 +288,20 @@
 
 
                 <Spinner
-                    android:id="@+id/spCity"
+                    android:id="@+id/spSTCity"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="10dp"></Spinner>
 
 
                 <Spinner
-                    android:id="@+id/spDistrict"
+                    android:id="@+id/spSTDistrict"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="10dp"></Spinner>
 
                 <Spinner
-                    android:id="@+id/spCountry"
+                    android:id="@+id/spSTCountry"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="10dp"></Spinner>
@@ -310,7 +310,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/etStreet"
+                        android:id="@+id/etSTStreet"
                         android:text="số 64 phố tân mai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -354,7 +354,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnRegister"
+                    android:id="@+id/btnSTRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

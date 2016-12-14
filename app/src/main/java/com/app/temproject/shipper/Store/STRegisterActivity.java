@@ -109,29 +109,29 @@ public class STRegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        tvCheckEmail = (TextView) findViewById(R.id.tvCheckEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        tvCheckPassWord = (TextView) findViewById(R.id.tvCheckPassword);
-        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
-        tvCheckConfirmPassword = (TextView) findViewById(R.id.tvCheckConfirmPassword);
-        etStoreName = (EditText) findViewById(R.id.etStoreName);
-        tvCheckStoreName = (TextView) findViewById(R.id.tvCheckStoreName);
-        etStoreType = (EditText) findViewById(R.id.etStoreType);
-        tvCheckStoreType = (TextView) findViewById(R.id.tvCheckStoreType);
-        etPhoneNumber = (EditText) findViewById(R.id.etPhoneNumber);
-        tvCheckPhoneNumber = (TextView) findViewById(R.id.tvCheckPhoneNumber);
-        etStreet = (EditText) findViewById(R.id.etStreet);
-        spDistrict = (Spinner) findViewById(R.id.spDistrict);
-        spCity = (Spinner) findViewById(R.id.spCity);
-        spCountry = (Spinner) findViewById(R.id.spCountry);
+        etEmail = (EditText) findViewById(R.id.etSTEmail);
+        tvCheckEmail = (TextView) findViewById(R.id.tvSTCheckEmail);
+        etPassword = (EditText) findViewById(R.id.etSTPassword);
+        tvCheckPassWord = (TextView) findViewById(R.id.tvSTCheckPassword);
+        etConfirmPassword = (EditText) findViewById(R.id.etSTConfirmPassword);
+        tvCheckConfirmPassword = (TextView) findViewById(R.id.tvSTCheckConfirmPassword);
+        etStoreName = (EditText) findViewById(R.id.etSTStoreName);
+        tvCheckStoreName = (TextView) findViewById(R.id.tvSTCheckStoreName);
+        etStoreType = (EditText) findViewById(R.id.etSTStoreType);
+        tvCheckStoreType = (TextView) findViewById(R.id.tvSTCheckStoreType);
+        etPhoneNumber = (EditText) findViewById(R.id.etSTPhoneNumber);
+        tvCheckPhoneNumber = (TextView) findViewById(R.id.tvSTCheckPhoneNumber);
+        etStreet = (EditText) findViewById(R.id.etSTStreet);
+        spDistrict = (Spinner) findViewById(R.id.spSTDistrict);
+        spCity = (Spinner) findViewById(R.id.spSTCity);
+        spCountry = (Spinner) findViewById(R.id.spSTCountry);
 //        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
 //        spCity.updateUI(cityAdapter);
         ArrayAdapter countryAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnRegister = (Button) findViewById(R.id.btnSTRegister);
 //        mMapView = (MapView) findViewById(R.id.mapView);
-        svRegister = (ScrollView) findViewById(R.id.svRegister);
+        svRegister = (ScrollView) findViewById(R.id.svSTRegister);
         mapsFragment = (MapsFragment) getSupportFragmentManager().findFragmentById(R.id.mapStRegister);
 
     }

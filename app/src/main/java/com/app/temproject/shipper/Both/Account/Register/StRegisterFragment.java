@@ -97,40 +97,29 @@ public class StRegisterFragment extends Fragment {
         return rootView;
     }
     private void initView() {
-        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.register));
-        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-//        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().onBackPressed();
-                getActivity().finish();
-            }
-        });
-        etEmail = (EditText) rootView.findViewById(R.id.etEmail);
-        tvCheckEmail = (TextView) rootView.findViewById(R.id.tvCheckEmail);
-        etPassword = (EditText) rootView.findViewById(R.id.etPassword);
-        tvCheckPassWord = (TextView) rootView.findViewById(R.id.tvCheckPassword);
-        etConfirmPassword = (EditText) rootView.findViewById(R.id.etConfirmPassword);
-        tvCheckConfirmPassword = (TextView) rootView.findViewById(R.id.tvCheckConfirmPassword);
-        etStoreName = (EditText) rootView.findViewById(R.id.etStoreName);
-        tvCheckStoreName = (TextView) rootView.findViewById(R.id.tvCheckStoreName);
-        etStoreType = (EditText) rootView.findViewById(R.id.etStoreType);
-        tvCheckStoreType = (TextView) rootView.findViewById(R.id.tvCheckStoreType);
-        etPhoneNumber = (EditText) rootView.findViewById(R.id.etPhoneNumber);
-        tvCheckPhoneNumber = (TextView) rootView.findViewById(R.id.tvCheckPhoneNumber);
-        etStreet = (EditText) rootView.findViewById(R.id.etStreet);
-        spDistrict = (Spinner) rootView.findViewById(R.id.spDistrict);
-        spCity = (Spinner) rootView.findViewById(R.id.spCity);
-        spCountry = (Spinner) rootView.findViewById(R.id.spCountry);
+        etEmail = (EditText) rootView.findViewById(R.id.etSTEmail);
+        tvCheckEmail = (TextView) rootView.findViewById(R.id.tvSTCheckEmail);
+        etPassword = (EditText) rootView.findViewById(R.id.etSTPassword);
+        tvCheckPassWord = (TextView) rootView.findViewById(R.id.tvSTCheckPassword);
+        etConfirmPassword = (EditText) rootView.findViewById(R.id.etSTConfirmPassword);
+        tvCheckConfirmPassword = (TextView) rootView.findViewById(R.id.tvSTCheckConfirmPassword);
+        etStoreName = (EditText) rootView.findViewById(R.id.etSTStoreName);
+        tvCheckStoreName = (TextView) rootView.findViewById(R.id.tvSTCheckStoreName);
+        etStoreType = (EditText) rootView.findViewById(R.id.etSTStoreType);
+        tvCheckStoreType = (TextView) rootView.findViewById(R.id.tvSTCheckStoreType);
+        etPhoneNumber = (EditText) rootView.findViewById(R.id.etSTPhoneNumber);
+        tvCheckPhoneNumber = (TextView) rootView.findViewById(R.id.tvSTCheckPhoneNumber);
+        etStreet = (EditText) rootView.findViewById(R.id.etSTStreet);
+        spDistrict = (Spinner) rootView.findViewById(R.id.spSTDistrict);
+        spCity = (Spinner) rootView.findViewById(R.id.spSTCity);
+        spCountry = (Spinner) rootView.findViewById(R.id.spSTCountry);
 //        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
 //        spCity.updateUI(cityAdapter);
         ArrayAdapter countryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);
-        btnRegister = (Button) getActivity().findViewById(R.id.btnRegister);
+        btnRegister = (Button) rootView.findViewById(R.id.btnSTRegister);
 //        mMapView = (MapView) findViewById(R.id.mapView);
-        svRegister = (ScrollView) getActivity().findViewById(R.id.svRegister);
+        svRegister = (ScrollView) rootView.findViewById(R.id.svSTRegister);
         mapsFragment = (MapsFragment) getChildFragmentManager().findFragmentById(R.id.mapStRegister);
         if(mapsFragment == null){
             mapsFragment = new MapsFragment();

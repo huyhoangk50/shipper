@@ -85,8 +85,8 @@ public abstract class ServiceAsyncTask extends AsyncTask<String, String, String>
         try {
             URL url = new URL(values[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setConnectTimeout(5000);
-            urlConnection.setReadTimeout(5000);
+            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(15000);
             urlConnection.setRequestProperty(Constant.CONTENT_TYPE, Constant.JSON_TYPE);
             String method = values[1];
             urlConnection.setRequestMethod(method);

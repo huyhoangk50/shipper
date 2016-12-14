@@ -8,11 +8,11 @@
             android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_notification"
-            android:icon="@drawable/response"
+            android:icon="@drawable/notification"
             android:title="@string/nav_notification" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/logout"
             android:title="@string/nav_logout" />
     </group>
 

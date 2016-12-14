@@ -44,6 +44,12 @@ public class STRequestsFragment extends Fragment{
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData(status);
+    }
+
     protected void loadData(int status) {
 
         switch (status){

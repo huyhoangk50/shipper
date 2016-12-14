@@ -5,5 +5,5 @@ package com.app.temproject.shipper.Store;
  */
 
 public interface OnAcceptShipperListener {
-    void acceptShipper(int shipperID);
+    void onAcceptShipper(int shipperID);
 }

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
 import com.app.temproject.shipper.Both.HomeActivity;
 import com.app.temproject.shipper.ProjectVariable.Constant;
@@ -183,7 +184,7 @@ public class SPHomeActivity extends AppCompatActivity
                                 try{
                                     FileProcessing.deleteInternalStorageFile(Constant.PATH_TO_LOGIN_INFORMATION_FILE, SPHomeActivity.this);
                                     ProjectManagement.shipper = null;
-                                    Intent intent = new Intent(SPHomeActivity.this, HomeActivity.class);
+                                    Intent intent = new Intent(SPHomeActivity.this, LoginActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } catch (Exception e){

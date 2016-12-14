@@ -5,4 +5,5 @@ package com.app.temproject.shipper.Store;
  */
 
 public interface OnCompleteRequestListener {
+    void onCompleteRequest();
 }

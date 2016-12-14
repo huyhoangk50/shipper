@@ -25,12 +25,16 @@ import java.util.List;
 public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.ViewHolder> {
     private Activity activity;
     private List<Shipper> shippers;
-    private AcceptShipper acceptShipper;
+    private OnAcceptShipperListener onAcceptShipperListener;
+    private OnCompleteRequestListener onCompleteRequestListener;
+    private int status;
 
-    public BaseShipperAdapter(Activity activity, List<Shipper> shippers, AcceptShipper acceptShipper) {
+    public BaseShipperAdapter(Activity activity, List<Shipper> shippers, int status, OnCompleteRequestListener onCompleteRequestListener, OnAcceptShipperListener onAcceptShipperListener) {
         this.activity = activity;
         this.shippers = shippers;
-        this.acceptShipper = acceptShipper;
+        this.onAcceptShipperListener = onAcceptShipperListener;
+        this.status = status;
+        this.onCompleteRequestListener = onCompleteRequestListener;
     }
 
     @Override
@@ -64,7 +68,14 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         holder.llAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                acceptShipper.acceptShipper(shipper.getId());
+                onAcceptShipperListener.onAcceptShipper(shipper.getId());
+            }
+        });
+
+        holder.llComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCompleteRequestListener.onCompleteRequest();
             }
         });
 
@@ -81,14 +92,31 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         private ImageView ivAvatar;
         private TextView tvName;
         private LinearLayout llAccept;
+        private LinearLayout llComplete;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             ivAvatar = (ImageView) itemView.findViewById(R.id.ivAvatar);
             llAccept = (LinearLayout) itemView.findViewById(R.id.llAccept);
+            llComplete = (LinearLayout) itemView.findViewById(R.id.llComplete);
+
+            switch (status){
+                case Constant.WAITING_REQUEST:
+                    llAccept.setVisibility(View.VISIBLE);
+                    llComplete.setVisibility(View.GONE);
+                    break;
+                case Constant.DONE_REQUEST:
+                    llAccept.setVisibility(View.GONE);
+                    llComplete.setVisibility(View.VISIBLE);
+                    break;
+                case Constant.COMPLETED_REQUEST:
+                case Constant.PROCESSING_REQUEST:
+                    llAccept.setVisibility(View.GONE);
+                    llComplete.setVisibility(View.GONE);
+                    break;
+            }
         }
     }
-
-
 }

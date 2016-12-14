@@ -111,7 +111,7 @@ public class SpRegisterFragment extends Fragment {
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         initView();
         setDateTimeField();
-        setEvet();
+        setEvent();
         return rootView;
     }
 
@@ -228,7 +228,7 @@ public class SpRegisterFragment extends Fragment {
         bm.recycle();
         return resizedBitmap;
     }
-    private void setEvet(){
+    private void setEvent(){
 
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
