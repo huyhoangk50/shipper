@@ -113,7 +113,7 @@ public class StRegisterFragment extends Fragment {
         spDistrict = (Spinner) rootView.findViewById(R.id.spSTDistrict);
         spCity = (Spinner) rootView.findViewById(R.id.spSTCity);
         spCountry = (Spinner) rootView.findViewById(R.id.spSTCountry);
-//        ArrayAdapter cityAdapter = new ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
+//        ArrayAdapter cityAdapter = new_icon ArrayAdapter<>(STRegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, citiesInVietNam);
 //        spCity.updateUI(cityAdapter);
         ArrayAdapter countryAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, countries);
         spCountry.setAdapter(countryAdapter);

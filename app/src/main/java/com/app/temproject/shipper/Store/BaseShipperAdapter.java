@@ -62,7 +62,7 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                new
+//                new_icon
             }
         });
         holder.llAccept.setOnClickListener(new View.OnClickListener() {

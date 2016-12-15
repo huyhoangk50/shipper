@@ -25,8 +25,15 @@ public class SPHomeFragment extends Fragment {
         SPRequestPagerAdapter spRequestPagerAdapter = new SPRequestPagerAdapter(getActivity().getSupportFragmentManager(),getContext());
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.vpRequest);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tlRequest);
+
+//        for(int i = 0; i < viewPager)
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(spRequestPagerAdapter);
+        tabLayout.getTabAt(0).setIcon(R.drawable.new_icon);
+        tabLayout.getTabAt(1).setIcon(R.drawable.waiting);
+        tabLayout.getTabAt(2).setIcon(R.drawable.processing);
+        tabLayout.getTabAt(3).setIcon(R.drawable.complete);
+        int a = viewPager.getChildCount();
         return rootView;
     }
 }

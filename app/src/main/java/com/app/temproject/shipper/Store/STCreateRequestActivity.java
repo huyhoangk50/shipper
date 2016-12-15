@@ -198,7 +198,7 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
                 } else {
                     //fake data
 
-//                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 21.0212, 105.2344, "Việt nam");
+//                    Store store = new_icon Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 21.0212, 105.2344, "Việt nam");
 //                    store.setStatus(Constant.ACTIVE_STATUS);
 //                    ProjectManagement.store = store;
 

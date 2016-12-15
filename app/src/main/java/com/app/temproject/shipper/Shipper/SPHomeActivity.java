@@ -19,18 +19,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
 import com.app.temproject.shipper.Both.HomeActivity;
+import com.app.temproject.shipper.Object.OnNotifyListener;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONObject;
+
 public class SPHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnNotifyListener {
     private boolean doubleBackToExitPressOnce = false;
 
     private View header;
@@ -44,6 +48,7 @@ public class SPHomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sp_activity_home);
         initView();
+        ProjectManagement.socketConnection.setOnNotifyListener(this);
 
     }
 
@@ -205,7 +210,7 @@ public class SPHomeActivity extends AppCompatActivity
                 break;
             }
 //            case R.id.nav_message:{
-//                SPMessageFragment SPMessageFragment = new SPMessageFragment();
+//                SPMessageFragment SPMessageFragment = new_icon SPMessageFragment();
 //                fragmentTransaction.replace(R.id.flContent, SPMessageFragment);
 //                break;
 //            }
@@ -226,4 +231,30 @@ public class SPHomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onNotify(final JSONObject data) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(SPHomeActivity.this, data.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if(ProjectManagement.socketConnection!=null){
+//            ProjectManagement.socketConnection.disconnect();
+//        }
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if(ProjectManagement.socketConnection!=null){
+//            ProjectManagement.socketConnection.connect();
+//        }
+//    }
 }

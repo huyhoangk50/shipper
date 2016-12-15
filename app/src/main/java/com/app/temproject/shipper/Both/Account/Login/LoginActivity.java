@@ -111,7 +111,7 @@ public class LoginActivity extends Activity {
 //            if (error) {
 //                Toast.makeText(LoginActivity.this, getString(R.string.incorrect_information), Toast.LENGTH_LONG).show();
 //            } else {
-//                JsonObject loginJSONObject = new JsonObject();
+//                JsonObject loginJSONObject = new_icon JsonObject();
 //                loginJSONObject.addProperty(Constant.KEY_EMAIL, email);
 //                loginJSONObject.addProperty(Constant.KEY_PASSWORD, password);
 //                loginJSONObject.addProperty(Constant.KEY_ROLE, role);
@@ -120,38 +120,38 @@ public class LoginActivity extends Activity {
 //                Log.e("login", FileProcessing.readFileFromInternalStorage("loginInformation.txt", LoginActivity.this));
 //
 //                if (role == Constant.STORE_ROLE) {
-//                    Store store = new Gson().fromJson(data, Store.class);
+//                    Store store = new_icon Gson().fromJson(data, Store.class);
 //                    store.setPassword(password);
-////                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
+////                    Store store = new_icon Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
 ////                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
 ////                    store.setStatus(Constant.ACTIVE_STATUS);
 //                    ProjectManagement.store = store;
 //                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
-//                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, STHomeActivity.class);
 //                        startActivity(intent);
 //                        finish();
 //                    } else {
-//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, ActiveAccountActivity.class);
 //                        intent.putExtra(Constant.KEY_ROLE, role);
 //                        intent.putExtra(Constant.KEY_ID_ACCOUNT, store.getId());
 //                        startActivity(intent);
 //                        finish();
 //                    }
 //                } else {
-//                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
+//                    Shipper shipper = new_icon Gson().fromJson(data, Shipper.class);
 //                    shipper.setPassword(password);
 //
-////                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
+////                    Shipper shipper = new_icon Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
 ////                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
 ////                    shipper.setStatus(Constant.ACTIVE_STATUS);
 //                    ProjectManagement.shipper = shipper;
 //                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
 //
-//                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, SPHomeActivity.class);
 //                        startActivity(intent);
 //                        finish();
 //                    } else {
-//                        Intent intent = new Intent(LoginActivity.this, ActiveAccountActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, ActiveAccountActivity.class);
 //                        intent.putExtra(Constant.KEY_ROLE, role);
 //                        intent.putExtra(Constant.KEY_ID_ACCOUNT, shipper.getId());
 //                        startActivity(intent);
@@ -227,24 +227,24 @@ public class LoginActivity extends Activity {
 //   shipper {"err":false,"message":"Email and Password are valid! Account Not Active!","data":{"id":25,"email":"1@gmail.com","name":"jaybo","phone_number":"0123456789","address":"Tan Mai, Hoang Mai, Ha Noi","avatar":"userdefault.jpg","birthday":"1994-02-17T17:00:00.000Z","longitude":100.5,"latitude":10.6,"rating":0,"vote":0,"created_time":"2016-11-26T09:29:33.085Z","updated_time":null,"active_code":"c917d592","status":0,"reset_code":"5a42e3c4"}}
 //store {"err":false,"message":"Email and Password are valid! Account Not Active!","data":{"id":5,"email":"1@gmail.com","name":"jaybo","phone_number":"0123456789","store_type":"Clothes","location_id":5,"address":"Tan Mai, Hoang Mai, Ha Noi","rating":0,"vote":0,"created_time":"2016-11-26T09:27:39.004Z","updated_time":null,"avatar":"userdefault.jpg","active_code":"6d403ed0","status":0,"reset_code":"a4833fd9"}}
 
-//                Store store = new Store();
-//                String test = new Gson().toJson(store);
+//                Store store = new_icon Store();
+//                String test = new_icon Gson().toJson(store);
                 //fake code
 //                if (role == Constant.STORE_ROLE) {
-//                    Store store = new Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
+//                    Store store = new_icon Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");
 ////                    store.setStatus(Constant.NOT_ACTIVE_STATUS);
 ////                    store.setStatus(Constant.ACTIVE_STATUS);
 //                    ProjectManagement.store = store;
-//                        Intent intent = new Intent(LoginActivity.this, STHomeActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, STHomeActivity.class);
 //                        startActivity(intent);
 //                        finish();
 //                } else {
 //
-//                    Shipper shipper = new Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
+//                    Shipper shipper = new_icon Shipper(1, "huyhoangk40@gmail.com", "1233435", Constant.SHIPPER_ROLE, "Nguyen Huy Hoang", "098765", Constant.NOT_ACTIVE_STATUS, 0, 0, "22/12/2015", "23/23/1345", "Hoang mai ha noi", 12.133,143.2413, "29/2/1994", "conaten.jpg");
 ////                    shipper.setStatus(Constant.NOT_ACTIVE_STATUS);
 ////                    shipper.setStatus(Constant.ACTIVE_STATUS);
 //                    ProjectManagement.shipper = shipper;
-//                        Intent intent = new Intent(LoginActivity.this, SPHomeActivity.class);
+//                        Intent intent = new_icon Intent(LoginActivity.this, SPHomeActivity.class);
 //                        startActivity(intent);
 //                        finish();
 //                }
@@ -320,5 +320,5 @@ public class LoginActivity extends Activity {
     }
 
 
-//    String response = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":19,\"email\":\"123@gmail.com\",\"password\":\"8604968e69fafb4e65e8bd952dbddd122fc600cd05bb5b48ffdf5dfb462888e505325e542a276f5898842d2458af6991c22918c9852ddeff34f63b667ddd6059\",\"salt\":\"aca4ad29034dddea\",\"name\":\"AnhTu\",\"phone_number\":\"1234567890\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":12,\"latitude\":12,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-30T02:57:39.462Z\",\"updated_time\":null,\"status\":0,\"reset_code\":\"3a69ba91\",\"active_code\":\"82b29bd5\"}}\n"
+    //    String response = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":19,\"email\":\"123@gmail.com\",\"password\":\"8604968e69fafb4e65e8bd952dbddd122fc600cd05bb5b48ffdf5dfb462888e505325e542a276f5898842d2458af6991c22918c9852ddeff34f63b667ddd6059\",\"salt\":\"aca4ad29034dddea\",\"name\":\"AnhTu\",\"phone_number\":\"1234567890\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":12,\"latitude\":12,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-30T02:57:39.462Z\",\"updated_time\":null,\"status\":0,\"reset_code\":\"3a69ba91\",\"active_code\":\"82b29bd5\"}}\n"
 }

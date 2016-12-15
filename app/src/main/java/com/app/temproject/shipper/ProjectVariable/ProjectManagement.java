@@ -1,6 +1,7 @@
 package com.app.temproject.shipper.ProjectVariable;
 
 import com.app.temproject.shipper.Object.Shipper;
+import com.app.temproject.shipper.Object.SocketConnection;
 import com.app.temproject.shipper.Object.Store;
 
 /**
@@ -10,6 +11,7 @@ public class ProjectManagement {
 
     public static Shipper shipper;
     public static Store store;
+    public static SocketConnection socketConnection;
 
     //constant for url
     public static String baseUrl = "";
@@ -62,7 +64,7 @@ public class ProjectManagement {
         urlStLoadCompletedRequest = baseURL + "api/requests/store/completed/";
         urlStLoadProcessingRequest = baseURL + "api/requests/store/processing/";
         urlStLoadDetailRequest = baseURL + "api/requests/store/specific-item/";
-        urlStCancelRequest = baseURL + "api/requests/store/processing/";
+        urlStCancelRequest = baseURL + "api/requests/cancel/";
         urlStAcceptShipper = baseURL + "api/responses/accept";//post
         urlStConfirmCompletedRequest = baseURL + "api/requests/confirmed/";//put
     }

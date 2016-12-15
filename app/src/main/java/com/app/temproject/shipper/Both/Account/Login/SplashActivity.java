@@ -32,7 +32,7 @@ public class SplashActivity extends Activity {
         ProjectManagement.baseUrl = res;
         ProjectManagement.changeURL(res);
 
-//        Thread autoLogin = new Thread(){
+//        Thread autoLogin = new_icon Thread(){
 //            @Override
 //            public void run() {
 //

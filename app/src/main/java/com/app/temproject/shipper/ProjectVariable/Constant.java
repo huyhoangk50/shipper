@@ -140,7 +140,7 @@ public class Constant {
     public static int MIN_PHONE_NUM_LENGTH = 9;
     public static int MAX_PHONE_NUM_LENGTH = 12;
 
-    public static final String DEFAULT_URL = "http://192.168.1.93:3000/";
+    public static final String DEFAULT_URL = "http://192.168.14.2:3000/";
     public static final String PATH_TO_CONFIG_FILE = "text.txt";
 
     public static final String PATH_TO_LOGIN_INFORMATION_FILE = "loginInformation.txt";

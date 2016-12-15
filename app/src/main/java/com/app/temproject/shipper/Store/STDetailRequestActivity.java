@@ -42,6 +42,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
@@ -150,8 +151,9 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                     public void onClick(DialogInterface dialog, int which) {
                         JsonObject jsonObject = new JsonObject();
                         jsonObject.addProperty(Constant.KEY_STORE_ID, ProjectManagement.store.getId());
-                        jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
-                        new STDetailRequestActivity.CancelRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStCancelRequest, Constant.POST_METHOD, jsonObject.toString());
+//                        jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
+                        new CancelRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStCancelRequest + request.getId(),
+                                Constant.PUT_METHOD, jsonObject.toString());
                     }
 
                 });
@@ -231,7 +233,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             case Constant.PROCESSING_REQUEST:
                 tvDescription.setVisibility(View.VISIBLE);
                 tvDescription.setText(getString(R.string.request_is_processing));
-                btnCancel.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.GONE);
                 break;
             case Constant.COMPLETED_REQUEST:
                 tvDescription.setVisibility(View.VISIBLE);
@@ -242,6 +244,11 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                 tvDescription.setVisibility(View.VISIBLE);
                 btnCancel.setVisibility(View.GONE);
                 tvDescription.setText(getString(R.string.shipper_require_confirm_completion));
+                break;
+            case Constant.CANCELED_REQUEST:
+                btnCancel.setVisibility(View.GONE);
+                tvDescription.setVisibility(View.VISIBLE);
+                tvDescription.setText(getString(R.string.request_is_canceled));
                 break;
         }
         if (mMap != null) {
@@ -331,6 +338,9 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             if(!error){
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.complete_request), Toast.LENGTH_LONG).show();
                 requestStatus = Constant.COMPLETED_REQUEST;
+                if(ProjectManagement.socketConnection!=null){
+
+                }
                 new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
 
             }
@@ -347,6 +357,17 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             if (!error) {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
                 requestStatus = Constant.PROCESSING_REQUEST;
+                JSONObject data1 = new JSONObject();
+                try{
+                    data1.put("shipper_name", shippers.get(0).getName());
+                    data1.put("shipper_id", shippers.get(0).getId());
+                    data1.put("store_name", request.getProductName());
+                    data1.put("store_id", ProjectManagement.store.getId());
+                    data1.put("request_id", request.getId());
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+                ProjectManagement.socketConnection.getSocket().emit("store-accept-shipper", data1);
                 new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
 
             } else {
@@ -407,6 +428,17 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         protected void processData(boolean error, String message, String data) {
             if (!error) {
                 loadData();
+                JSONObject data1 = new JSONObject();
+                try{
+                    data1.put("shipper_name", "Nguyen Van Sang");
+                    data1.put("shipper_id", "100");
+                    data1.put("store_name", "Smart Watch Store");
+                    data1.put("store_id", 111);
+                    data1.put("request_id", 101010);
+                }catch(JSONException e){
+
+                }
+                ProjectManagement.socketConnection.getSocket().emit("store-cancel-accepted-request", data1);
             } else {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
             }

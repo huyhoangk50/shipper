@@ -43,8 +43,8 @@ public class SPRatingActivity extends Activity {
 
         public void Showdialog(){
 
-//            AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
-//            final RatingBar rating = new RatingBar(this);
+//            AlertDialog.Builder popDialog = new_icon AlertDialog.Builder(this);
+//            final RatingBar rating = new_icon RatingBar(this);
             Dialog popdialog = new Dialog(SPRatingActivity.this);
             popdialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             popdialog.setContentView(R.layout.sp_rating_dialog);

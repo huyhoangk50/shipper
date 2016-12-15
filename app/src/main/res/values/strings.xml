@@ -195,7 +195,7 @@
     <string name="can_not_apply_this_request">Đơn hàng này đã có người thực hiện.</string>
     <string name="waiting_for_vetification_from_store">Đang chờ xác nhận từ cửa hàng</string>
     <string name="request_is_completed">Nhiệm vụ đã hoàn thành</string>
-    <string name="request_is_canceled">Bạn không thể nhận đơn hàng này vì nó đã bị hủy!!</string>
+    <string name="request_is_canceled">Đơn hàng đã bị hủy!!</string>
     <string name="waiting_for_vetification_to_be_completed_from_store">Nhiệm vụ đã hoàn thành, đang chờ xác nhận từ cửa hàng</string>
     <string name="request_is_processing">Đang thực hiện</string>
     <string name="warninng_about_judgement">Bạn sẽ bị trừ điểm đánh giá nếu bạn chọn đồng ý!!</string>

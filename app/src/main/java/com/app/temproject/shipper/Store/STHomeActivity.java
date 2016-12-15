@@ -19,16 +19,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
 import com.app.temproject.shipper.Both.HomeActivity;
+import com.app.temproject.shipper.Object.OnNotifyListener;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
+import com.app.temproject.shipper.Shipper.SPHomeActivity;
+
+import org.json.JSONObject;
 
 public class STHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnNotifyListener {
 
     private FloatingActionButton fabAddRequest;
     private View header;
@@ -136,6 +141,15 @@ public class STHomeActivity extends AppCompatActivity
                 }
             }, 2000);
         }
+    }
+    @Override
+    public void onNotify(final JSONObject data) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(STHomeActivity.this, data.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

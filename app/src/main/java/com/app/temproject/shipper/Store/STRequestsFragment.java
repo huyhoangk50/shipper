@@ -92,8 +92,8 @@ public class STRequestsFragment extends Fragment{
 
 
 //    private void fakeData(){
-//        requests = new ArrayList<>();
-//        Request request = new Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 21.0024017, 105.8488915, 1, "12/12/2016 08:30", "12/12/2016 08:30");
+//        requests = new_icon ArrayList<>();
+//        Request request = new_icon Request(1, 1000000, 5, "22/12/2016 08:30", "22/12/2016 : 17:30", 5, "Số 5 cù chính lan hà nội", 20000, 2, "Đồng hồ smart watch", "09876543332", 21.0024017, 105.8488915, 1, "12/12/2016 08:30", "12/12/2016 08:30");
 //        request.setStoreName("Cửa hàng đồng hồ Huy Hoàng");
 //        request.setStorePosition("Số 5 Minh khai hà nội");
 //        request.setStatus(status);
