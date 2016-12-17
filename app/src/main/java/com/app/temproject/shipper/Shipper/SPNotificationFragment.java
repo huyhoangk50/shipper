@@ -1,5 +1,6 @@
 package com.app.temproject.shipper.Shipper;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +12,25 @@ import android.view.ViewGroup;
 
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.app.temproject.shipper.Libs.ServiceAsyncTask;
 import com.app.temproject.shipper.Object.Notification;
+import com.app.temproject.shipper.Object.Request;
+import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 public class SPNotificationFragment extends Fragment {
-    private List<Notification> spNotificatiolist = new ArrayList<>();
+    private List<Notification> notifications;
     private RecyclerView recyclerView;
     private SPNotificationAdapter spNotificationAdapter;
     private Notification notification;
@@ -45,29 +54,48 @@ public class SPNotificationFragment extends Fragment {
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_SPNotification);
 
-        spNotificationAdapter = new SPNotificationAdapter(spNotificatiolist);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(spNotificationAdapter);
 
-        LoadSPNotificationData();
+        loadNotifications();
         return rootView;
 
 
     }
 
 
-    private void LoadSPNotificationData() {
-        notification = new Notification("Nguyễn Huy Hoàng ",2,0,"14-11-2016");
-        spNotificatiolist.add(notification);
+    private void loadNotifications() {
+        new LoadNotificationAsyncTask(getActivity())
+                .execute(ProjectManagement.urlLoadNotifications
+                    + ProjectManagement.shipper.getId()
+                    + "/" + Constant.SHIPPER_ROLE,
+                    Constant.GET_METHOD);
+    }
 
-        notification = new Notification("Nguyễn Anh Tu ",2,1,"14-11-2016");
-        spNotificatiolist.add(notification);
+    private class LoadNotificationAsyncTask extends ServiceAsyncTask{
 
-        notification = new Notification("Nguyễn Văn Sang ",2,0,"14-11-2016");
-        spNotificatiolist.add(notification);
+        public LoadNotificationAsyncTask(Activity activity) {
+            super(activity);
+        }
 
-        //SPNotificationAdapter.notifyDataSetChanged();
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+                Type token = new TypeToken<ArrayList<Notification>>() {
+                }.getType();
+                notifications = (new Gson().fromJson(data, token));
+                if (notifications != null) {
+                    setAdapter();
+                }
+            } else {
+                Toast.makeText(getActivity(), getActivity().getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void setAdapter() {
+        spNotificationAdapter = new SPNotificationAdapter(notifications);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(spNotificationAdapter);
     }
 
 }

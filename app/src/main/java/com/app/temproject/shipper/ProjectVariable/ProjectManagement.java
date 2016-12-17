@@ -40,6 +40,7 @@ public class ProjectManagement {
     public static String urlStLoadDetailRequest = "";
     public static String urlStAcceptShipper = "";
     public static String urlStConfirmCompletedRequest = "";
+    public static String urlLoadNotifications = "";
 
 
     public static void changeURL(String baseURL){
@@ -47,6 +48,7 @@ public class ProjectManagement {
         urlActiveAccount = baseURL + "api/accounts/active";
         urlConfirmEmail = baseURL + "api/accounts/requireResetPassword";
         urlResetPassword = baseURL + "api/accounts/checkResetCodeAndUpdatePassword";
+        urlLoadNotifications = baseURL + "api//notifications/users/";//get
 
         urlSpLoadNewRequest = baseURL + "api/requests/shipper/new/";
         urlSpLoadProcessingRequest = baseURL + "api/requests/shipper/processing/";

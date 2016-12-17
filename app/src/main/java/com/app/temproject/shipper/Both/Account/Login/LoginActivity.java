@@ -2,8 +2,10 @@ package com.app.temproject.shipper.Both.Account.Login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +24,7 @@ import com.app.temproject.shipper.Libs.CheckingInformation;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
+import com.app.temproject.shipper.Util.NotificationUtils;
 import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
@@ -59,6 +62,10 @@ public class LoginActivity extends Activity {
 
         initView();
         setEvent();
+
+        //test
+//        NotificationUtils notificationUtils = new NotificationUtils(this);
+//        notificationUtils.showNotificationMessage("Huy hoang", "huy hoang dep trai", "5", new Intent(getApplicationContext(), LoginActivity.class));
     }
 
     @Override
@@ -84,7 +91,7 @@ public class LoginActivity extends Activity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        Thread timer = new Thread() {
+        Thread showAnimation = new Thread() {
             public void run() {
                 DisplayMetrics displaymetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -96,7 +103,7 @@ public class LoginActivity extends Activity {
                 ivShipper.startAnimation(animation);
             }
         };
-        timer.start();
+        showAnimation.start();
 
     }
 
@@ -319,6 +326,13 @@ public class LoginActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // clear the notification area when the app is opened
+//        NotificationUtils.clearNotifications(getApplicationContext());
+    }
 
     //    String response = "{\"err\":false,\"message\":\"Email and Password are valid! Account Not Active!\",\"data\":{\"id\":19,\"email\":\"123@gmail.com\",\"password\":\"8604968e69fafb4e65e8bd952dbddd122fc600cd05bb5b48ffdf5dfb462888e505325e542a276f5898842d2458af6991c22918c9852ddeff34f63b667ddd6059\",\"salt\":\"aca4ad29034dddea\",\"name\":\"AnhTu\",\"phone_number\":\"1234567890\",\"address\":\"Tan Mai, Hoang Mai, Ha Noi\",\"avatar\":\"userdefault.jpg\",\"birthday\":\"1994-02-17T17:00:00.000Z\",\"longitude\":12,\"latitude\":12,\"rating\":0,\"vote\":0,\"created_time\":\"2016-11-30T02:57:39.462Z\",\"updated_time\":null,\"status\":0,\"reset_code\":\"3a69ba91\",\"active_code\":\"82b29bd5\"}}\n"
 }

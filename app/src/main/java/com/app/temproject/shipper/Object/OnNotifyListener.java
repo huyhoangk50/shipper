@@ -7,5 +7,6 @@ import org.json.JSONObject;
  */
 
 public interface OnNotifyListener {
-    void onNotify(JSONObject data);
+    void onNotify(Notification notification);
+//    void onNotify(Notification notification);
 }

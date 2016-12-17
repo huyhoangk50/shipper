@@ -1,5 +1,7 @@
 package com.app.temproject.shipper.ProjectVariable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Admin on 09/11/2016.
  */
@@ -46,7 +48,7 @@ public class Constant {
     public static final String KEY_ACTOR_NAME = "actor_name";
     public static final String KEY_CREATED_TIME = "created_time";
     public static final String KEY_UPDATED_TIME = "updated_time";
-    public static final String KEY_STORE_NAME = "name";
+    public static final String KEY_STORE_NAME = "store_name";
     public static final String KEY_CODE = "code";
     public static final String KEY_STORE_POSITION = "street";
     public static final String KEY_REQUEST_ID = "request_id";
@@ -74,13 +76,20 @@ public class Constant {
     public static final String KEY_NEW_RATING = "new_rate";
     public static final String KEY_REQUEST_STATUS = "request_status";
     public static final String KEY_SHIPPER = "shipper";
+    public static final String KEY_SHIPPER_NAME = "shipper_name";
+    public static final String KEY_ACTOR_ID = "actor_id";
+    public static final String KEY_ACTOR_ROLE = "actor_role";
+    public static final String KEY_RECEIVER_NAME = "receiver_name";
+    public static final String KEY_RECEIVER_ID = "receiver_id";
+    public static final String KEY_RECEIVER_ROLE = "receiver_role";
 
 
     public static final String FROM = "Từ ";
     public static final String TO = " đến ";
-    public static final String CUSTOMER = "Khách hàng: ";
-    public static final String STORE = "Cửa hàng: ";
-    public static final String PRICE = "Giá ship: ";
+    public static final String CUSTOMER = "Khách hàng ";
+    public static final String STORE = "Cửa hàng ";
+    public static final String SHIPPER = "shipper";
+    public static final String PRICE = "Giá ship ";
     public static final String THOUSAND_DONG = "Nghìn đồng";
 
     public static final int NEW_REQUEST = 0;
@@ -140,8 +149,21 @@ public class Constant {
     public static int MIN_PHONE_NUM_LENGTH = 9;
     public static int MAX_PHONE_NUM_LENGTH = 12;
 
-    public static final String DEFAULT_URL = "http://192.168.14.2:3000/";
+    public static final String DEFAULT_URL = "http://192.168.0.104:3000/";
     public static final String PATH_TO_CONFIG_FILE = "text.txt";
 
     public static final String PATH_TO_LOGIN_INFORMATION_FILE = "loginInformation.txt";
+
+    // global topic to receive app wide push notifications
+    public static final String TOPIC_GLOBAL = "global";
+
+    // broadcast receiver intent filters
+    public static final String REGISTRATION_COMPLETE = "registrationComplete";
+    public static final String PUSH_NOTIFICATION = "pushNotification";
+
+    // id to handle the notification in the notification tray
+    public static final int NOTIFICATION_ID = 100;
+    public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
+
+    public static final String SHARED_PREF = "ah_firebase";
 }

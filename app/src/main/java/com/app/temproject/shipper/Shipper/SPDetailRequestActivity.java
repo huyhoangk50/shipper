@@ -24,6 +24,7 @@ import com.app.temproject.shipper.Libs.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Response;
+import com.app.temproject.shipper.Object.SocketConnection;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -147,7 +148,6 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                                 Button btnSubmitRating = (Button) ratingDialog.findViewById(R.id.btnSubmitRating);
                                 Button btnCancelRating = (Button) ratingDialog.findViewById(R.id.btnCancelRating);
                                 final RatingBar rbRating = (RatingBar) ratingDialog.findViewById(R.id.ratingBar);
-
                                 ratingDialog.show();
 
                                 btnSubmitRating.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +160,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                                         jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
                                         new CompleteRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest + request.getId(), Constant.PUT_METHOD, jsonObject.toString());
                                         ratingDialog.dismiss();
+                                        pushShipperRequireToCompleteRequestNotification();
                                     }
 
                                 });
@@ -174,6 +175,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                                         jsonObject.addProperty(Constant.KEY_NEW_RATING, rating);
                                         new CompleteRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpFinishRequest, Constant.POST_METHOD, jsonObject.toString());
                                         ratingDialog.dismiss();
+                                        pushShipperRequireToCompleteRequestNotification();
                                     }
 
                                 });
@@ -199,6 +201,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                 jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
                 jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
                 new ApplyRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpApplyRequest, Constant.POST_METHOD, jsonObject.toString());
+                pushShipperApplyRequestNotification();
             }
         });
 
@@ -219,6 +222,9 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                         jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
                         jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
                         new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest, Constant.POST_METHOD, jsonObject.toString());
+                        if(request.getStatus() == Constant.PROCESSING_REQUEST){
+                            pushShipperCancelAcceptedResponseNotification();
+                        }
                     }
 
                 });
@@ -462,6 +468,47 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
 
+    private void pushShipperCancelAcceptedResponseNotification(){
+        JSONObject cancelResponseNotification = new JSONObject();
+        try{
+            cancelResponseNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
+            cancelResponseNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
+            cancelResponseNotification.put(Constant.KEY_STORE_NAME, store.getName());
+            cancelResponseNotification.put(Constant.KEY_STORE_ID, store.getId());
+            cancelResponseNotification.put(Constant.KEY_REQUEST_ID, request.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_CANCEL_ACCEPTED_RESPONSE_PORT, cancelResponseNotification);
+    }
+
+    private void pushShipperApplyRequestNotification(){
+        JSONObject applyingNotification = new JSONObject();
+        try{
+            applyingNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
+            applyingNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
+            applyingNotification.put(Constant.KEY_STORE_NAME, store.getName());
+            applyingNotification.put(Constant.KEY_STORE_ID, store.getId());
+            applyingNotification.put(Constant.KEY_REQUEST_ID, request.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_APPLY_REQUEST_PORT, applyingNotification);
+    }
+
+    private void pushShipperRequireToCompleteRequestNotification(){
+        JSONObject requirementNotification = new JSONObject();
+        try{
+            requirementNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
+            requirementNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
+            requirementNotification.put(Constant.KEY_STORE_NAME, store.getName());
+            requirementNotification.put(Constant.KEY_STORE_ID, store.getId());
+            requirementNotification.put(Constant.KEY_REQUEST_ID, request.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_REQUIRE_CONFIRM_REQUEST_PORT, requirementNotification);
+    }
     private class CancelRequestAsyncTask extends ServiceAsyncTask {
 
         public CancelRequestAsyncTask(Activity activity) {

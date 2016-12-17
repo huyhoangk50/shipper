@@ -25,6 +25,7 @@ import com.app.temproject.shipper.Libs.Maps.WorkaroundMapFragment;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Shipper;
+import com.app.temproject.shipper.Object.SocketConnection;
 import com.app.temproject.shipper.Object.Store;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -139,7 +140,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder warningDialog = new AlertDialog.Builder(STDetailRequestActivity.this);
+                final AlertDialog.Builder warningDialog = new AlertDialog.Builder(STDetailRequestActivity.this);
                 warningDialog.setIcon(R.drawable.delete);
                 if (request.getStatus() == Constant.PROCESSING_REQUEST) {
                     warningDialog.setMessage(R.string.warninng_about_judgement);
@@ -154,6 +155,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
 //                        jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
                         new CancelRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStCancelRequest + request.getId(),
                                 Constant.PUT_METHOD, jsonObject.toString());
+                        pushStoreCanceledRequestNotification(request);
                     }
 
                 });
@@ -258,17 +260,17 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     }
 
     @Override
-    public void onAcceptShipper(int shipperID) {
+    public void onAcceptShipper(Shipper shipper) {
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shipperID);
+        jsonObject.addProperty(Constant.KEY_SHIPPER_ID, shipper.getId());
         jsonObject.addProperty(Constant.KEY_REQUEST_ID, request.getId());
         new AcceptShipperAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStAcceptShipper, Constant.POST_METHOD, jsonObject.toString());
-
+        pushAcceptedNotifications(shipper);
     }
 
     @Override
-    public void onCompleteRequest() {
+    public void onCompleteRequest(final Shipper shipper) {
         new AlertDialog.Builder(STDetailRequestActivity.this)
                 .setIcon(R.drawable.finish)
                 .setTitle(R.string.finish_request)
@@ -285,7 +287,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                         final RatingBar rbRating = (RatingBar) ratingDialog.findViewById(R.id.ratingBar);
 
                         ratingDialog.show();
-
+                        pushCompletedNotification(shipper);
                         btnSubmitRating.setOnClickListener(new View.OnClickListener() {
 
                             @Override
@@ -357,24 +359,51 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             if (!error) {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
                 requestStatus = Constant.PROCESSING_REQUEST;
-                JSONObject data1 = new JSONObject();
-                try{
-                    data1.put("shipper_name", shippers.get(0).getName());
-                    data1.put("shipper_id", shippers.get(0).getId());
-                    data1.put("store_name", request.getProductName());
-                    data1.put("store_id", ProjectManagement.store.getId());
-                    data1.put("request_id", request.getId());
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
-                ProjectManagement.socketConnection.getSocket().emit("store-accept-shipper", data1);
                 new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
-
             } else {
 
             }
         }
     }
+
+    private void pushAcceptedNotifications(Shipper shipper){
+
+        JSONObject acceptedNotification = new JSONObject();
+        try{
+            acceptedNotification.put(Constant.KEY_SHIPPER_NAME, shipper.getName());
+            acceptedNotification.put(Constant.KEY_SHIPPER_ID, shipper.getId());
+            acceptedNotification.put(Constant.KEY_STORE_NAME, store.getName());
+            acceptedNotification.put(Constant.KEY_STORE_ID, store.getId());
+            acceptedNotification.put(Constant.KEY_REQUEST_ID, request.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_STORE_ACCEPT_SHIPPER_PORT, acceptedNotification);
+    }
+
+    private void pushCompletedNotification(Shipper shipper){
+        JSONObject completedNotification = new JSONObject();
+        try{
+            completedNotification.put(Constant.KEY_SHIPPER_NAME, shipper.getName());
+            completedNotification.put(Constant.KEY_SHIPPER_ID, shipper.getId());
+            completedNotification.put(Constant.KEY_STORE_NAME, store.getName());
+            completedNotification.put(Constant.KEY_STORE_ID, store.getId());
+            completedNotification.put(Constant.KEY_REQUEST_ID, request.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_STORE_CONFIRM_COMPLETED_REQUEST_PORT, completedNotification);
+    }
+    private void pushStoreCanceledRequestNotification(Request mRequest){
+        JSONObject canceledRequestNotification = new JSONObject();
+        try{
+            canceledRequestNotification.put(Constant.KEY_REQUEST_ID, mRequest.getId());
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
+        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_STORE_CANCEL_ACCEPTED_REQUEST_PORT, canceledRequestNotification);
+    }
+
     private class LoadDetailRequestAsyncTask extends ServiceAsyncTask {
 
         public LoadDetailRequestAsyncTask(Activity activity) {
@@ -428,17 +457,6 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         protected void processData(boolean error, String message, String data) {
             if (!error) {
                 loadData();
-                JSONObject data1 = new JSONObject();
-                try{
-                    data1.put("shipper_name", "Nguyen Van Sang");
-                    data1.put("shipper_id", "100");
-                    data1.put("store_name", "Smart Watch Store");
-                    data1.put("store_id", 111);
-                    data1.put("request_id", 101010);
-                }catch(JSONException e){
-
-                }
-                ProjectManagement.socketConnection.getSocket().emit("store-cancel-accepted-request", data1);
             } else {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
             }

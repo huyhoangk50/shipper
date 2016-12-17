@@ -1,5 +1,6 @@
 package com.app.temproject.shipper.Store;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +12,24 @@ import android.view.ViewGroup;
 
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.app.temproject.shipper.Libs.ServiceAsyncTask;
 import com.app.temproject.shipper.Object.Notification;
+import com.app.temproject.shipper.ProjectVariable.Constant;
+import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 public class STNotificationFragment extends Fragment {
-    private List<Notification> stNotificatiolist = new ArrayList<>();
+    private List<Notification> notifications;
     private RecyclerView recyclerView;
     private STNotificationAdapter stNotificationAdapter;
     private Notification notification;
@@ -43,31 +51,49 @@ public class STNotificationFragment extends Fragment {
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_STNotification);
-
-        stNotificationAdapter = new STNotificationAdapter(stNotificatiolist);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(stNotificationAdapter);
-
-        LoadSPNotificationData();
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.rcvNotification);
+        loadNotifications();
         return rootView;
 
 
     }
 
+    private class LoadNotificationAsyncTask extends ServiceAsyncTask {
 
-    private void LoadSPNotificationData() {
-        notification = new Notification("Nguyễn Huy Hoàng ",2,2,"14-11-2016");
-        stNotificatiolist.add(notification);
+        public LoadNotificationAsyncTask(Activity activity) {
+            super(activity);
+        }
 
-        notification = new Notification("Nguyễn Anh Tu ",2,3,"14-11-2016");
-        stNotificatiolist.add(notification);
+        @Override
+        protected void processData(boolean error, String message, String data) {
+            if(!error){
+                Type token = new TypeToken<ArrayList<Notification>>() {
+                }.getType();
+                notifications = (new Gson().fromJson(data, token));
+                if (notifications != null) {
+                    updateUI();
+                }
+            } else {
+                Toast.makeText(getActivity(), getActivity().getString(R.string.please_try_again), Toast.LENGTH_LONG).show();
+            }
+        }
 
-        notification = new Notification("Nguyễn Văn Sang ",2,3,"14-11-2016");
-        stNotificatiolist.add(notification);
+        private void updateUI() {
+            stNotificationAdapter = new STNotificationAdapter(notifications);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(stNotificationAdapter);
+        }
+    }
 
-        //SPNotificationAdapter.notifyDataSetChanged();
+
+    private void loadNotifications() {
+        new LoadNotificationAsyncTask(getActivity())
+                .execute(ProjectManagement.urlLoadNotifications
+                                + ProjectManagement.store.getId()
+                                + "/" + Constant.STORE_ROLE,
+                        Constant.GET_METHOD);
+
     }
 
 }

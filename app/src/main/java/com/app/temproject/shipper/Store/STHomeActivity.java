@@ -33,7 +33,7 @@ import com.app.temproject.shipper.Shipper.SPHomeActivity;
 import org.json.JSONObject;
 
 public class STHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnNotifyListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private FloatingActionButton fabAddRequest;
     private View header;
@@ -141,15 +141,6 @@ public class STHomeActivity extends AppCompatActivity
                 }
             }, 2000);
         }
-    }
-    @Override
-    public void onNotify(final JSONObject data) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(STHomeActivity.this, data.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override

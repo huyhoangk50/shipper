@@ -44,7 +44,7 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
     }
 
     @Override
-    public void onBindViewHolder(BaseShipperAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(BaseShipperAdapter.ViewHolder holder, final int position) {
         final Shipper shipper = this.shippers.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,14 +68,14 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
         holder.llAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onAcceptShipperListener.onAcceptShipper(shipper.getId());
+                onAcceptShipperListener.onAcceptShipper(shipper);
             }
         });
 
         holder.llComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onCompleteRequestListener.onCompleteRequest();
+                onCompleteRequestListener.onCompleteRequest(shipper);
             }
         });
 

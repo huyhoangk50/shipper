@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
 import com.app.temproject.shipper.Both.HomeActivity;
+import com.app.temproject.shipper.Object.Notification;
 import com.app.temproject.shipper.Object.OnNotifyListener;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
@@ -34,7 +35,7 @@ import com.bumptech.glide.Glide;
 import org.json.JSONObject;
 
 public class SPHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnNotifyListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
     private boolean doubleBackToExitPressOnce = false;
 
     private View header;
@@ -48,7 +49,6 @@ public class SPHomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sp_activity_home);
         initView();
-        ProjectManagement.socketConnection.setOnNotifyListener(this);
 
     }
 
@@ -232,15 +232,6 @@ public class SPHomeActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onNotify(final JSONObject data) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(SPHomeActivity.this, data.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
 //    @Override
 //    protected void onDestroy() {

@@ -39,7 +39,7 @@ public class Request {
     private int status;
     @SerializedName(Constant.KEY_CREATED_TIME)
     private String createTime;
-    @SerializedName(Constant.KEY_STORE_NAME)
+    @SerializedName(Constant.KEY_NAME)
     private String storeName;
     @SerializedName(Constant.KEY_STORE_POSITION)
     private String storePosition;
