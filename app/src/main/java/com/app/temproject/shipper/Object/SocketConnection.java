@@ -51,43 +51,11 @@ public class SocketConnection {
         }
     }
 
-    private Emitter.Listener onShipperApplyRequest = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+    private class NotificationListener implements Emitter.Listener {
 
-    private Emitter.Listener onShipperRequireConfirmRequestCompeleted = new Emitter.Listener() {
         @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+        public void call(Object... args) {
 
-    private Emitter.Listener onShipperCancelAcceptedResponse = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
             String data = args[0].toString();
             if (onNotifyListener != null) {
                 try {
@@ -100,75 +68,141 @@ public class SocketConnection {
                 }
             }
         }
-    };
+    }
 
-    private Emitter.Listener onStoreAcceptShipper = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+    private Emitter.Listener onShipperApplyRequest = new NotificationListener();
 
-    private Emitter.Listener onStoreAcceptAnotherShipper = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+    private Emitter.Listener onShipperRequireConfirmRequestCompeleted = new NotificationListener();
 
-    private Emitter.Listener onStoreConfirmRequestCompeleted = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+    private Emitter.Listener onShipperCancelAcceptedResponse = new NotificationListener();
 
-    private Emitter.Listener onStoreCancelAcceptedRequest = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            String data = args[0].toString();
-            if (onNotifyListener != null) {
-                try {
-                    Notification notification = new Gson().fromJson(data, Notification.class);
-                    notification.setMessage();
-                    notification.setTitle();
-                    onNotifyListener.onNotify(notification);
-                } catch (Exception e) {
-                    Log.e("Socket connection", e.toString());
-                }
-            }
-        }
-    };
+    private Emitter.Listener onStoreAcceptShipper = new NotificationListener();
+
+    private Emitter.Listener onStoreAcceptAnotherShipper = new NotificationListener();
+
+    private Emitter.Listener onStoreConfirmRequestCompeleted = new NotificationListener();
+
+    private Emitter.Listener onStoreCancelAcceptedRequest = new NotificationListener();
+
+
+//    private Emitter.Listener onShipperApplyRequest = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onShipperRequireConfirmRequestCompeleted = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onShipperCancelAcceptedResponse = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onStoreAcceptShipper = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onStoreAcceptAnotherShipper = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onStoreConfirmRequestCompeleted = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
+//
+//    private Emitter.Listener onStoreCancelAcceptedRequest = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {
+//            String data = args[0].toString();
+//            if (onNotifyListener != null) {
+//                try {
+//                    Notification notification = new Gson().fromJson(data, Notification.class);
+//                    notification.setMessage();
+//                    notification.setTitle();
+//                    onNotifyListener.onNotify(notification);
+//                } catch (Exception e) {
+//                    Log.e("Socket connection", e.toString());
+//                }
+//            }
+//        }
+//    };
 
     public void disconnect() {
         socket.disconnect();

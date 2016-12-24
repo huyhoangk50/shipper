@@ -55,7 +55,7 @@ public class SPRequestAdapter extends RecyclerView.Adapter<SPRequestAdapter.View
         holder.tvStoreName.setText(Constant.STORE + storeName);
         holder.tvDestination.setText(Constant.FROM + storePosition + Constant.TO + destination);
         holder.tvProductName.setText(productName);
-        holder.tvPrice.setText(Constant.PRICE + price + " " + Constant.THOUSAND_DONG);
+        holder.tvPrice.setText(Constant.PRICE + price + " " + Constant.DONG);
 
     }
 

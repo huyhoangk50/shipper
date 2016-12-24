@@ -90,7 +90,7 @@ public class Constant {
     public static final String STORE = "Cửa hàng ";
     public static final String SHIPPER = "shipper";
     public static final String PRICE = "Giá ship ";
-    public static final String THOUSAND_DONG = "Nghìn đồng";
+    public static final String DONG = "đồng";
 
     public static final int NEW_REQUEST = 0;
     public static final int WAITING_REQUEST = 1;

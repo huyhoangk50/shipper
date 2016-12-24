@@ -141,18 +141,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
     <string name="your_store_location">Vị trí cửa hàng của bạn</string>
-    <string name="product_information">Thông tin sản phẩm</string>
-    <string name="product_name">Tên sản phẩm: </string>
-    <string name="deposit">Tiền đặt cọc:</string>
-    <string name="price">Tiền ship:</string>
+    <string name="product_information">Thông tin đơn hàng</string>
+    <string name="product_name">Tên sản phẩm : </string>
+    <string name="deposit">Tiền đặt cọc : </string>
+    <string name="price">Tiền ship : </string>
     <string name="detail_info">Thông tin chi tiết</string>
-    <string name="place_and_time">Thời gian và địa điểm:</string>
-    <string name="start_time">Thời gian nhận hàng:</string>
-    <string name="end_time">Thời gian giao hàng:</string>
-    <string name="destination">Vị trí giao hàng:</string>
+    <string name="place_and_time">Thời gian và địa điểm </string>
+    <string name="start_time">Thời gian nhận hàng : </string>
+    <string name="end_time">Thời gian giao hàng : </string>
+    <string name="destination">Vị trí giao hàng : </string>
+    <string name="start_point">Vị trí nhận hàng : </string>
     <string name="customer_info">Thông tin khách hàng</string>
-    <string name="customer_name">Tên khách hàng:</string>
-    <string name="customer_phone">Số điện thoại:</string>
+    <string name="customer_name">Anh/Chị : </string>
+    <string name="customer_phone">Số điện thoại : </string>
     <string name="incorrect_information">Tài khoản hoặc mật khẩu không đúng</string>
     <string name="active_code_description">Sau khi đăng ký, bạn phải kiểm tra email để nhận mã xác thực để xác thực tài khoản của bạn.</string>
     <string name="active_account">Xác nhận tài khoản</string>
@@ -181,7 +182,7 @@
     <string name="err_msg_name">Enter your full name</string>
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
-    <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công</string>
+    <string name="create_request_successfully">Đơn hàng của bạn đã được tạo thành công!!!</string>
     <string name="logout">Đăng xuất</string>
     <string name="really_want_to_logout">Bạn có thực sự muốn thoát khỏi ứng dụng này?</string>
     <string name="upload_image">Tải hình đại diện</string>
@@ -208,5 +209,6 @@
     <string name="accept_shipper_successfully">Bạn đã chấp nhận shipper này</string>
     <string name="complete">Hoàn thành</string>
     <string name="complete_request">Hoàn thành đơn hàng.</string>
+    <string name="store_and_customer_position">Địa điểm nhận hàng và giao hàng</string>
 
 </resources>
