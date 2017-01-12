@@ -19,7 +19,7 @@ public class SocketConnection {
     public static final String KEY_SHIPPER_APPLY_REQUEST_PORT = "shipper-apply-request";
     public static final String KEY_SHIPPER_REQUIRE_CONFIRM_REQUEST_PORT = "shipper-require-confirm-request-compeleted";
     public static final String KEY_SHIPPER_CANCEL_ACCEPTED_RESPONSE_PORT = "shipper-cancel-accepted-response";
-    public static final String KEY_STORE_CONFIRM_COMPLETED_REQUEST_PORT = "store-confirm-request-conmpeleted";
+    public static final String KEY_STORE_CONFIRM_COMPLETED_REQUEST_PORT = "store-confirm-request-compeleted";
     public static final String KEY_STORE_ACCEPT_SHIPPER_PORT = "store-accept-shipper";
     public static final String KEY_STORE_ACCEPT_ANOTHER_SHIPPER_PORT = "store-accept-another-shipper";
     public static final String KEY_STORE_CANCEL_ACCEPTED_REQUEST_PORT = "store-cancel-accepted-request";

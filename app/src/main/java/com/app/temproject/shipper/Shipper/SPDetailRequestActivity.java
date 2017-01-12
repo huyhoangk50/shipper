@@ -224,9 +224,9 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
                         jsonObject.addProperty(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
                         jsonObject.addProperty(Constant.KEY_REQUEST_ID, requestId);
                         new CancelRequestAsyncTask(SPDetailRequestActivity.this).execute(ProjectManagement.urlSpCancelRequest, Constant.POST_METHOD, jsonObject.toString());
-                        if(request.getStatus() == Constant.PROCESSING_REQUEST){
-                            pushShipperCancelAcceptedResponseNotification();
-                        }
+//                        if(request.getStatus() == Constant.PROCESSING_REQUEST){
+                        pushShipperCancelAcceptedResponseNotification();
+//                        }
                     }
 
                 });
@@ -471,47 +471,50 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         }
     }
 
-    private void pushShipperCancelAcceptedResponseNotification(){
+    private void pushShipperCancelAcceptedResponseNotification() {
         JSONObject cancelResponseNotification = new JSONObject();
-        try{
+        try {
             cancelResponseNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
             cancelResponseNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
             cancelResponseNotification.put(Constant.KEY_STORE_NAME, store.getName());
             cancelResponseNotification.put(Constant.KEY_STORE_ID, store.getId());
             cancelResponseNotification.put(Constant.KEY_REQUEST_ID, request.getId());
-        }catch(JSONException e){
+
+            ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_CANCEL_ACCEPTED_RESPONSE_PORT, cancelResponseNotification);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_CANCEL_ACCEPTED_RESPONSE_PORT, cancelResponseNotification);
     }
 
-    private void pushShipperApplyRequestNotification(){
+    private void pushShipperApplyRequestNotification() {
         JSONObject applyingNotification = new JSONObject();
-        try{
+        try {
             applyingNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
             applyingNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
             applyingNotification.put(Constant.KEY_STORE_NAME, store.getName());
             applyingNotification.put(Constant.KEY_STORE_ID, store.getId());
             applyingNotification.put(Constant.KEY_REQUEST_ID, request.getId());
-        }catch(JSONException e){
+
+            ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_APPLY_REQUEST_PORT, applyingNotification);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_APPLY_REQUEST_PORT, applyingNotification);
     }
 
-    private void pushShipperRequireToCompleteRequestNotification(){
+    private void pushShipperRequireToCompleteRequestNotification() {
         JSONObject requirementNotification = new JSONObject();
-        try{
+        try {
             requirementNotification.put(Constant.KEY_SHIPPER_NAME, ProjectManagement.shipper.getName());
             requirementNotification.put(Constant.KEY_SHIPPER_ID, ProjectManagement.shipper.getId());
             requirementNotification.put(Constant.KEY_STORE_NAME, store.getName());
             requirementNotification.put(Constant.KEY_STORE_ID, store.getId());
             requirementNotification.put(Constant.KEY_REQUEST_ID, request.getId());
-        }catch(JSONException e){
+            ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_REQUIRE_CONFIRM_REQUEST_PORT, requirementNotification);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        ProjectManagement.socketConnection.getSocket().emit(SocketConnection.KEY_SHIPPER_REQUIRE_CONFIRM_REQUEST_PORT, requirementNotification);
     }
+
     private class CancelRequestAsyncTask extends ServiceAsyncTask {
 
         public CancelRequestAsyncTask(Activity activity) {
