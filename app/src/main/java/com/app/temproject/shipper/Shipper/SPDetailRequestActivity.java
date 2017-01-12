@@ -57,6 +57,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private TextView tvPrice;
     private TextView tvDeposit;
     private TextView tvStartTime;
+    private TextView tvStorePlace;
     private TextView tvEndTime;
     private TextView tvCustomerName;
     private TextView tvDestination;
@@ -93,6 +94,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvDeposit = (TextView) findViewById(R.id.tvDeposit);
         tvStartTime = (TextView) findViewById(R.id.tvStartTime);
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
+        tvStorePlace = (TextView) findViewById(R.id.tvStorePlace);
         tvCustomerName = (TextView) findViewById(R.id.tvCustomerName);
         tvDestination = (TextView) findViewById(R.id.tvCustomerPlace);
         tvCustomerPhone = (TextView) findViewById(R.id.tvCustomerPhone);
@@ -268,6 +270,7 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvEndTime.setText(request.getEndTime());
         tvCustomerName.setText(request.getCustomerName());
         tvDestination.setText(request.getDestination());
+        tvStorePlace.setText(location.getStreet() + " - " + location.getDistrict() + " - " + location.getCity());
         tvCustomerPhone.setText(request.getPhoneNumber());
 
         if (mMap != null) {
@@ -411,9 +414,9 @@ public class SPDetailRequestActivity extends AppCompatActivity implements OnMapR
     private void updateMap() {
 
         cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng((request.getLatitude() + store.getLatitude()) / 2,
-                        (request.getLongitude() + store.getLongitude()) / 2))
-                .zoom(15).build();
+                .target(new LatLng((request.getLatitude() + location.getLatitude()) / 2,
+                        (request.getLongitude() + location.getLongitude()) / 2))
+                .zoom(12).build();
         mMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
 

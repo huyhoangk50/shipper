@@ -47,7 +47,11 @@ public class STRequestPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "";
+
+        if(position==0) return context.getString(R.string.pending);
+        if(position==1) return context.getString(R.string.on_going);
+        else return context.getString(R.string.completed);
+//        return "";
     }
 
     @Override
