@@ -64,14 +64,13 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     private TextView tvEndTime;
     private TextView tvCustomerName;
     private TextView tvDestination;
+    private TextView tvStorePlace;
     private TextView tvCustomerPhone;
     private ScrollView svDetailRequest;
     private Button btnCancel;
     private TextView tvDescription;
     private RecyclerView rcvShipper;
     private BaseShipperAdapter baseShipperAdapter;
-
-
 
     private Location location;
     private Store store;
@@ -102,6 +101,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvEndTime = (TextView) findViewById(R.id.tvEndTime);
         tvCustomerName = (TextView) findViewById(R.id.tvCustomerName);
         tvDestination = (TextView) findViewById(R.id.tvCustomerPlace);
+        tvStorePlace = (TextView) findViewById(R.id.tvStorePlace);
         tvCustomerPhone = (TextView) findViewById(R.id.tvCustomerPhone);
         svDetailRequest = (ScrollView) findViewById(R.id.svDetailRequest);
         btnCancel = (Button) findViewById(R.id.btnCancel);
@@ -113,7 +113,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
 //        setSupportActionBar(toolbar);
         if (mMap == null) {
-            workaroundMapFragment = ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapSpDetailRequest));
+            workaroundMapFragment = ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapStDetailRequest));
             workaroundMapFragment.getMapAsync(this);
         }
 
@@ -192,8 +192,8 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     private void updateMap() {
 
         cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng((request.getLatitude() + store.getLatitude()) / 2,
-                        (request.getLongitude() + store.getLongitude()) / 2))
+                .target(new LatLng((request.getLatitude() + location.getLatitude()) / 2,
+                        (request.getLongitude() + location.getLongitude()) / 2))
                 .zoom(15).build();
         mMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
@@ -214,6 +214,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvEndTime.setText(request.getEndTime());
         tvCustomerName.setText(request.getCustomerName());
         tvDestination.setText(request.getDestination());
+        tvStorePlace.setText(location.getStreet() + " - " + location.getDistrict() + " - " + location.getCity());
         tvCustomerPhone.setText(request.getPhoneNumber());
 
         if(shippers!=null){
@@ -343,7 +344,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
                 if(ProjectManagement.socketConnection!=null){
 
                 }
-                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId , Constant.GET_METHOD);
 
             }
         }
@@ -359,7 +360,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
             if (!error) {
                 Toast.makeText(STDetailRequestActivity.this, getString(R.string.accept_shipper_successfully), Toast.LENGTH_LONG).show();
                 requestStatus = Constant.PROCESSING_REQUEST;
-                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+                new LoadDetailRequestAsyncTask(STDetailRequestActivity.this).execute(ProjectManagement.urlStLoadDetailRequest + requestId , Constant.GET_METHOD);
             } else {
 
             }
@@ -464,9 +465,9 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
     }
     private void loadData() {
         if(requestStatus == Constant.WAITING_REQUEST || requestStatus == Constant.NEW_REQUEST){
-            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 0, Constant.GET_METHOD);
+            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId , Constant.GET_METHOD);
         } else {
-            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId + "/" + 2, Constant.GET_METHOD);
+            new LoadDetailRequestAsyncTask(this).execute(ProjectManagement.urlStLoadDetailRequest + requestId , Constant.GET_METHOD);
         }
     }
 }

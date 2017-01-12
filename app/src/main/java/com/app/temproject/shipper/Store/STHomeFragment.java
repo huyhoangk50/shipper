@@ -47,9 +47,9 @@ public class STHomeFragment extends Fragment implements OnNotifyListener{
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(stRequestPagerAdapter);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.waiting);
-        tabLayout.getTabAt(1).setIcon(R.drawable.processing);
-        tabLayout.getTabAt(2).setIcon(R.drawable.complete);
+//        tabLayout.getTabAt(0).setIcon(R.drawable.waiting);
+//        tabLayout.getTabAt(1).setIcon(R.drawable.processing);
+//        tabLayout.getTabAt(2).setIcon(R.drawable.complete);
         return rootView;
     }
 

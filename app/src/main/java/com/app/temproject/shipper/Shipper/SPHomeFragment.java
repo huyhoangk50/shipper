@@ -43,10 +43,10 @@ public class SPHomeFragment extends Fragment implements OnNotifyListener {
 //        for(int i = 0; i < viewPager)
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(spRequestPagerAdapter);
-        tabLayout.getTabAt(0).setIcon(R.drawable.new_icon);
-        tabLayout.getTabAt(1).setIcon(R.drawable.waiting);
-        tabLayout.getTabAt(2).setIcon(R.drawable.processing);
-        tabLayout.getTabAt(3).setIcon(R.drawable.complete);
+//        tabLayout.getTabAt(0).setIcon(R.drawable.new_icon);
+//        tabLayout.getTabAt(1).setIcon(R.drawable.waiting);
+//        tabLayout.getTabAt(2).setIcon(R.drawable.processing);
+//        tabLayout.getTabAt(3).setIcon(R.drawable.complete);
         ProjectManagement.socketConnection.setOnNotifyListener(this);
         return rootView;
     }

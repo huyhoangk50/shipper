@@ -19,63 +19,61 @@ import java.util.List;
  */
 
 public class STRequestAdapter extends RecyclerView.Adapter<STRequestAdapter.ViewHolder> {
-private Context context;
-private List<Request> requests;
+    private Context context;
+    private List<Request> requests;
 
-public STRequestAdapter(Context context, List<Request> requests) {
+    public STRequestAdapter(Context context, List<Request> requests) {
         this.context = context;
         this.requests = requests;
-        }
+    }
 
-@Override
-public STRequestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public STRequestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.st_request_item, parent, false);
         return new ViewHolder(v);
-        }
+    }
 
-@Override
-public void onBindViewHolder(STRequestAdapter.ViewHolder holder, int position) {
-final Request request = requests.get(position);
+    @Override
+    public void onBindViewHolder(STRequestAdapter.ViewHolder holder, int position) {
+        final Request request = requests.get(position);
         String storeName = request.getStoreName();
         String storePosition = request.getStorePosition();
-        String destination  = request.getDestination();
+        String destination = request.getDestination();
         String productName = request.getProductName();
         double deposit = request.getDeposit();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-@Override
-public void onClick(View view) {
-        Intent intent = new Intent(context, STDetailRequestActivity.class);
-        intent.putExtra(Constant.KEY_REQUEST_ID, request.getId());
-        intent.putExtra(Constant.KEY_REQUEST_STATUS, request.getStatus());
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, STDetailRequestActivity.class);
+                intent.putExtra(Constant.KEY_REQUEST_ID, request.getId());
+                intent.putExtra(Constant.KEY_REQUEST_STATUS, request.getStatus());
 //                intent.putExtra(Constant.KEY_USER_ID,  ProjectManagement.shipper.getId());
-        context.startActivity(intent);
+                context.startActivity(intent);
 
-        }
+            }
         });
 
         holder.tvCustomerName.setText(Constant.CUSTOMER + request.getCustomerName());
         holder.tvProductName.setText(productName);
-        holder.tvDeposit.setText(deposit + "");
+        holder.tvDeposit.setText(Constant.DEPOSIT + (int) deposit + " " + Constant.DONG);
 
-        }
-
-@Override
-public int getItemCount() {
-        return requests.size();
-        }
-
-public class ViewHolder extends RecyclerView.ViewHolder {
-
-
-    private TextView tvCustomerName;
-    private TextView tvProductName;
-    private TextView tvDeposit;
-
-    public ViewHolder(View itemView) {
-        super(itemView);
-        tvCustomerName = (TextView) itemView.findViewById(R.id.tvCustomerName);
-        tvProductName = (TextView) itemView.findViewById(R.id.tvProductName);
-        tvDeposit = (TextView) itemView.findViewById(R.id.tvDeposit);
     }
-}
+
+    @Override
+    public int getItemCount() {
+        return requests.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tvCustomerName;
+        private TextView tvProductName;
+        private TextView tvDeposit;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvCustomerName = (TextView) itemView.findViewById(R.id.tvCustomerName);
+            tvProductName = (TextView) itemView.findViewById(R.id.tvProductName);
+            tvDeposit = (TextView) itemView.findViewById(R.id.tvDeposit);
+        }
+    }
 }

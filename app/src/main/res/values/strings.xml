@@ -46,7 +46,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
-    <string name="store_name">Tên cửa hàng</string>
+    <string name="store_name">Tên cửa hàng: </string>
     <string name="store_type">Loại cửa hàng</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="number_and_street">Số nhà và tên đường phố</string>
@@ -150,7 +150,7 @@
     <string name="start_time">Thời gian nhận hàng : </string>
     <string name="end_time">Thời gian giao hàng : </string>
     <string name="destination">Vị trí giao hàng : </string>
-    <string name="start_point">Vị trí nhận hàng : </string>
+    <string name="store_place">Vị trí nhận hàng : </string>
     <string name="customer_info">Thông tin khách hàng</string>
     <string name="customer_name">Anh/Chị : </string>
     <string name="customer_phone">Số điện thoại : </string>
@@ -210,5 +210,6 @@
     <string name="complete">Hoàn thành</string>
     <string name="complete_request">Hoàn thành đơn hàng.</string>
     <string name="store_and_customer_position">Địa điểm nhận hàng và giao hàng</string>
+    <string name="vnd">đồng</string>
 
 </resources>
