@@ -161,9 +161,9 @@
     <string name="submit">Gửi yêu cầu</string>
     <string name="incorrect_active_code">Mã xác nhận của bạn không đúng.</string>
     <string name="change_password">Thay đổi mật khẩu</string>
-    <string name="change_password_description">Nhập email của bạn để thay đổi mật khẩu</string>
+    <string name="change_password_description">Vui lòng nhập email để tìm kiếm tài khoản.</string>
     <string name="put_your_email_hear">Nhập email của bạn ở đây</string>
-    <string name="reset_password_notification">Chúng tôi đã gửi mã xác nhận thay đổi mật khẩu về email của bạn, chọn tiếp tục để điền mã xác nhận để thực hiện việc thay đổi mật khẩu</string>
+    <string name="reset_password_notification">Chúng tôi đã gửi mã xác nhận về email của bạn, chọn tiếp tục để thực hiện việc thay đổi mật khẩu</string>
     <string name="continues">Tiếp tục</string>
     <string name="reset">Thay đổi mật khẩu</string>
     <string name="reset_code">Mã xác nhận</string>
@@ -173,6 +173,7 @@
     <string name="waiting_request_notification">Đang chờ xác nhận từ cửa hàng</string>
     <string name="completed_request_notification">Bạn đã hoàn thành đơn hàng này</string>
     <string name="accept">Đồng ý</string>
+    <string name="find_account">Tìm tài khoản</string>
 
 
     <string name="hint_name">Full Name</string>
@@ -217,5 +218,9 @@
     <string name="imageview_description_user_status">start</string>
     <string name="title_for_preview">Thông báo</string>
     <string name="date_for_preview">2017-01-28T01:35:00.000Z</string>
+    <string name="find_your_account">Tìm kiếm tài khoản của bạn</string>
+    <string name="type_reset_code">Nhập mã xác nhận ở đây</string>
+    <string name="reset_password">Thay đổi mật khẩu</string>
+    <string name="reset_password_successfully">Cập nhật mật khẩu thành công</string>
 
 </resources>
