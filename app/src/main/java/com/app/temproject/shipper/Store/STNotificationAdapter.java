@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.temproject.shipper.Libs.TimeProcessing;
 import com.app.temproject.shipper.Object.Notification;
 import com.app.temproject.shipper.R;
 
@@ -56,7 +57,7 @@ public class STNotificationAdapter extends RecyclerView.Adapter<STNotificationAd
         notification.setTitle();
         holder.tvTitle.setText(notification.getTitle());
         holder.tvContent.setText(notification.getMessage());
-        holder.tvTime.setText(notification.getCreatedTime());
+        holder.tvTime.setText(TimeProcessing.convertTime(notification.getCreatedTime()));
     }
 
     @Override

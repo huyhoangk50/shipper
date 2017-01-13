@@ -1,7 +1,5 @@
 package com.app.temproject.shipper.ProjectVariable;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Admin on 09/11/2016.
  */
