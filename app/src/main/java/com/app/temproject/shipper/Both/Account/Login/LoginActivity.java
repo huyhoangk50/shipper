@@ -63,7 +63,7 @@ public class LoginActivity extends Activity {
         initView();
         setEvent();
 
-        //test
+        //st_notification_item
 //        NotificationUtils notificationUtils = new NotificationUtils(this);
 //        notificationUtils.showNotificationMessage("Huy hoang", "huy hoang dep trai", "5", new Intent(getApplicationContext(), LoginActivity.class));
     }
@@ -235,7 +235,7 @@ public class LoginActivity extends Activity {
 //store {"err":false,"message":"Email and Password are valid! Account Not Active!","data":{"id":5,"email":"1@gmail.com","name":"jaybo","phone_number":"0123456789","store_type":"Clothes","location_id":5,"address":"Tan Mai, Hoang Mai, Ha Noi","rating":0,"vote":0,"created_time":"2016-11-26T09:27:39.004Z","updated_time":null,"avatar":"userdefault.jpg","active_code":"6d403ed0","status":0,"reset_code":"a4833fd9"}}
 
 //                Store store = new_icon Store();
-//                String test = new_icon Gson().toJson(store);
+//                String st_notification_item = new_icon Gson().toJson(store);
                 //fake code
 //                if (role == Constant.STORE_ROLE) {
 //                    Store store = new_icon Store(1, "huyhaongk4", "h32o", "nguyen huy hoang", "033884", "Tap hóa", "số 3 tân mai", "hoàng mai", "hà nội", 12.134, 124.2344, "Việt nam");

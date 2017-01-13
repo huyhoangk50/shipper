@@ -211,5 +211,11 @@
     <string name="complete_request">Hoàn thành đơn hàng.</string>
     <string name="store_and_customer_position">Địa điểm nhận hàng và giao hàng</string>
     <string name="vnd">đồng</string>
+    <string name="list_order">Danh sách đơn hàng</string>
+    <string name="profile_picture_content_description">Shipper</string>
+    <string name="plain_text_for_preview">Shipper huy hoàng đã nhận đơn hàng của bạn</string>
+    <string name="imageview_description_user_status">start</string>
+    <string name="title_for_preview">Thông báo</string>
+    <string name="date_for_preview">2017-01-28T01:35:00.000Z</string>
 
 </resources>

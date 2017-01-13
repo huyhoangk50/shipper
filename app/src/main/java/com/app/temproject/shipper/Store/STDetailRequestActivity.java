@@ -86,7 +86,7 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         setContentView(R.layout.st_activity_detail_request);
         Intent intent = getIntent();
         requestId = intent.getIntExtra(Constant.KEY_REQUEST_ID, 0);
-        requestStatus = intent.getIntExtra(Constant.KEY_REQUEST_STATUS, 0);
+//        requestStatus = intent.getIntExtra(Constant.KEY_REQUEST_STATUS, 0);
         initView();
         setEvent();
         loadData();

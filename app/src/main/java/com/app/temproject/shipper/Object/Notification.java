@@ -28,8 +28,8 @@ public class Notification {
     private static final String SHIPPER_APPLY_REQUEST_NOTIFICATION_TITLE = "Shipper mới";
     private static final String SHIPPER_REQUIRE_COMPLETE_REQUEST_NOTIFICATION_TITLE = "Yêu cầu xác nhận";
     private static final String SHIPPER_CANCEL_ACCEPTED_RESPONSE_NOTIFICATION_TITLE = "Đơn hàng bị hủy";
-    private static final String STORE_ACCEPT_SHIPPER_NOTIFICATION_TITLE = "Đơn hàng mới";
-    private static final String STORE_CONFIRM_COMPLETED_REQUEST_NOTIFICATION_TITLE = "Hoàn tất đơn hàng";
+    private static final String STORE_ACCEPT_SHIPPER_NOTIFICATION_TITLE = "Nhiệm vụ mới";
+    private static final String STORE_CONFIRM_COMPLETED_REQUEST_NOTIFICATION_TITLE = "Đơn hàng đã hoàn thành";
     private static final String STORE_CANCEL_ACCEPTED_REQUEST_NOTIFICATION_TITLE = "Đơn hàng bị hủy";
     private static final String STORE_ACCEPT_ANOTHER_SHIPPER_NOTIFICATION_TITLE = "Đơn hàng bị hủy";
 
