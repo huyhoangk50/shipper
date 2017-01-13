@@ -62,6 +62,7 @@ public class SPNotificationFragment extends Fragment {
     }
 
 
+
     private void loadNotifications() {
         new LoadNotificationAsyncTask(getActivity())
                 .execute(ProjectManagement.urlLoadNotifications
