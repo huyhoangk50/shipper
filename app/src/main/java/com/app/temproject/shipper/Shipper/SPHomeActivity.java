@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
+import com.app.temproject.shipper.Libs.TimeProcessing;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
@@ -69,7 +70,7 @@ public class SPHomeActivity extends AppCompatActivity
         ivAvatar = (ImageView) header.findViewById(R.id.ivAvatar);
         tvName = (TextView) header.findViewById(R.id.tvName);
         tvBirthday = (TextView) header.findViewById(R.id.tvBirthday);
-        tvBirthday.setText(ProjectManagement.shipper.getBirthday());
+        tvBirthday.setText(TimeProcessing.convertTimeToDate(ProjectManagement.shipper.getBirthday()));
         tvName.setText(ProjectManagement.shipper.getName());
 //        try{
 //            Glide.with(this).load(ProjectManagement.shipper.getAvatar()).centerCrop().into(ivAvatar);

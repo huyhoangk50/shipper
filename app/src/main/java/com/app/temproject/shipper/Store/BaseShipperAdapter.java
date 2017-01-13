@@ -46,19 +46,19 @@ public class BaseShipperAdapter extends RecyclerView.Adapter<BaseShipperAdapter.
     @Override
     public void onBindViewHolder(BaseShipperAdapter.ViewHolder holder, final int position) {
         final Shipper shipper = this.shippers.get(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, SPDetailRequestActivity.class);
-                intent.putExtra(Constant.KEY_REQUEST_ID, shipper.getId());
-//                intent.putExtra(Constant.KEY_USER_ID,  ProjectManagement.shipper.getId());
-                activity.startActivity(intent);
-
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(activity, SPDetailRequestActivity.class);
+//                intent.putExtra(Constant.KEY_REQUEST_ID, shipper.getId());
+////                intent.putExtra(Constant.KEY_USER_ID,  ProjectManagement.shipper.getId());
+//                activity.startActivity(intent);
+//
+//            }
+//        });
 
         holder.tvName.setText(shipper.getName());
-        Glide.with(activity).load(ProjectManagement.baseUrl + shipper.getAvatar()).into(holder.ivAvatar);
+//        Glide.with(activity).load(ProjectManagement.baseUrl + shipper.getAvatar()).into(holder.ivAvatar);
         holder.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
