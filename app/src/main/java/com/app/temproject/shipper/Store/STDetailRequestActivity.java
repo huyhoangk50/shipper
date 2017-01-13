@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.temproject.shipper.Libs.Maps.WorkaroundMapFragment;
+import com.app.temproject.shipper.Libs.TimeProcessing;
 import com.app.temproject.shipper.Object.Location;
 import com.app.temproject.shipper.Object.Request;
 import com.app.temproject.shipper.Object.Shipper;
@@ -212,8 +213,8 @@ public class STDetailRequestActivity extends AppCompatActivity implements OnMapR
         tvStoreName.setText(store.getName());
         tvPrice.setText(request.getPrice() + "");
         tvDeposit.setText(request.getDeposit() + "");
-        tvStartTime.setText(request.getStartTime());
-        tvEndTime.setText(request.getEndTime());
+        tvStartTime.setText(TimeProcessing.convertTime(request.getStartTime()));
+        tvEndTime.setText(TimeProcessing.convertTime(request.getEndTime()));
         tvCustomerName.setText(request.getCustomerName());
         tvDestination.setText(request.getDestination());
         tvStorePlace.setText(location.getStreet() + " - " + location.getDistrict() + " - " + location.getCity());

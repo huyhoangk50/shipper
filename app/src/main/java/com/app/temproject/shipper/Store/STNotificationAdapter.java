@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.temproject.shipper.Libs.TimeProcessing;
 import com.app.temproject.shipper.Object.Notification;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.R;
@@ -93,6 +94,7 @@ public class STNotificationAdapter extends RecyclerView.Adapter<STNotificationAd
 //                activity.finish();
             }
         });
+        holder.tvTime.setText(TimeProcessing.convertTime(notification.getCreatedTime()));
     }
 
     @Override
