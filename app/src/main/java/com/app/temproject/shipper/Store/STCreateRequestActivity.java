@@ -23,7 +23,10 @@ import com.google.gson.JsonObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class STCreateRequestActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
@@ -47,7 +50,8 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
     private boolean isDestinationEmpty;
     private boolean isCustomerNameEmpty;
     private boolean isValidPhoneNumber;
-    private boolean isValidDateTime;
+    private boolean endTimeIsGreaterThanStartTime;
+    private boolean startTimeIsGreaterThanSystemTime;
 
     private EditText etProductName;
     private EditText etDeposit;
@@ -276,15 +280,18 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
     }
 
     private void checkInformationCorrectness() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String startDateTime = startDate + " " + startTime ;
         String endDateTime = endDate + " " + endTime ;
+        String sysDateTime = dateFormat.format(new Date());
 
         isProductNameEmpty = CheckingInformation.isEmpty(productName);
         isCustomerNameEmpty = CheckingInformation.isEmpty(customerName);
         isDepositBetterThanZero = CheckingInformation.isNumericGreaterThanZero(deposit);
         isPriceBetterThanZero = CheckingInformation.isNumericGreaterThanZero(price);
         isDestinationEmpty = CheckingInformation.isEmpty(destination);
-        isValidDateTime = (CheckingInformation.isValidDateTime(startDateTime, endDateTime));
+        endTimeIsGreaterThanStartTime = CheckingInformation.isValidDateTime(startDateTime,endDateTime);
+        startTimeIsGreaterThanSystemTime = CheckingInformation.isValidDateTime(sysDateTime,startDateTime);
         isValidPhoneNumber = CheckingInformation.isValidPhoneNumber(phoneNumber);
     }
 
@@ -294,7 +301,8 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
         if (!isDepositBetterThanZero) return false;
         if (!isPriceBetterThanZero) return false;
         if (isDestinationEmpty) return false;
-        if (!isValidDateTime) return false;
+        if (!endTimeIsGreaterThanStartTime) return false;
+        if (!startTimeIsGreaterThanSystemTime) return false;
         if (!isValidPhoneNumber) return false;
         return true;
     }
@@ -324,8 +332,10 @@ public class STCreateRequestActivity extends AppCompatActivity implements DatePi
             tvCheckPrice.setText("");
         }
 
-        if (!isValidDateTime) {
-            tvCheckDateTime.setText(Constant.INVALID_DATETIME);
+        if (!endTimeIsGreaterThanStartTime) {
+            tvCheckDateTime.setText(Constant.END_TIME_IS_NOT_GREATER_THAN_START_TIME);
+        }else if(!startTimeIsGreaterThanSystemTime){
+            tvCheckDateTime.setText(Constant.START_TIME_IS_NOT_GREATER_THAN_SYSTEM_TIME);
         }else{
             tvCheckDateTime.setText("");
         }

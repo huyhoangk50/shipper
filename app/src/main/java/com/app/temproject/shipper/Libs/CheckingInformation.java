@@ -3,7 +3,6 @@ package com.app.temproject.shipper.Libs;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -65,14 +64,11 @@ public class CheckingInformation {
 
         Date startDateTime;
         Date endDateTime;
-        Date systemDateTime;
         boolean isTrue = false;
         try {
             startDateTime = dateFormat.parse(startedDateTime);
             endDateTime = dateFormat.parse(endedDateTime);
-            String sysDateTime = dateFormat.format(new Date());
-            systemDateTime = dateFormat.parse(sysDateTime);
-            isTrue =  (startDateTime.compareTo(endDateTime) < 0) & (systemDateTime.compareTo(startDateTime) < 0);
+            isTrue =  (startDateTime.compareTo(endDateTime) < 0);
         } catch (Exception e) {
             System.out.println(e.toString());
         }

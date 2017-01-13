@@ -1,7 +1,5 @@
 package com.app.temproject.shipper.ProjectVariable;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by Admin on 09/11/2016.
  */
@@ -131,11 +129,12 @@ public class Constant {
     public static final String INVALID_CUSTOMER_NAME = "Điền tên khách hàng";
     public static final String INVALID_DEPOSIT = "Tiền đặt cọc là số lớn hơn 0";
     public static final String INVALID_PRICE = "Giá ship là số lớn hơn 0";
-    public static final String INVALID_DATETIME = "Thời gian nhập không đúng";
     public static final String NULL_INFORMATION = "Cần điền thông tin";
     public static final String DUPLICATE_EMAIL = "Email này đã tồn tại";
     public static final String NOT_EXISTED_EMAIL = "Email không tồn tại";
     public static final String ACTIVE_CODE_MESSAGE = "Mã số kích hoạt đã được gửi vào địa chỉ email";
+    public static final String END_TIME_IS_NOT_GREATER_THAN_START_TIME = "Thời gian giao hàng phải lớn hơn thời gian nhận hàng";
+    public static final String START_TIME_IS_NOT_GREATER_THAN_SYSTEM_TIME = "Thời gian nhận hàng phải lớn hơn thời gian hiện tại";
 
     public static final String OK = "Ok";
     public static int ST_ACCEPT_CODE = 0;

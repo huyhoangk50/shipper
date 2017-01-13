@@ -23,7 +23,7 @@
         android:name="android.support.multidex.MultiDexApplication"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Both.Account.Login.SplashActivity"
+            android:name=".Store.STCreateRequestActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -75,7 +75,7 @@
             android:name=".Store.STHomeActivity"
             android:label="@string/title_activity_sthome"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Store.STCreateRequestActivity" />
+        <!--<activity android:name=".Store.STCreateRequestActivity" />-->
         <activity android:name=".Store.STDetailRequestActivity" />
         <activity android:name=".Both.Account.Register.RegisterActivity"></activity>
     </application>
