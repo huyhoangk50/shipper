@@ -1,0 +1,411 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/ivBgCollapse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@color/blue"
+                app:layout_collapseMode="parallax" />
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvCreateRequest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/llProductInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="25dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/card_margin">
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/fab_plus_icon_stroke"
+                        android:text="@string/product_information"
+                        android:textColor="@color/Green"
+                        android:textSize="18sp" />
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+
+                    android:layout_marginLeft="@dimen/base_margin"
+                    android:layout_marginRight="@dimen/base_margin"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etProductName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Đồng hồ smart watch"
+                            android:hint="@string/product_name" />
+                        <TextView
+                            android:id="@+id/tvCheckProductName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etDeposit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="13000000"
+                            android:inputType="number"
+                            android:hint="@string/deposit" />
+                        <TextView
+                            android:id="@+id/tvCheckDeposit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="13000000"
+                            android:inputType="number"
+                            android:hint="@string/price" />
+                        <TextView
+                            android:id="@+id/tvCheckPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="25dp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/card_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/fab_plus_icon_stroke"
+                        android:text="@string/place_and_time"
+                        android:textColor="@color/Green"
+                        android:textSize="18sp" />
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+
+                    android:layout_marginLeft="@dimen/base_margin"
+                    android:layout_marginRight="@dimen/base_margin"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:text="@string/start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/tvStartDate"
+                                android:text="2017-12-22"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content" />
+                            <Button
+                                android:id="@+id/btnStartDate"
+                                android:background="@drawable/calendar"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvStartTime"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="09:30:00"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content" />
+                            <Button
+                                android:id="@+id/btnStartTime"
+                                android:background="@drawable/clock"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:text="@string/end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/tvEndDate"
+                                android:text="2017-12-23"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content" />
+                            <Button
+                                android:id="@+id/btnEndDate"
+                                android:background="@drawable/calendar"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvEndTime"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="08:35:00"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content" />
+                            <Button
+                                android:id="@+id/btnEndTime"
+                                android:background="@drawable/clock"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvCheckDateTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:text=""
+                        android:textColor="@color/Red"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etDestination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Số 90, Nguyễn Chí Thanh Hà Nội"
+                            android:hint="@string/destination" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <fragment
+                        android:id="@+id/mapsStCreateRequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:name="com.app.temproject.shipper.Libs.Maps.MapsFragment" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="25dp">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/card_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/fab_plus_icon_stroke"
+                        android:text="@string/customer_info"
+                        android:textColor="@color/Green"
+                        android:textSize="18sp" />
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+
+                    android:layout_marginLeft="@dimen/base_margin"
+                    android:layout_marginRight="@dimen/base_margin"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etCustomerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nguyễn Anh Tú"
+                            android:hint="@string/customer_name" />
+                        <TextView
+                            android:id="@+id/tvCheckCustomerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="0987651234"
+                            android:hint="@string/phone_number" />
+                        <TextView
+                            android:id="@+id/tvCheckPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text=""
+                            android:textColor="@color/Red"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCreateRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:src="@android:drawable/stat_sys_upload_done"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right|end" />
+
+
+</android.support.design.widget.CoordinatorLayout><!--chinh sua kich thuoc-->

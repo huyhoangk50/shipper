@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.app.temproject.shipper.Activity.HomeActivity">
+    tools:activity="com.app.temproject.shipper.Both.HomeActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -53,6 +53,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/base_margin"
             android:text="@string/login" />
+
     </LinearLayout>
 
 </LinearLayout>
