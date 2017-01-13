@@ -92,7 +92,7 @@ public class SPNotificationFragment extends Fragment {
     }
 
     private void setAdapter() {
-        spNotificationAdapter = new SPNotificationAdapter(notifications);
+        spNotificationAdapter = new SPNotificationAdapter(getActivity(), notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(spNotificationAdapter);

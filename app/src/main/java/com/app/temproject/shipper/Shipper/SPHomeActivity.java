@@ -19,20 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.temproject.shipper.Both.Account.Login.LoginActivity;
 import com.app.temproject.shipper.Libs.FileProcessing;
-import com.app.temproject.shipper.Both.HomeActivity;
-import com.app.temproject.shipper.Object.Notification;
-import com.app.temproject.shipper.Object.OnNotifyListener;
 import com.app.temproject.shipper.ProjectVariable.Constant;
 import com.app.temproject.shipper.ProjectVariable.ProjectManagement;
 import com.app.temproject.shipper.R;
 
 import com.bumptech.glide.Glide;
-
-import org.json.JSONObject;
 
 public class SPHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,7 +35,7 @@ public class SPHomeActivity extends AppCompatActivity
     private View header;
     private ImageView ivAvatar;
     private TextView tvName;
-    private TextView tvAddress;
+    private TextView tvBirthday;
 
     Toolbar toolbar;
     @Override
@@ -55,16 +49,13 @@ public class SPHomeActivity extends AppCompatActivity
     private void initView(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        toolbar.setTitle(getString(R.string.list_order));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(this);
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -77,14 +68,19 @@ public class SPHomeActivity extends AppCompatActivity
         header = LayoutInflater.from(this).inflate(R.layout.sp_nav_header_home, null);
         ivAvatar = (ImageView) header.findViewById(R.id.ivAvatar);
         tvName = (TextView) header.findViewById(R.id.tvName);
-        tvAddress = (TextView) header.findViewById(R.id.tvAddress);
-        try{
-            tvAddress.setText(ProjectManagement.shipper.getAddress());
-            tvName.setText(ProjectManagement.shipper.getName());
-            Glide.with(this).load(ProjectManagement.shipper.getAvatar()).centerCrop().into(ivAvatar);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        tvBirthday = (TextView) header.findViewById(R.id.tvBirthday);
+        tvBirthday.setText(ProjectManagement.shipper.getBirthday());
+        tvName.setText(ProjectManagement.shipper.getName());
+//        try{
+//            Glide.with(this).load(ProjectManagement.shipper.getAvatar()).centerCrop().into(ivAvatar);
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.addHeaderView(header);
     }
     @Override
     public void onBackPressed() {

@@ -79,7 +79,7 @@ public class STNotificationFragment extends Fragment {
         }
 
         private void updateUI() {
-            stNotificationAdapter = new STNotificationAdapter(notifications);
+            stNotificationAdapter = new STNotificationAdapter(getActivity(), notifications);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(stNotificationAdapter);
