@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.temproject.shipper.Shipper.SPHomeActivity;
 import com.app.temproject.shipper.Store.STHomeActivity;
@@ -41,6 +43,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private TextView tvCheckConfirmPassword;
     private TextView tvCheckResetCode;
     private Button btnReset;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.reset_password));
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         tvCheckPassword = (TextView) findViewById(R.id.tvCheckPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -66,6 +72,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     private void setEvent(){
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                finish();
+            }
+        });
+
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,35 +111,42 @@ public class ResetPasswordActivity extends AppCompatActivity {
             if(error){
                 tvCheckResetCode.setText(getString(R.string.incorrect_reset_code));
             } else {
-                if(role == Constant.SHIPPER_ROLE){
-                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
-                    shipper.setPassword(password);
-                    ProjectManagement.shipper = shipper;
-                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(ResetPasswordActivity.this, SPHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(ResetPasswordActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        startActivity(intent);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ResetPasswordActivity.this, getString(R.string.reset_password_successfully), Toast.LENGTH_LONG ).show();
                         finish();
                     }
-                } else  {
-                    Store store = new Gson().fromJson(data, Store.class);
-                    store.setPassword(password);
-                    ProjectManagement.store = store;
-                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
-                        Intent intent = new Intent(ResetPasswordActivity.this, STHomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Intent intent = new Intent(ResetPasswordActivity.this, ActiveAccountActivity.class);
-                        intent.putExtra(Constant.KEY_ROLE, role);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
+                });
+//                if(role == Constant.SHIPPER_ROLE){
+//                    Shipper shipper = new Gson().fromJson(data, Shipper.class);
+//                    shipper.setPassword(password);
+//                    ProjectManagement.shipper = shipper;
+//                    if (shipper.getStatus() == Constant.ACTIVE_STATUS) {
+//                        Intent intent = new Intent(ResetPasswordActivity.this, SPHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(ResetPasswordActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                } else  {
+//                    Store store = new Gson().fromJson(data, Store.class);
+//                    store.setPassword(password);
+//                    ProjectManagement.store = store;
+//                    if (store.getStatus() == Constant.ACTIVE_STATUS) {
+//                        Intent intent = new Intent(ResetPasswordActivity.this, STHomeActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    } else {
+//                        Intent intent = new Intent(ResetPasswordActivity.this, ActiveAccountActivity.class);
+//                        intent.putExtra(Constant.KEY_ROLE, role);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                }
             }
         }
     }

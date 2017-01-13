@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class ConfirmEmailActivity extends AppCompatActivity {
     private TextView tvDescription;
     private TextView tvCheckEmail;
     private Button btnContinue;
+    private Toolbar toolbar;
     private String email;
 
     private boolean isValidEmail;
@@ -39,6 +41,9 @@ public class ConfirmEmailActivity extends AppCompatActivity {
     }
 
     private void  initView(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.find_your_account));
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         etEmail = (EditText) findViewById(R.id.etEmail);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
@@ -47,6 +52,15 @@ public class ConfirmEmailActivity extends AppCompatActivity {
     }
 
     private void setEvent(){
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                finish();
+            }
+        });
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +85,7 @@ public class ConfirmEmailActivity extends AppCompatActivity {
                 intent.putExtra(Constant.KEY_ROLE, role);
                 intent.putExtra(Constant.KEY_EMAIL, email);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -107,6 +122,9 @@ public class ConfirmEmailActivity extends AppCompatActivity {
             if(error){
                 Toast.makeText(ConfirmEmailActivity.this, Constant.NOT_EXISTED_EMAIL, Toast.LENGTH_LONG).show();
             } else {
+                etEmail.setHint(getString(R.string.type_reset_code));
+                etEmail.setEnabled(false);
+                tvCheckEmail.setText("");
                 tvDescription.setText(getString(R.string.reset_password_notification));
                 btnSubmit.setVisibility(View.GONE);
                 btnContinue.setVisibility(View.VISIBLE);
